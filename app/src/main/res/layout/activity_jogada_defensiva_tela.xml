@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="goalkeeper.matheus.goalkeeper.jogadas.JogadaDefensivaTela">
+            <Spinner
+            android:id="@+id/spinner_tempoJD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
+
+    <Spinner
+        android:id="@+id/spinner_setorBolaVeio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+    <Spinner
+        android:id="@+id/spinner_tipoFinalizacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+    <Spinner
+        android:id="@+id/spinner_setorBolaFoi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+    <CheckBox
+        android:text="Foi gol?"
+        android:id="@+id/check_gol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:text="Houve Erro do Goleiro?"
+        android:id="@+id/check_erro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Spinner
+        android:id="@+id/spinner_erroJD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:id="@+id/btn_calcelJD"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/white"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="salvar"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:id="@+id/btn_salvarJD"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+</LinearLayout>

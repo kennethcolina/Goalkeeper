@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/goleiro"
+            android:title="Goleiros" />
+        <item
+            android:id="@+id/resultados"
+            android:title="Resultados Gerais" />
+        <item
+            android:id="@+id/detalhes"
+            android:title="Detalhes de Partidas" />
+        <item
+            android:id="@+id/informacoes"
+            android:title="Informações" />
+
+    </group>
+
+</menu>
