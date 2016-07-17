@@ -60,23 +60,45 @@ public class DefBaseTela extends JogadaDefensivaTela {
                     //cadastrar a jogada
                     int idJogadaDefensiva=saveJD();
                     mDb.cadastrarDefBase(idJogadaDefensiva);
-                    if(errou==1) {
-                        if(gol==1){CadastroPartida.historico += "SOFREU GOL (tentou defesa base):\n" +
-                                tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
-                        }else{
-                            CadastroPartida.historico += "DEFESA BASE:\n" +
-                                tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                    if(tipoFinalizacao != "chute de falta") {
+                        if (errou == 1) {
+                            if (gol == 1) {
+                                CadastroPartida.historico += "SOFREU GOL (tentou defesa base):\n" +
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                            } else {
+                                CadastroPartida.historico += "DEFESA BASE:\n" +
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                            }
+                        }
+                        if (errou == 0) {
+                            if (gol == 1) {
+                                CadastroPartida.historico += "SOFREU GOL (tentou defesa base):\n" +
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                            } else {
+                                CadastroPartida.historico += "DEFESA BASE:\n" +
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                            }
+                        }
+                    }else{
+                        if (errou == 1) {
+                            if (gol == 1) {
+                                CadastroPartida.historico += "SOFREU GOL DE FALTA(tentou defesa base):\n" +
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                            } else {
+                                CadastroPartida.historico += "DEFESA BASE EM FALTA:\n" +
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                            }
+                        }
+                        if (errou == 0) {
+                            if (gol == 1) {
+                                CadastroPartida.historico += "SOFREU GOL DE FALTA(tentou defesa base):\n" +
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                            } else {
+                                CadastroPartida.historico += "DEFESA BASE EM FALTA:\n" +
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                            }
                         }
                     }
-                    if(errou==0) {
-                        if(gol==1) {
-                            CadastroPartida.historico += "SOFREU GOL (tentou defesa base):\n" +
-                                    tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
-                        }else{ CadastroPartida.historico += "DEFESA BASE:\n" +
-                                tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
-                        }
-                    }
-
                     finish();
                 }else{
                     mensagem();
@@ -134,7 +156,8 @@ public class DefBaseTela extends JogadaDefensivaTela {
 
         arrayTipoFinalizacao = new ArrayList<String>();
         arrayTipoFinalizacao.add("Selecione o tipo de finalização");
-        arrayTipoFinalizacao.add("chute");
+        arrayTipoFinalizacao.add("chute bola rolando");
+        arrayTipoFinalizacao.add("chute de falta");
         arrayTipoFinalizacao.add("cabeceio");
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoFinalizacao);
         mSpinTipoFinalizacao.setAdapter(adapter4);

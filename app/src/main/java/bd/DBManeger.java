@@ -255,6 +255,229 @@ public class DBManeger {
 
         lista.add("DOMÍNIO\nAcertou " + (qtdDominio - qtdDominioErrados) + " de " + qtdDominio + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
 
+        //cruzamento
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida from JogadaDefensiva, Cruzamento where Cruzamento.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida;";
+        int qtdCruzamentos= 0;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdCruzamentos= cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida, errou from JogadaDefensiva, Cruzamento where Cruzamento.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida where errou=1;";
+        int qtdCruzamentosErrados = 999999;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdCruzamentosErrados = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+
+        lista.add("CRUZAMENTO\nAcertou " + (qtdCruzamentos - qtdCruzamentosErrados) + " de " + qtdCruzamentos + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
+
+        //escanteio
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida, escanteio from JogadaDefensiva, Cruzamento where Cruzamento.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida where escanteio='1';";
+        int escanteios= 0;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                escanteios= cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida, errou, escanteio from JogadaDefensiva, Cruzamento where Cruzamento.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida where errou=1 and escanteio='1';";
+        int escanteiosErrados = 999999;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                escanteiosErrados = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+
+        lista.add("ESCANTEIO\nAcertou " + (escanteios - escanteiosErrados) + " de " + escanteios + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
+
+        //cara a cara
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida from JogadaDefensiva, CaraCara where CaraCara.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida;";
+        int qtdCaraCara= 0;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdCaraCara= cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida, errou from JogadaDefensiva, CaraCara where CaraCara.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida where errou=1;";
+        int CaraCaraErrados = 999999;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                CaraCaraErrados = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+
+        lista.add("CARA A CARA\nAcertou " + (qtdCaraCara - CaraCaraErrados) + " de " + qtdCaraCara + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
+
+        //DEFESA BASE
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida from JogadaDefensiva, DefBase where DefBase.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida;";
+        int qtdDefBase= 0;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdDefBase= cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida, errou from JogadaDefensiva, DefBase where DefBase.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida where errou=1;";
+        int DefBaseErrados = 999999;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                DefBaseErrados = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+
+        lista.add("DEFESA BASE\nAcertou " + (qtdDefBase - DefBaseErrados) + " de " + qtdDefBase + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
+
+        //DEFESA CAÍDA
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida from JogadaDefensiva, DefCaida where DefCaida.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida;";
+        int qtdDefCaida= 0;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdDefCaida= cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida, errou from JogadaDefensiva, DefCaida where DefCaida.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida where errou=1;";
+        int DefCaidaErrados = 999999;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                DefCaidaErrados = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+
+        lista.add("DEFESA CAÍDA\nAcertou " + (qtdDefCaida - DefCaidaErrados) + " de " + qtdDefCaida + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
+
+        //DEFESA PÉ
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida from JogadaDefensiva, DefPe where DefPe.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida;";
+        int qtdDefPe= 0;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdDefPe= cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida, errou from JogadaDefensiva, DefPe where DefPe.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida where errou=1;";
+        int DefPeErrados = 999999;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                DefPeErrados = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+
+        lista.add("DEFESA PÉ\nAcertou " + (qtdDefPe - DefPeErrados) + " de " + qtdDefPe + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
+
+        //DEFESA PUNHO
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida from JogadaDefensiva, DefPunho where DefPunho.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida;";
+        int qtdDefPunho= 0;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdDefPunho= cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida, errou from JogadaDefensiva, DefPunho where DefPunho.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida where errou=1;";
+        int DefPunhoErrados = 999999;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                DefPunhoErrados = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+
+        lista.add("DEFESA PUNHO\nAcertou " + (qtdDefPunho - DefPunhoErrados) + " de " + qtdDefPunho + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
+
+        //DEFESA SOB CABECA
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida from JogadaDefensiva, DefSobCabeca where DefSobCabeca.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida;";
+        int qtdDefSobCabeca= 0;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdDefSobCabeca= cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        sql = "select count(*) from " +
+                "(select id, JogadaDefensiva.idPartida, errou from JogadaDefensiva, DefSobCabeca where DefSobCabeca.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida where errou=1;";
+        int DefSobCabecaErrados = 999999;
+        cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                DefSobCabecaErrados = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+
+        lista.add("DEFESA SOB CABEÇA\nAcertou " + (qtdDefSobCabeca - DefSobCabecaErrados) + " de " + qtdDefSobCabeca + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
 
 
         return lista;
@@ -355,5 +578,54 @@ public class DBManeger {
             } while (cursor.moveToNext());
         }
         return partidas; // na main, se o goleio for null escrever msg
+    }
+
+    public void cadastrarDefCaida(int idJogadaDefensiva,String s){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("idJogadaDefensiva", idJogadaDefensiva);
+        valores.put("tipoDefesaCaida", s);
+        db.insert("DefCaida", null, valores);
+    }
+
+    public void cadastrarDefPe(int idJogadaDefensiva) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("idJogadaDefensiva", idJogadaDefensiva);
+        db.insert("DefPe", null, valores);
+    }
+
+    public void cadastrarDefPunho(int idJogadaDefensiva, String s) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("idJogadaDefensiva", idJogadaDefensiva);
+        valores.put("tipoDefesaPunho", s);
+        db.insert("DefPunho", null, valores);
+    }
+
+    public void cadastrarDefSobCabeca(int idJogadaDefensiva, String s) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("idJogadaDefensiva", idJogadaDefensiva);
+        valores.put("tipoDefesa", s);
+        db.insert("DefSobCabeca", null, valores);
+    }
+
+    public void cadastrarCaraCara(int idJogadaDefensiva, String s) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("idJogadaDefensiva", idJogadaDefensiva);
+        valores.put("tipoCaraCara", s);
+        db.insert("CaraCara", null, valores);
+    }
+
+    public void cadastrarCruzamento(int idJogadaDefensiva, boolean checked, String s, String s1) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("idJogadaDefensiva", idJogadaDefensiva);
+        valores.put("escanteio", checked);
+        valores.put("tipoSaida", s);
+        valores.put("tipoCruzamento", s1);
+        db.insert("Cruzamento", null, valores);
     }
 }
