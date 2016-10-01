@@ -10,6 +10,7 @@ public class Goleiro {
     private int id;
     private String nome;
     private String dataNascimento;
+    private int foto;
 
     public Goleiro(int id, String nome, String dataNascimento) {
         this.id = id;
@@ -27,6 +28,14 @@ public class Goleiro {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getFoto() {
+        return foto;
+    }
+
+    public void setFoto(int foto) {
+        this.foto = foto;
     }
 
     public String getNome() {

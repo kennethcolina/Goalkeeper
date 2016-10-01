@@ -86,10 +86,10 @@ public class CruzamentoTela extends JogadaDefensivaTela {
                         }
                         if (errou == 0) {
                             if (gol == 1) {
-                                CadastroPartida.historico += "SOFREU GOL  (em cruzamento):\n" +
+                                CadastroPartida.historico += "SOFREU GOL  (em cobrança de escanteio):\n" +
                                         tempo + " minutos, tipo de saída: "+mSpinTipoSaida.getSelectedItem().toString()+", tipo de cruzamento:"+mSpinTipoCruzamento.getSelectedItem().toString()+", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
                             } else {
-                                CadastroPartida.historico += "CRUZAMENTO:\n" +
+                                CadastroPartida.historico += "ESCANTEIO:\n" +
                                         tempo + " minutos, tipo de saída: "+mSpinTipoSaida.getSelectedItem().toString()+", tipo de cruzamento:"+mSpinTipoCruzamento.getSelectedItem().toString()+", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
                             }
                         }
