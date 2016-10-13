@@ -42,7 +42,7 @@ public class CadastroPartida extends AppCompatActivity {
     Button mBtnParciais;
     public static boolean mFinlizar = false;
     public static String historico="";
-    boolean jaSdicionadaNessaPartida = false;
+    //boolean jaSdicionadaNessaPartida = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
