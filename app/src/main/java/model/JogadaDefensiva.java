@@ -14,6 +14,16 @@ public class JogadaDefensiva {
     private String tipoFinalizacao;
     private int gol;
 
+    public JogadaDefensiva(int idPartida, int tempo, String setorBolaVeio, String setorBolaFoi, int errou, String erro, String tipoFinalizacao, int gol) {
+        this.idPartida = idPartida;
+        this.tempo = tempo;
+        this.setorBolaVeio = setorBolaVeio;
+        this.setorBolaFoi = setorBolaFoi;
+        this.errou = errou;
+        this.erro = erro;
+        this.tipoFinalizacao = tipoFinalizacao;
+        this.gol = gol;
+    }
 
     public int getId() {
         return id;
@@ -84,17 +94,6 @@ public class JogadaDefensiva {
     }
 
     public void setGol(int gol) {
-        this.gol = gol;
-    }
-
-    public JogadaDefensiva(int idPartida, int tempo, String setorBolaVeio, String setorBolaFoi, int errou, String erro, String tipoFinalizacao, int gol) {
-        this.idPartida = idPartida;
-        this.tempo = tempo;
-        this.setorBolaVeio = setorBolaVeio;
-        this.setorBolaFoi = setorBolaFoi;
-        this.errou = errou;
-        this.erro = erro;
-        this.tipoFinalizacao = tipoFinalizacao;
         this.gol = gol;
     }
 }

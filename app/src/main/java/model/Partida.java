@@ -13,7 +13,7 @@ public class Partida {
     private String data;
     private String descricao;
 
-   /* //ofencivas
+   /* //ofensivas
     private ArrayList<TiroMeta> tirosMeta;
     private ArrayList<ReporVoleio> reporVoleios;
     private ArrayList<ReporMao> reporMaos;
