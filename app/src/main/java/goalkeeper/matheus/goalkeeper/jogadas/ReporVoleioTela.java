@@ -93,7 +93,10 @@ public class ReporVoleioTela extends JogadaOfensivaTela {
         arraySetorBolaFoi = new ArrayList<String>();
         arraySetorBolaFoi.add("Selecione o setor onde a bola foi");
         arraySetorBolaFoi.add("DE");
-        arraySetorBolaFoi.add("DC");
+        arraySetorBolaFoi.add("ADE");
+        arraySetorBolaFoi.add("ADC");
+        arraySetorBolaFoi.add("PAD");
+        arraySetorBolaFoi.add("ADD");
         arraySetorBolaFoi.add("DD");
         arraySetorBolaFoi.add("MDE");
         arraySetorBolaFoi.add("MDC");
@@ -102,7 +105,10 @@ public class ReporVoleioTela extends JogadaOfensivaTela {
         arraySetorBolaFoi.add("MOC");
         arraySetorBolaFoi.add("MOD");
         arraySetorBolaFoi.add("OE");
-        arraySetorBolaFoi.add("OC");
+        arraySetorBolaFoi.add("AOE");
+        arraySetorBolaFoi.add("AOC");
+        arraySetorBolaFoi.add("PAO");
+        arraySetorBolaFoi.add("AOD");
         arraySetorBolaFoi.add("OD");
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySetorBolaFoi);
         mSpinSetorBolaFoi.setAdapter(adapter2);

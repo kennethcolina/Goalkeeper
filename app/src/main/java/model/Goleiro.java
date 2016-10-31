@@ -17,6 +17,7 @@ public class Goleiro {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
     }
+
     public Goleiro(String nome, String dataNascimento) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
