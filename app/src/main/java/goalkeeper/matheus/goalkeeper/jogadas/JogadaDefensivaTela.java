@@ -138,7 +138,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
             });
 
             ImageView imageView = new ImageView(this);
-            imageView.setImageResource(R.drawable.campo_setores);
+            imageView.setImageResource(R.drawable.campo_setores_mais);
             builder.addContentView(imageView, new RelativeLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
@@ -158,7 +158,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
             });
 
             ImageView imageView = new ImageView(this);
-            imageView.setImageResource(R.drawable.gol_setores);
+            imageView.setImageResource(R.drawable.gol_setores_mais);
             builder.addContentView(imageView, new RelativeLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
