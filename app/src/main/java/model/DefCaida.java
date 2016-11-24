@@ -7,7 +7,7 @@ public class DefCaida extends JogadaDefensiva{
     private int idJogadaDefensiva;
     private String tipoDefesaCaida;
 
-    public DefCaida(int idPartida, int tempo, String setorBolaVeio, String setorBolaFoi, int errou, String erro, String tipoFinalizacao, int gol) {
-        super(idPartida, tempo, setorBolaVeio, setorBolaFoi, errou, erro, tipoFinalizacao, gol);
+    public DefCaida(int idPartida, int tempo, String setorBolaVeio, String setorBolaFoi, int errou, String observacao, String tipoFinalizacao, int gol) {
+        super(idPartida, tempo, setorBolaVeio, setorBolaFoi, errou, observacao, tipoFinalizacao, gol);
     }
 }

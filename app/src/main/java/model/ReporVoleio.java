@@ -6,7 +6,7 @@ package model;
 public class ReporVoleio extends JogadaOfensiva{
     private int idJogadaOfensiva;
 
-    public ReporVoleio(int idPartida, int tempo, String setorBolaFoi, String primeiraBola, String segundaBola, int errou, String erro) {
-        super(idPartida, tempo, setorBolaFoi, primeiraBola, segundaBola, errou, erro);
+    public ReporVoleio(int idPartida, int tempo, String setorBolaFoi, String primeiraBola, String segundaBola, int errou, String observacao) {
+        super(idPartida, tempo, setorBolaFoi, primeiraBola, segundaBola, errou, observacao);
     }
 }

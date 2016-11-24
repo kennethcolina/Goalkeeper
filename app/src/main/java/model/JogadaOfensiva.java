@@ -12,16 +12,16 @@ public class JogadaOfensiva {
     private String primeiraBola;
     private String segundaBola;
     private int errou;
-    private String erro;
+    private String observacao;
 
-    public JogadaOfensiva(int idPartida, int tempo, String setorBolaFoi, String primeiraBola, String segundaBola, int errou, String erro) {
+    public JogadaOfensiva(int idPartida, int tempo, String setorBolaFoi, String primeiraBola, String segundaBola, int errou, String observacao) {
         this.idPartida = idPartida;
         this.tempo = tempo;
         this.setorBolaFoi = setorBolaFoi;
         this.primeiraBola = primeiraBola;
         this.segundaBola = segundaBola;
         this.errou = errou;
-        this.erro = erro;
+        this.observacao = observacao;
     }
 
     public int getId() {
@@ -79,12 +79,12 @@ public class JogadaOfensiva {
     public void setErrou(int errou) {
         this.errou = errou;
     }
-
+    //o nome dos dois métdos abaixo podem ser alterados
     public String getErro() {
-        return erro;
+        return observacao;
     }
 
     public void setErro(String erro) {
-        this.erro = erro;
+        this.observacao = observacao;
     }
 }

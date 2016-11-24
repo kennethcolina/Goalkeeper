@@ -7,7 +7,7 @@ public class ReporMao extends JogadaOfensiva{
     private int idJogadaOfensiva;
     private String TipoComMao;
 
-    public ReporMao(int idPartida, int tempo, String setorBolaFoi, String primeiraBola, String segundaBola, int errou, String erro) {
-        super(idPartida, tempo, setorBolaFoi, primeiraBola, segundaBola, errou, erro);
+    public ReporMao(int idPartida, int tempo, String setorBolaFoi, String primeiraBola, String segundaBola, int errou, String observacao) {
+        super(idPartida, tempo, setorBolaFoi, primeiraBola, segundaBola, errou, observacao);
     }
 }

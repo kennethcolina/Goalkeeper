@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -37,11 +38,13 @@ public class CaraCaraTela extends JogadaDefensivaTela {
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
         mSpinTipoCaraCara = (Spinner) findViewById(R.id.spinner_tipoCaraCara);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
-        mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
+        //mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
+        mTextErro = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJD = (Button) findViewById(R.id.btn_salvarJD);
         btnCancelarJD = (Button) findViewById(R.id.btn_calcelJD);
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
 
+        /*
         mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
         mSpinErro.setVisibility(View.GONE);
@@ -52,6 +55,7 @@ public class CaraCaraTela extends JogadaDefensivaTela {
                 else mSpinErro.setVisibility(View.GONE);
             }
         });
+        */
 
         carregarValores();
 
@@ -66,10 +70,10 @@ public class CaraCaraTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL (tentou defesa cara a cara):\n" +
-                                        tempo + " minutos, tipo de cara a cara: " + mSpinTipoCaraCara.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, tipo de cara a cara: " + mSpinTipoCaraCara.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA CARA A CARA:\n" +
-                                        tempo + " minutos, tipo de cara a cara: " + mSpinTipoCaraCara.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, tipo de cara a cara: " + mSpinTipoCaraCara.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -85,10 +89,10 @@ public class CaraCaraTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL DE FALTA (tentou defesa cara a cara):\n" +
-                                        tempo + " minutos, tipo de cara a cara: " + mSpinTipoCaraCara.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, tipo de cara a cara: " + mSpinTipoCaraCara.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA CARA A CARA EM FALTA:\n" +
-                                        tempo + " minutos, tipo de cara a cara: " + mSpinTipoCaraCara.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, tipo de cara a cara: " + mSpinTipoCaraCara.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -171,6 +175,7 @@ public class CaraCaraTela extends JogadaDefensivaTela {
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoFinalizacao);
         mSpinTipoFinalizacao.setAdapter(adapter4);
 
+        /*
         arrayErros = new ArrayList<String>();
         arrayErros.add("Selecione o erro");
         arrayErros.add("saiu muito");
@@ -178,6 +183,7 @@ public class CaraCaraTela extends JogadaDefensivaTela {
         arrayErros.add("erro de decisão");
         ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayErros);
         mSpinErro.setAdapter(adapter5);
+        */
 
         arrayTipoCaraCara = new ArrayList<String>();
         arrayTipoCaraCara.add("Selecione o tipo de Cara a Cara");
@@ -190,7 +196,6 @@ public class CaraCaraTela extends JogadaDefensivaTela {
         mSpinTipoCaraCara.setAdapter(adapter6);
     }
 
-
     public void mensagem() {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Ops");
@@ -201,7 +206,4 @@ public class CaraCaraTela extends JogadaDefensivaTela {
         });
         alertDialog.show();
     }
-
-
-
 }

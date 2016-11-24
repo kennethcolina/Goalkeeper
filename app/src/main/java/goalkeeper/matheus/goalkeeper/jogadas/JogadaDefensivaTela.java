@@ -28,7 +28,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
     public static String setorBolaVeio;
     public static String setorBolaFoi;
     public static int errou;
-    public static String erro;
+    public static String observacao;
     public static String tipoFinalizacao;
     public static int gol;
 
@@ -40,7 +40,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
     public Spinner mSpinSetorBolaFoi;
     public CheckBox mCheckGol;
     public CheckBox mCheckErrou;
-    public Spinner mSpinErro;
+    public EditText mTextErro;
     public Button btnSalvarJD;
     public Button btnCancelarJD;
 
@@ -58,7 +58,8 @@ public class JogadaDefensivaTela extends AppCompatActivity {
         mSpinSetorBolaVeio = (Spinner) findViewById(R.id.spinner_setorBolaVeio);
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
-        mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
+        //mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
+        mTextErro = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJD = (Button) findViewById(R.id.btn_salvarJD);
         btnCancelarJD = (Button) findViewById(R.id.btn_calcelJD);
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
@@ -69,7 +70,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
     public boolean testePreenchimento() {
         if (mSpinTempo.getSelectedItemId() > 0 && mSpinSetorBolaFoi.getSelectedItemId() > 0 && mSpinSetorBolaVeio.getSelectedItemId() > 0 && mSpinTipoFinalizacao.getSelectedItemId() > 0) {
             if (mCheckErrou.isChecked() == true) {
-                if (mSpinErro.getSelectedItemId() > 0) {
+                if (!mTextErro.getText().toString().isEmpty()) {
                     mPreenchido = true;
                 } else {
                     mPreenchido = false;
@@ -88,7 +89,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
         setorBolaFoi = mSpinSetorBolaFoi.getSelectedItem().toString();
         setorBolaVeio = mSpinSetorBolaVeio.getSelectedItem().toString();
         tipoFinalizacao = mSpinTipoFinalizacao.getSelectedItem().toString();
-        erro = mSpinErro.getSelectedItem().toString();
+        observacao = mTextErro.getText().toString();
         if (mCheckErrou.isChecked()) errou = 1;
         else errou = 0;
         if (mCheckGol.isChecked()) gol = 1;
@@ -100,7 +101,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
             getDados();
             idPartida = mDb.getMaxIdPartida();//procurar id da ultima partida inserida e colocar no idPartida
             Log.d("theus", "" + idPartida);
-            JogadaDefensiva jd = new JogadaDefensiva(idPartida, tempo, setorBolaVeio, setorBolaFoi, errou, erro, tipoFinalizacao, gol);
+            JogadaDefensiva jd = new JogadaDefensiva(idPartida, tempo, setorBolaVeio, setorBolaFoi, errou, observacao, tipoFinalizacao, gol);
             mDb.cadastrarJD(jd);
             idJogadaDefensiva = mDb.getMaxIdJogadaDefensiva();
             Log.d("theus", "" + idJogadaDefensiva);

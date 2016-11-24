@@ -88,7 +88,7 @@
         <activity android:name=".jogadas.CaraCaraTela" />
         <activity android:name=".jogadas.DefPeTela" />
         <activity android:name=".jogadas.DefCaidaTela" />
-        <activity android:name=".jogadas.DefSobCabecaTela" />
+        <activity android:name=".jogadas.DefSobreCabecaTela" />
         <activity android:name=".jogadas.DefBaseTela" />
         <activity android:name=".jogadas.DefPunhoTela" />
         <activity android:name=".PartidaDetalhes" />

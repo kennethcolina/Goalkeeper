@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -41,20 +42,23 @@ public class DominioTela extends JogadaOfensivaTela {
         mSpinPrimeiraBola = (Spinner) findViewById(R.id.spinner_primBola);
         mSpinSegundaBola = (Spinner) findViewById(R.id.spinner_segBola);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO);
-        mSpinErro = (Spinner) findViewById(R.id.spinner_erroJO);
+        //mSpinErro = (Spinner) findViewById(R.id.spinner_erroJO);
+        mTextErro = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
         btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
 
+        /*
         mSpinErro = (Spinner) findViewById(R.id.spinner_erroJO);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO);
-        mSpinErro.setVisibility(View.GONE);
+        mTextErro.setVisibility(View.GONE);
         mCheckErrou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mCheckErrou.isChecked()) mSpinErro.setVisibility(View.VISIBLE);
-                else mSpinErro.setVisibility(View.GONE);
+                if(mCheckErrou.isChecked()) mTextErro.setVisibility(View.VISIBLE);
+                else mTextErro.setVisibility(View.GONE);
             }
         });
+        */
 
         carregarValores();
 
@@ -66,7 +70,7 @@ public class DominioTela extends JogadaOfensivaTela {
                     int idJogadaOfensiva=saveJO();
                     mDb.cadastrarDominio(idJogadaOfensiva,mSpinTipoDominio.getSelectedItem().toString());
                     if(errou==1)CadastroPartida.historico += "DOMÍNIO:\n"+
-                            tempo+" minutos, domínio foi do tipo "+ mSpinTipoDominio.getSelectedItem().toString() +"\nErro: "+erro+"\n\n";
+                            tempo+" minutos, domínio foi do tipo "+ mSpinTipoDominio.getSelectedItem().toString() +"\nErro: "+observacao+"\n\n";
                     if(errou==0)CadastroPartida.historico += "DOMÍNIO:\n"+
                             tempo+" minutos, domínio foi do tipo "+ mSpinTipoDominio.getSelectedItem().toString()+ "\nAcertou a jogada\n\n";
 
@@ -83,7 +87,6 @@ public class DominioTela extends JogadaOfensivaTela {
                 finish();
             }
         });
-
     }
 
     private void carregarValores() {
@@ -143,14 +146,15 @@ public class DominioTela extends JogadaOfensivaTela {
         mSpinSegundaBola.setSelection(1);
         mSpinSegundaBola.setVisibility(View.GONE);
 
+        /*
         arrayErros = new ArrayList<String>();
         arrayErros.add("Selecione o erro");
         arrayErros.add("bola passou");
         arrayErros.add("dominou para longe do pé");
         ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayErros);
         mSpinErro.setAdapter(adapter5);
+        */
     }
-
 
     public void mensagem() {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -162,8 +166,5 @@ public class DominioTela extends JogadaOfensivaTela {
         });
         alertDialog.show();
     }
-
-
-
 }
 

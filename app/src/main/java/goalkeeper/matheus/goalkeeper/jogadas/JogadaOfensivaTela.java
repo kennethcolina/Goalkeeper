@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -29,7 +30,7 @@ public class JogadaOfensivaTela extends AppCompatActivity {
     public String primeiraBola;
     public String segundaBola;
     public int errou;
-    public String erro;
+    public String observacao;
 
     public boolean mPreenchido = false;
     public DBManeger mDb;
@@ -39,7 +40,7 @@ public class JogadaOfensivaTela extends AppCompatActivity {
     public Spinner mSpinPrimeiraBola;
     public Spinner mSpinSegundaBola;
     public CheckBox mCheckErrou;
-    public Spinner mSpinErro;
+    public EditText mTextErro;
     public Button btnSalvarJO;
     public Button btnCancelarJO;
 
@@ -53,7 +54,7 @@ public class JogadaOfensivaTela extends AppCompatActivity {
         mSpinPrimeiraBola = (Spinner) findViewById(R.id.spinner_primBola);
         mSpinSegundaBola = (Spinner) findViewById(R.id.spinner_segBola);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO);
-        mSpinErro = (Spinner) findViewById(R.id.spinner_erroJO);
+        mTextErro = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
         btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
 
@@ -63,7 +64,7 @@ public class JogadaOfensivaTela extends AppCompatActivity {
     public boolean testePreenchimento(){
         if( mSpinTempo.getSelectedItemId()>0 && mSpinSetorBolaFoi.getSelectedItemId()>0 && mSpinPrimeiraBola.getSelectedItemId()>0 && mSpinSegundaBola.getSelectedItemId()>0){
             if(mCheckErrou.isChecked() == true) {
-                if (mSpinErro.getSelectedItemId() > 0) {
+                if (!mTextErro.getText().toString().isEmpty()) {
                     mPreenchido = true;
                 } else {
                     mPreenchido = false;
@@ -77,12 +78,12 @@ public class JogadaOfensivaTela extends AppCompatActivity {
         return mPreenchido;
     }
 
-    public void getDados(){
+    public void getDados() {
         tempo = Integer.parseInt(mSpinTempo.getSelectedItem().toString().substring(0,mSpinTempo.getSelectedItem().toString().indexOf("'")));
         setorBolaFoi = mSpinSetorBolaFoi.getSelectedItem().toString();
         primeiraBola = mSpinPrimeiraBola.getSelectedItem().toString();
         segundaBola = mSpinSegundaBola.getSelectedItem().toString();
-        erro = mSpinErro.getSelectedItem().toString();
+        observacao = mTextErro.getText().toString();
         if(mCheckErrou.isChecked())errou =1 ; else errou = 0;
     }
 
@@ -91,7 +92,7 @@ public class JogadaOfensivaTela extends AppCompatActivity {
             getDados();
             idPartida = mDb.getMaxIdPartida();//procurar id da ultima partida inserida e colocar no idPartida
             Log.d("theus",""+idPartida);
-            JogadaOfensiva jo = new JogadaOfensiva(idPartida, tempo, setorBolaFoi, primeiraBola, segundaBola, errou, erro);
+            JogadaOfensiva jo = new JogadaOfensiva(idPartida, tempo, setorBolaFoi, primeiraBola, segundaBola, errou, observacao);
             mDb.cadastrarJO(jo);
             idJogadaOfensiva = mDb.getMaxIdJogadaOfensiva();
             Log.d("theus",""+idJogadaOfensiva);

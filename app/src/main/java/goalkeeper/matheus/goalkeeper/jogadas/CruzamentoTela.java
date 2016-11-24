@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -43,7 +44,8 @@ public class CruzamentoTela extends JogadaDefensivaTela {
         mSpinSetorBolaVeio = (Spinner) findViewById(R.id.spinner_setorBolaVeio);
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
-        mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
+        //mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
+        mTextErro = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJD = (Button) findViewById(R.id.btn_salvarJD);
         btnCancelarJD = (Button) findViewById(R.id.btn_calcelJD);
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
@@ -54,6 +56,7 @@ public class CruzamentoTela extends JogadaDefensivaTela {
         mCheckEscanteio = (CheckBox) findViewById(R.id.check_escanteio);
       //  mCheckAcertouBarreira = (CheckBox) findViewById(R.id.check_acertouBarreira);
 
+        /*
         mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
         mSpinErro.setVisibility(View.GONE);
@@ -64,6 +67,7 @@ public class CruzamentoTela extends JogadaDefensivaTela {
                 else mSpinErro.setVisibility(View.GONE);
             }
         });
+        */
 
         carregarValores();
 
@@ -78,10 +82,10 @@ public class CruzamentoTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL  (em cobrança de escanteio):\n" +
-                                        tempo + " minutos, tipo de saída: "+mSpinTipoSaida.getSelectedItem().toString()+", tipo de cruzamento:"+mSpinTipoCruzamento.getSelectedItem().toString()+", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, tipo de saída: "+mSpinTipoSaida.getSelectedItem().toString()+", tipo de cruzamento:"+mSpinTipoCruzamento.getSelectedItem().toString()+", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "ESCANTEIO:\n" +
-                                        tempo + " minutos, tipo de saída: "+mSpinTipoSaida.getSelectedItem().toString()+", tipo de cruzamento:"+mSpinTipoCruzamento.getSelectedItem().toString()+", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, tipo de saída: "+mSpinTipoSaida.getSelectedItem().toString()+", tipo de cruzamento:"+mSpinTipoCruzamento.getSelectedItem().toString()+", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -97,10 +101,10 @@ public class CruzamentoTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL (em cruzamento):\n" +
-                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "CRUZAMENTO:\n" +
-                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -182,6 +186,7 @@ public class CruzamentoTela extends JogadaDefensivaTela {
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoFinalizacao);
         mSpinTipoFinalizacao.setAdapter(adapter4);
 
+        /*
         arrayErros = new ArrayList<String>();
         arrayErros.add("Selecione o erro");
         arrayErros.add("tempo de bola");
@@ -189,6 +194,7 @@ public class CruzamentoTela extends JogadaDefensivaTela {
         arrayErros.add("bola passou");
         ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayErros);
         mSpinErro.setAdapter(adapter5);
+        */
 
         arrayCruzamentos = new ArrayList<String>();
         arrayCruzamentos.add("Selecione o tipo de cruzamento");

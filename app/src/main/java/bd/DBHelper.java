@@ -3,7 +3,6 @@ package bd;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * Created by Matheus on 03/07/2016.
@@ -34,7 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "  primeiraBola TEXT NULL," +
             "  segundaBola TEXT NULL," +
             "  errou INTEGER not null," +
-            "  erro TEXT," +
+            "  observacao TEXT," +
             "  idPartida INTEGER NOT NULL);" ;
     private static String TiroMeta =
             "CREATE TABLE IF NOT EXISTS TiroMeta (" +
@@ -55,7 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "  setorBolaFoi TEXT NULL," +
             "  setorBolaVeio TEXT NULL," +
             "  errou INTEGER not NULL," +
-            "  erro TEXT NULL," +
+            "  observacao TEXT," +
             "  idPartida INTEGER NOT NULL," +
             "  tipoFinalizacao TEXT NULL," +
             "  gol INTEGER);" ;
@@ -76,8 +75,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     "CREATE TABLE IF NOT EXISTS DefPunho (" +
             "  tipoDefesaPunho TEXT NULL," +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
-    private static String DefSobCabeca =
-            "CREATE TABLE IF NOT EXISTS DefSobCabeca (" +
+    private static String DefSobreCabeca =
+            "CREATE TABLE IF NOT EXISTS DefSobreCabeca (" +
             "  tipoDefesa TEXT NULL," +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
     private static String Cruzamento =
@@ -113,7 +112,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(DefCaida);
         db.execSQL(DefPe);
         db.execSQL(DefPunho);
-        db.execSQL(DefSobCabeca);
+        db.execSQL(DefSobreCabeca);
         db.execSQL(Dominio);
         db.execSQL(JogadaDefensiva);
         db.execSQL(ReporMao);

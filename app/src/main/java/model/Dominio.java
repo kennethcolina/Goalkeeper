@@ -8,7 +8,7 @@ public class Dominio extends JogadaOfensiva {
     private int idJogadaOfensiva;
     private String tipoDominio;
 
-    public Dominio(int idPartida, int tempo, String setorBolaFoi, String primeiraBola, String segundaBola, int errou, String erro) {
-        super(idPartida, tempo, setorBolaFoi, primeiraBola, segundaBola, errou, erro);
+    public Dominio(int idPartida, int tempo, String setorBolaFoi, String primeiraBola, String segundaBola, int errou, String observacao) {
+        super(idPartida, tempo, setorBolaFoi, primeiraBola, segundaBola, errou, observacao);
     }
 }
