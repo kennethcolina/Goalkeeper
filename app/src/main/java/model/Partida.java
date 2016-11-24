@@ -21,7 +21,7 @@ public class Partida {
     //defesas
     private ArrayList<DefPunho> defPunhos;
     private ArrayList<DefBase> defBases;
-    private ArrayList<DefSobCabeca> defSobCabecas;
+    private ArrayList<DefSobreCabeca> defSobreCabecas;
     private ArrayList<DefCaida> defCaidas;
     private ArrayList<DefPe> defPes;
     //saidas

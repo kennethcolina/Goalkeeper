@@ -16,17 +16,11 @@ import goalkeeper.matheus.goalkeeper.jogadas.DefBaseTela;
 import goalkeeper.matheus.goalkeeper.jogadas.DefCaidaTela;
 import goalkeeper.matheus.goalkeeper.jogadas.DefPeTela;
 import goalkeeper.matheus.goalkeeper.jogadas.DefPunhoTela;
-import goalkeeper.matheus.goalkeeper.jogadas.DefSobCabecaTela;
+import goalkeeper.matheus.goalkeeper.jogadas.DefSobreCabecaTela;
 import goalkeeper.matheus.goalkeeper.jogadas.DominioTela;
-import goalkeeper.matheus.goalkeeper.jogadas.JogadaOfensivaTela;
 import goalkeeper.matheus.goalkeeper.jogadas.ReporMaoTela;
 import goalkeeper.matheus.goalkeeper.jogadas.ReporVoleioTela;
 import goalkeeper.matheus.goalkeeper.jogadas.TiroMetaTela;
-import goalkeeper.matheus.goalkeeper.resultados.ItemListActivity;
-import model.DefSobCabeca;
-import model.JogadaDefensiva;
-import model.JogadaOfensiva;
-import model.TiroMeta;
 
 public class DialogTipoJogada extends AppCompatActivity {
     Spinner mSpinnerTipoJogadas;
@@ -47,7 +41,7 @@ public class DialogTipoJogada extends AppCompatActivity {
         listTiposJogdas.add("Cara a Cara"); //1
         listTiposJogdas.add("Defesa com os Pés"); //2
         listTiposJogdas.add("Defesa com Caída"); //3
-        listTiposJogdas.add("Defesa Sob Cabeça"); //4
+        listTiposJogdas.add("Defesa Sobre Cabeça"); //4
         listTiposJogdas.add("Defesa Base"); //5
         listTiposJogdas.add("Defesa com Punho"); //6
         listTiposJogdas.add("Domínio de bola"); //7
@@ -91,8 +85,8 @@ public class DialogTipoJogada extends AppCompatActivity {
                         finish(); //finish Activity.
                         break;
                     case 4:
-                        Intent defSobCabeca = new Intent(getApplicationContext(), DefSobCabecaTela.class);
-                        startActivity(defSobCabeca);
+                        Intent defSobreCabeca = new Intent(getApplicationContext(), DefSobreCabecaTela.class);
+                        startActivity(defSobreCabeca);
                         finish(); //finish Activity.
                         break;
                     case 5:

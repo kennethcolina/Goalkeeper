@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -35,11 +36,13 @@ public class DefBaseTela extends JogadaDefensivaTela {
         mSpinSetorBolaVeio = (Spinner) findViewById(R.id.spinner_setorBolaVeio);
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
-        mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
+        //mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
+        mTextErro = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJD = (Button) findViewById(R.id.btn_salvarJD);
         btnCancelarJD = (Button) findViewById(R.id.btn_calcelJD);
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
 
+        /*
         mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
         mSpinErro.setVisibility(View.GONE);
@@ -50,6 +53,7 @@ public class DefBaseTela extends JogadaDefensivaTela {
                 else mSpinErro.setVisibility(View.GONE);
             }
         });
+        */
 
         carregarValores();
 
@@ -64,10 +68,10 @@ public class DefBaseTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL (tentou defesa base):\n" +
-                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA BASE:\n" +
-                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -83,10 +87,10 @@ public class DefBaseTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL DE FALTA(tentou defesa base):\n" +
-                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA BASE EM FALTA:\n" +
-                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + erro + "\n\n";
+                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -169,6 +173,7 @@ public class DefBaseTela extends JogadaDefensivaTela {
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoFinalizacao);
         mSpinTipoFinalizacao.setAdapter(adapter4);
 
+        /*
         arrayErros = new ArrayList<String>();
         arrayErros.add("Selecione o erro");
         arrayErros.add("movimento da perna");
@@ -176,6 +181,7 @@ public class DefBaseTela extends JogadaDefensivaTela {
         arrayErros.add("bola passou");
         ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayErros);
         mSpinErro.setAdapter(adapter5);
+        */
     }
 
 

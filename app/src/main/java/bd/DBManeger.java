@@ -84,7 +84,7 @@ public class DBManeger {
         ContentValues valores = new ContentValues();
         valores.put("idPartida", jo.getIdPartida());
         valores.put("tempo", jo.getTempo());
-        valores.put("erro", jo.getErro());
+        valores.put("observacao", jo.getErro());
         valores.put("errou", jo.isErrou());
         valores.put("setorBolaFoi", jo.getSetorBolaFoi());
         valores.put("primeiraBola", jo.getSegundaBola());
@@ -451,33 +451,33 @@ public class DBManeger {
 
         lista.add("DEFESA PUNHO\nAcertou " + (qtdDefPunho - DefPunhoErrados) + " de " + qtdDefPunho + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
 
-        //DEFESA SOB CABECA
+        //DEFESA SOBRE CABECA
         sql = "select count(*) from " +
-                "(select id, JogadaDefensiva.idPartida from JogadaDefensiva, DefSobCabeca where DefSobCabeca.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "(select id, JogadaDefensiva.idPartida from JogadaDefensiva, DefSobreCabeca where DefSobreCabeca.idJogadaDefensiva=JogadaDefensiva.id) " +
                 "join " +
                 "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
                 "on idPartidasGoleiro=idPartida;";
-        int qtdDefSobCabeca= 0;
+        int qtdDefSobreCabeca= 0;
         cursor = db.rawQuery(sql, null);
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                qtdDefSobCabeca= cursor.getInt(0);
+                qtdDefSobreCabeca= cursor.getInt(0);
             } while (cursor.moveToNext());
         }
         sql = "select count(*) from " +
-                "(select id, JogadaDefensiva.idPartida, errou from JogadaDefensiva, DefSobCabeca where DefSobCabeca.idJogadaDefensiva=JogadaDefensiva.id) " +
+                "(select id, JogadaDefensiva.idPartida, errou from JogadaDefensiva, DefSobreCabeca where DefSobreCabeca.idJogadaDefensiva=JogadaDefensiva.id) " +
                 "join " +
                 "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
                 "on idPartidasGoleiro=idPartida where errou=1;";
-        int DefSobCabecaErrados = 999999;
+        int DefSobreCabecaErrados = 999999;
         cursor = db.rawQuery(sql, null);
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                DefSobCabecaErrados = cursor.getInt(0);
+                DefSobreCabecaErrados = cursor.getInt(0);
             } while (cursor.moveToNext());
         }
 
-        lista.add("DEFESA SOB CABEÇA\nAcertou " + (qtdDefSobCabeca - DefSobCabecaErrados) + " de " + qtdDefSobCabeca + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
+        lista.add("DEFESA SOBRE CABEÇA\nAcertou " + (qtdDefSobreCabeca - DefSobreCabecaErrados) + " de " + qtdDefSobreCabeca + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
 
 
         return lista;
@@ -519,7 +519,7 @@ public class DBManeger {
         ContentValues valores = new ContentValues();
         valores.put("idPartida", jd.getIdPartida());
         valores.put("tempo", jd.getTempo());
-        valores.put("erro", jd.getErro());
+        valores.put("observacao", jd.getErro());
         valores.put("errou", jd.isErrou());
         valores.put("setorBolaFoi", jd.getSetorBolaFoi());
         valores.put("setorBolaVeio", jd.getSetorBolaVeio());
@@ -603,12 +603,12 @@ public class DBManeger {
         db.insert("DefPunho", null, valores);
     }
 
-    public void cadastrarDefSobCabeca(int idJogadaDefensiva, String s) {
+    public void cadastrarDefSobreCabeca(int idJogadaDefensiva, String s) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues valores = new ContentValues();
         valores.put("idJogadaDefensiva", idJogadaDefensiva);
         valores.put("tipoDefesa", s);
-        db.insert("DefSobCabeca", null, valores);
+        db.insert("DefSobreCabeca", null, valores);
     }
 
     public void cadastrarCaraCara(int idJogadaDefensiva, String s) {
