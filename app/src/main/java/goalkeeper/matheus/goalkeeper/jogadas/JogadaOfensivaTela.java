@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
-import bd.DBManeger;
+import bd.DBManager;
 import goalkeeper.matheus.goalkeeper.R;
 import model.JogadaOfensiva;
 
@@ -33,14 +33,14 @@ public class JogadaOfensivaTela extends AppCompatActivity {
     public String observacao;
 
     public boolean mPreenchido = false;
-    public DBManeger mDb;
+    public DBManager mDb;
 
     public Spinner mSpinTempo;
     public Spinner mSpinSetorBolaFoi;
     public Spinner mSpinPrimeiraBola;
     public Spinner mSpinSegundaBola;
     public CheckBox mCheckErrou;
-    public EditText mTextErro;
+    public EditText mTextObservacao;
     public Button btnSalvarJO;
     public Button btnCancelarJO;
 
@@ -54,17 +54,17 @@ public class JogadaOfensivaTela extends AppCompatActivity {
         mSpinPrimeiraBola = (Spinner) findViewById(R.id.spinner_primBola);
         mSpinSegundaBola = (Spinner) findViewById(R.id.spinner_segBola);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO);
-        mTextErro = (EditText) findViewById(R.id.edit_txt_observacao);
+        mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
         btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
 
-        mDb = new DBManeger(this);
+        mDb = new DBManager(this);
     }
 
     public boolean testePreenchimento(){
         if( mSpinTempo.getSelectedItemId()>0 && mSpinSetorBolaFoi.getSelectedItemId()>0 && mSpinPrimeiraBola.getSelectedItemId()>0 && mSpinSegundaBola.getSelectedItemId()>0){
             if(mCheckErrou.isChecked() == true) {
-                if (!mTextErro.getText().toString().isEmpty()) {
+                if (!mTextObservacao.getText().toString().isEmpty()) {
                     mPreenchido = true;
                 } else {
                     mPreenchido = false;
@@ -83,7 +83,7 @@ public class JogadaOfensivaTela extends AppCompatActivity {
         setorBolaFoi = mSpinSetorBolaFoi.getSelectedItem().toString();
         primeiraBola = mSpinPrimeiraBola.getSelectedItem().toString();
         segundaBola = mSpinSegundaBola.getSelectedItem().toString();
-        observacao = mTextErro.getText().toString();
+        observacao = mTextObservacao.getText().toString();
         if(mCheckErrou.isChecked())errou =1 ; else errou = 0;
     }
 

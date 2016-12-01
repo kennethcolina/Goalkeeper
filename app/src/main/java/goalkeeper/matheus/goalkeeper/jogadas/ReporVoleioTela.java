@@ -2,7 +2,6 @@ package goalkeeper.matheus.goalkeeper.jogadas;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,26 +12,22 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-import bd.DBManeger;
+import bd.DBManager;
 import goalkeeper.matheus.goalkeeper.CadastroPartida;
-import goalkeeper.matheus.goalkeeper.MainActivity;
 import goalkeeper.matheus.goalkeeper.R;
-import model.JogadaOfensiva;
-import model.Partida;
 
 public class ReporVoleioTela extends JogadaOfensivaTela {
     ArrayList<String> tempos;
     ArrayList<String> arraySetorBolaFoi;
     ArrayList<String> arrayPrimBola;
     ArrayList<String> arraySegBola;
-    ArrayList<String> arrayErros;
-    DBManeger mDb;
+    DBManager mDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repor_voleio_tela);
 
-        mDb = new DBManeger(this);
+        mDb = new DBManager(this);
 
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
         btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
@@ -41,22 +36,7 @@ public class ReporVoleioTela extends JogadaOfensivaTela {
         mSpinPrimeiraBola = (Spinner) findViewById(R.id.spinner_primBola);
         mSpinSegundaBola = (Spinner) findViewById(R.id.spinner_segBola);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO);
-        //mSpinErro = (Spinner) findViewById(R.id.spinner_erroJO);
-        mTextErro = (EditText) findViewById(R.id.edit_txt_observacao);
-
-        /*
-        mSpinErro = (Spinner) findViewById(R.id.spinner_erroJO);
-
-        mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO);
-        mTextErro.setVisibility(View.GONE);
-        mCheckErrou.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mCheckErrou.isChecked()) mTextErro.setVisibility(View.VISIBLE);
-                else mTextErro.setVisibility(View.GONE);
-            }
-        });
-        */
+        mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
 
         carregarValores();
 
@@ -68,10 +48,15 @@ public class ReporVoleioTela extends JogadaOfensivaTela {
                     int idJogadaOfensiva=saveJO();
                     mDb.cadastrarReporVoleio(idJogadaOfensiva);
                     if(errou==1)CadastroPartida.historico += "REPOSIÇÃO VOLEIO:\n"+
-                            tempo+" minutos, bola foi no setor "+setorBolaFoi+ ", primeira bola ganha por "+primeiraBola+ ", segunda bola ganha por "+segundaBola+ "\nErro: "+observacao+"\n\n";
-                    if(errou==0)CadastroPartida.historico += "REPOSIÇÃO VOLEIO:\n"+
-                            tempo+" minutos, bola foi no setor "+setorBolaFoi+ ", primeira bola ganha por "+primeiraBola+ ", segunda bola ganha por "+segundaBola+ "\nAcertou a jogada\n\n";
+                            tempo+" minutos, bola foi no setor "+setorBolaFoi+ ", primeira bola ganha por "+primeiraBola+ ", segunda bola ganha por "+segundaBola+ "\nObservação: "+observacao+"\n\n";
 
+                    if(observacao.isEmpty()) {
+                        if (errou == 0) CadastroPartida.historico += "REPOSIÇÃO VOLEIO:\n" +
+                                tempo + " minutos, bola foi no setor " + setorBolaFoi + ", primeira bola ganha por " + primeiraBola + ", segunda bola ganha por " + segundaBola + "\nAcertou a jogada\n\n";
+                    } else {
+                        if (errou == 0) CadastroPartida.historico += "REPOSIÇÃO VOLEIO:\n" +
+                                tempo + " minutos, bola foi no setor " + setorBolaFoi + ", primeira bola ganha por " + primeiraBola + ", segunda bola ganha por " + segundaBola + "\nObservação: "+observacao+ "\nAcertou a jogada\n\n";
+                    }
 
                     finish();
                 }else{
@@ -101,7 +86,7 @@ public class ReporVoleioTela extends JogadaOfensivaTela {
         arraySetorBolaFoi.add("ADC - Área Defensiva Centro");
         arraySetorBolaFoi.add("PAD - Pequena Área Defensiva");
         arraySetorBolaFoi.add("ADD - Área Defensiva Direita");
-        arraySetorBolaFoi.add("DD - Defensivo Esquerdo");
+        arraySetorBolaFoi.add("DD - Defensivo Direito");
         arraySetorBolaFoi.add("MDE - Meio Defensivo Esquerdo");
         arraySetorBolaFoi.add("MDC - Meio Defensivo Centro");
         arraySetorBolaFoi.add("MDD - Meio Defensivo Direito");
@@ -130,17 +115,6 @@ public class ReporVoleioTela extends JogadaOfensivaTela {
         arraySegBola.add("Adversario");
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySegBola);
         mSpinSegundaBola.setAdapter(adapter4);
-
-        /*
-        arrayErros = new ArrayList<String>();
-        arrayErros.add("Selecione o erro");
-        arrayErros.add("muito baixo");
-        arrayErros.add("muito forte");
-        arrayErros.add("muito fraco");
-        arrayErros.add("erro de direção");
-        ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayErros);
-        mSpinErro.setAdapter(adapter5);
-        */
     }
 
     public void mensagem() {

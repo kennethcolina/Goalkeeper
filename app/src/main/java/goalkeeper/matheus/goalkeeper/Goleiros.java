@@ -10,8 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -20,7 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import bd.DBManeger;
+import bd.DBManager;
 import model.Goleiro;
 
 /**
@@ -29,7 +27,7 @@ import model.Goleiro;
 public class Goleiros extends Fragment {
     View mView;
     ListView mListView;
-    DBManeger mDb;
+    DBManager mDb;
     Goleiro mGoleiro;
     ArrayList<Goleiro> goleiros;
     TextView mtxt;
@@ -38,7 +36,7 @@ public class Goleiros extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.goleiros, container, false);
-        mDb = new DBManeger(getActivity());
+        mDb = new DBManager(getActivity());
 
         mtxt = (TextView) mView.findViewById(R.id.txt_goleiros);
 

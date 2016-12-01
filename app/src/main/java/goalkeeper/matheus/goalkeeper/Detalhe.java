@@ -6,19 +6,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import bd.DBManeger;
+import bd.DBManager;
 
 public class Detalhe extends AppCompatActivity {
     public static TextView txtDetalhes;
     Button btnVoltar;
-    DBManeger mDb;
+    DBManager mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe);
 
-        mDb = new DBManeger(this);
+        mDb = new DBManager(this);
 
         txtDetalhes = (TextView) findViewById(R.id.txt_detalhes);
 

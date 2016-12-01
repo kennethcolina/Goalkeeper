@@ -10,8 +10,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-import goalkeeper.matheus.goalkeeper.jogadas.CaraCaraTela;
-import goalkeeper.matheus.goalkeeper.jogadas.CruzamentoTela;
+import goalkeeper.matheus.goalkeeper.jogadas.DefSaidaTela;
 import goalkeeper.matheus.goalkeeper.jogadas.DefBaseTela;
 import goalkeeper.matheus.goalkeeper.jogadas.DefCaidaTela;
 import goalkeeper.matheus.goalkeeper.jogadas.DefPeTela;
@@ -37,17 +36,16 @@ public class DialogTipoJogada extends AppCompatActivity {
 
         listTiposJogdas = new ArrayList<>();
 
-        listTiposJogdas.add("Cruzamento"); //0
-        listTiposJogdas.add("Cara a Cara"); //1
-        listTiposJogdas.add("Defesa com os Pés"); //2
-        listTiposJogdas.add("Defesa com Caída"); //3
-        listTiposJogdas.add("Defesa Sobre Cabeça"); //4
-        listTiposJogdas.add("Defesa Base"); //5
-        listTiposJogdas.add("Defesa com Punho"); //6
-        listTiposJogdas.add("Domínio de bola"); //7
-        listTiposJogdas.add("Reposição com as mãos"); //8
-        listTiposJogdas.add("Reposição com Voleio"); //9
-        listTiposJogdas.add("Tiro de Meta"); //10
+        listTiposJogdas.add("Defesa com Saída"); //0
+        listTiposJogdas.add("Defesa com os Pés"); //1
+        listTiposJogdas.add("Defesa com Caída"); //2
+        listTiposJogdas.add("Defesa Sobre Cabeça"); //3
+        listTiposJogdas.add("Defesa Base"); //4
+        listTiposJogdas.add("Defesa com Punho"); //5
+        listTiposJogdas.add("Domínio de bola"); //6
+        listTiposJogdas.add("Reposição com as mãos"); //7
+        listTiposJogdas.add("Reposição com Voleio"); //8
+        listTiposJogdas.add("Tiro de Meta"); //9
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listTiposJogdas);
         mSpinnerTipoJogadas.setAdapter(adapter);
@@ -64,64 +62,58 @@ public class DialogTipoJogada extends AppCompatActivity {
             public void onClick(View v) {
                 int op = (int) mSpinnerTipoJogadas.getSelectedItemId();
                 switch (op) {
-                   case 0:
-                        Intent cruzamento = new Intent(getApplicationContext(), CruzamentoTela.class);
-                        startActivity(cruzamento);
+
+                    case 0:
+                        Intent defSaida = new Intent(getApplicationContext(), DefSaidaTela.class);
+                        startActivity(defSaida);
                         finish(); //finish Activity.
                         break;
-                     case 1:
-                        Intent caraCara = new Intent(getApplicationContext(), CaraCaraTela.class);
-                        startActivity(caraCara);
+                    case 1:
+                        Intent defPe = new Intent(getApplicationContext(), DefPeTela.class);
+                        startActivity(defPe);
                         finish(); //finish Activity.
                         break;
                     case 2:
-                        Intent defPeTela = new Intent(getApplicationContext(), DefPeTela.class);
-                        startActivity(defPeTela);
-                        finish(); //finish Activity.
-                        break;
-                    case 3:
                         Intent defCaida = new Intent(getApplicationContext(), DefCaidaTela.class);
                         startActivity(defCaida);
                         finish(); //finish Activity.
                         break;
-                    case 4:
+                    case 3:
                         Intent defSobreCabeca = new Intent(getApplicationContext(), DefSobreCabecaTela.class);
                         startActivity(defSobreCabeca);
                         finish(); //finish Activity.
                         break;
-                    case 5:
+                    case 4:
                         Intent defBase = new Intent(getApplicationContext(), DefBaseTela.class);
                         startActivity(defBase);
                         finish(); //finish Activity.
                         break;
-                    case 6:
+                    case 5:
                         Intent defPunho = new Intent(getApplicationContext(), DefPunhoTela.class);
                         startActivity(defPunho);
                         finish(); //finish Activity.
                         break;
-                    case 7:
+                    case 6:
                         Intent dominio = new Intent(getApplicationContext(), DominioTela.class);
                         startActivity(dominio);
                         finish(); //finish Activity.
                         break;
-                    case 8:
+                    case 7:
                         Intent reporMao = new Intent(getApplicationContext(), ReporMaoTela.class);
                         startActivity(reporMao);
                         finish(); //finish Activity.
                         break;
-                    case 9:
+                    case 8:
                         Intent reporVoleio = new Intent(getApplicationContext(), ReporVoleioTela.class);
                         startActivity(reporVoleio);
                         finish(); //finish Activity.
                         break;
-                    case 10:
+                    case 9:
                         Intent cadastroTiroMeta = new Intent(getApplicationContext(), TiroMetaTela.class);
                         startActivity(cadastroTiroMeta);
                         finish(); //finish Activity.
                         break;
-
                 }
-
             }
         });
     }

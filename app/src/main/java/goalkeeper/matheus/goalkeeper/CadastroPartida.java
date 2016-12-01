@@ -20,8 +20,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import bd.DBManeger;
-import model.Goleiro;
+import bd.DBManager;
 import model.Partida;
 
 public class CadastroPartida extends AppCompatActivity {
@@ -29,7 +28,7 @@ public class CadastroPartida extends AppCompatActivity {
     EditText mEditTextDescricao;
     EditText mEditTextData;
     Spinner mSpinnerGoleiros;
-    DBManeger mDb;
+    DBManager mDb;
     ArrayList<String> goleiros;
     Partida mPartida;
     Button mBtnSalvarPartida;
@@ -41,7 +40,7 @@ public class CadastroPartida extends AppCompatActivity {
     TextView mTxtgoleiro;
     Button mBtnParciais;
     public static boolean mFinlizar = false;
-    public static String historico="";
+    public static String historico = "";
     //boolean jaSdicionadaNessaPartida = false;
 
     @Override
@@ -51,7 +50,7 @@ public class CadastroPartida extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mDb = new DBManeger(this);
+        mDb = new DBManager(this);
 
         mEditTextDescricao = (EditText) findViewById(R.id.edit_txt_descricao);
         mEditTextData = (EditText) findViewById(R.id.edit_txt_dataPartida);
@@ -115,7 +114,7 @@ public class CadastroPartida extends AppCompatActivity {
 
                     mPartida = new Partida(Integer.parseInt(idGoleiro), data, desc);
                     historico +="DADOS PARTIDA:\nPartida: "+mEditTextDescricao.getText().toString()+"\nGoleiro: "+mSpinnerGoleiros.getSelectedItem().toString()+"\nData: "+ mEditTextData.getText().toString()+"\n\n";
-                    Log.d("theus", ""+Integer.parseInt(idGoleiro));
+                    //Log.d("theus", ""+Integer.parseInt(idGoleiro));
                     mDb.cadastrarPartida(mPartida);
 
                     mEditTextDescricao.setVisibility(View.GONE);
