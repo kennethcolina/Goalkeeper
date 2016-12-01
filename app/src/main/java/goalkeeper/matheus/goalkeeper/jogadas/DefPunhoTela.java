@@ -12,7 +12,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-import bd.DBManeger;
+import bd.DBManager;
 import goalkeeper.matheus.goalkeeper.CadastroPartida;
 import goalkeeper.matheus.goalkeeper.R;
 
@@ -21,15 +21,14 @@ public class DefPunhoTela extends JogadaDefensivaTela {
     ArrayList<String> arraySetorBolaFoi;
     ArrayList<String> arraySetorBolaVeio;
     ArrayList<String> arrayTipoFinalizacao;
-    ArrayList<String> arrayErros;
     ArrayList<String> arrayTipoDefPunho;
     Spinner mSpinTipoDefPunho;
-    DBManeger mDb;
+    DBManager mDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_def_punho_tela);
-        mDb = new DBManeger(this);
+        mDb = new DBManager(this);
 
 
         mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
@@ -38,24 +37,10 @@ public class DefPunhoTela extends JogadaDefensivaTela {
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
         mSpinTipoDefPunho = (Spinner) findViewById(R.id.spinner_tipoDefesaPunho);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
-        //mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
-        mTextErro = (EditText) findViewById(R.id.edit_txt_observacao);
+        mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJD = (Button) findViewById(R.id.btn_salvarJD);
         btnCancelarJD = (Button) findViewById(R.id.btn_calcelJD);
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
-
-        /*
-        mSpinErro = (Spinner) findViewById(R.id.spinner_erroJD);
-        mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
-        mSpinErro.setVisibility(View.GONE);
-        mCheckErrou.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mCheckErrou.isChecked()) mSpinErro.setVisibility(View.VISIBLE);
-                else mSpinErro.setVisibility(View.GONE);
-            }
-        });
-        */
 
         carregarValores();
 
@@ -70,38 +55,58 @@ public class DefPunhoTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL (tentou defesa punho):\n" +
-                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
+                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA BASE:\n" +
-                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
+                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObsercação: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
-                            if (gol == 1) {
-                                CadastroPartida.historico += "SOFREU GOL (tentou defesa punho):\n" +
-                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                            if(observacao.isEmpty()) {
+                                if (gol == 1) {
+                                    CadastroPartida.historico += "SOFREU GOL (tentou defesa punho):\n" +
+                                            tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                } else {
+                                    CadastroPartida.historico += "DEFESA PUNHO:\n" +
+                                            tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                }
                             } else {
-                                CadastroPartida.historico += "DEFESA PUNHO:\n" +
-                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                if (gol == 1) {
+                                    CadastroPartida.historico += "SOFREU GOL (tentou defesa punho):\n" +
+                                            tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                } else {
+                                    CadastroPartida.historico += "DEFESA PUNHO:\n" +
+                                            tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                }
                             }
                         }
                     }else{
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL DE FALTA (tentou defesa punho):\n" +
-                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
+                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA BASE EM FALTA:\n" +
-                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nErro: " + observacao + "\n\n";
+                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
-                            if (gol == 1) {
-                                CadastroPartida.historico += "SOFREU GOL DE FALTA(tentou defesa punho):\n" +
-                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                            if(observacao.isEmpty()) {
+                                if (gol == 1) {
+                                    CadastroPartida.historico += "SOFREU GOL DE FALTA(tentou defesa punho):\n" +
+                                            tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                } else {
+                                    CadastroPartida.historico += "DEFESA PUNHO EM FALTA:\n" +
+                                            tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                }
                             } else {
-                                CadastroPartida.historico += "DEFESA PUNHO EM FALTA:\n" +
-                                        tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                if (gol == 1) {
+                                    CadastroPartida.historico += "SOFREU GOL DE FALTA(tentou defesa punho):\n" +
+                                            tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                } else {
+                                    CadastroPartida.historico += "DEFESA PUNHO EM FALTA:\n" +
+                                            tempo + " minutos, punho com " + mSpinTipoDefPunho.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                }
                             }
                         }
                     }
@@ -151,7 +156,7 @@ public class DefPunhoTela extends JogadaDefensivaTela {
         arraySetorBolaVeio.add("ADC - Área Defensiva Centro");
         arraySetorBolaVeio.add("PAD - Pequena Área Defensiva");
         arraySetorBolaVeio.add("ADD - Área Defensiva Direita");
-        arraySetorBolaVeio.add("DD - Defensivo Esquerdo");
+        arraySetorBolaVeio.add("DD - Defensivo Direito");
         arraySetorBolaVeio.add("MDE - Meio Defensivo Esquerdo");
         arraySetorBolaVeio.add("MDC - Meio Defensivo Centro");
         arraySetorBolaVeio.add("MDD - Meio Defensivo Direito");
@@ -175,15 +180,6 @@ public class DefPunhoTela extends JogadaDefensivaTela {
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoFinalizacao);
         mSpinTipoFinalizacao.setAdapter(adapter4);
 
-        /*
-        arrayErros = new ArrayList<String>();
-        arrayErros.add("Selecione o erro");
-        arrayErros.add("bola passou");
-        arrayErros.add("não segurou");
-        ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayErros);
-        mSpinErro.setAdapter(adapter5);
-        */
-
         arrayTipoDefPunho = new ArrayList<String>();
         arrayTipoDefPunho.add("Selecione o tipo de Defesa Punho");
         arrayTipoDefPunho.add("encaixe");
@@ -192,10 +188,9 @@ public class DefPunhoTela extends JogadaDefensivaTela {
         arrayTipoDefPunho.add("rebote para trás");
         arrayTipoDefPunho.add("rebote para direita");
         arrayTipoDefPunho.add("rebote para esquerda");
-        ArrayAdapter<String> adapter6 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoDefPunho);
-        mSpinTipoDefPunho.setAdapter(adapter6);
+        ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoDefPunho);
+        mSpinTipoDefPunho.setAdapter(adapter5);
     }
-
 
     public void mensagem() {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -207,7 +202,4 @@ public class DefPunhoTela extends JogadaDefensivaTela {
         });
         alertDialog.show();
     }
-
-
-
 }

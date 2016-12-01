@@ -25,7 +25,7 @@ public class Partida {
     private ArrayList<DefCaida> defCaidas;
     private ArrayList<DefPe> defPes;
     //saidas
-    private ArrayList<CaraCara> caraCaras;
+    private ArrayList<DefSaida> caraCaras;
     private ArrayList<Cruzamento> cruzamentos;*/
 
     public Partida(int idGoleiro, String data, String descricao) {

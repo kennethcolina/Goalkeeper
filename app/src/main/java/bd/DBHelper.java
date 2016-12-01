@@ -19,14 +19,13 @@ public class DBHelper extends SQLiteOpenHelper {
             "  nome TEXT," +
             "  dataNascimento TEXT);";
     private static String Partida =
-
-                    "CREATE TABLE IF NOT EXISTS Partida (" +
+            "  CREATE TABLE IF NOT EXISTS Partida (" +
             "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "  data TEXT," +
             "  descricao TEXT," +
             "  idGoleiro INTEGER);" ;
     private static String JogadaOfensiva =
-            "CREATE TABLE IF NOT EXISTS JogadaOfensiva (" +
+            "  CREATE TABLE IF NOT EXISTS JogadaOfensiva (" +
             "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "  tempo INTEGER," +
             "  setorBolaFoi TEXT NULL," +
@@ -36,19 +35,19 @@ public class DBHelper extends SQLiteOpenHelper {
             "  observacao TEXT," +
             "  idPartida INTEGER NOT NULL);" ;
     private static String TiroMeta =
-            "CREATE TABLE IF NOT EXISTS TiroMeta (" +
+            "  CREATE TABLE IF NOT EXISTS TiroMeta (" +
             "  tipoTiroMeta TEXT NOT NULL," +
             "  idJogadaOfensiva INTEGER PRIMARY KEY);";
     private static String ReporMao =
-            "CREATE TABLE IF NOT EXISTS ReporMao (" +
+            "  CREATE TABLE IF NOT EXISTS ReporMao (" +
             "  tipoComMao TEXT NULL," +
             "  idJogadaOfensiva INTEGER PRIMARY KEY);" ;
     private static String Dominio =
-            "CREATE TABLE IF NOT EXISTS Dominio (" +
+            "  CREATE TABLE IF NOT EXISTS Dominio (" +
             "  tipoDominio TEXT NULL," +
             "  idJogadaOfensiva INTEGER PRIMARY KEY);" ;
     private static String JogadaDefensiva =
-                    "CREATE TABLE IF NOT EXISTS JogadaDefensiva (" +
+            "  CREATE TABLE IF NOT EXISTS JogadaDefensiva (" +
             "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "  tempo INTEGER NULL," +
             "  setorBolaFoi TEXT NULL," +
@@ -59,44 +58,36 @@ public class DBHelper extends SQLiteOpenHelper {
             "  tipoFinalizacao TEXT NULL," +
             "  gol INTEGER);" ;
     private static String DefCaida =
-                    "CREATE TABLE IF NOT EXISTS DefCaida (" +
+            "  CREATE TABLE IF NOT EXISTS DefCaida (" +
             "  tipoDefesaCaida TEXT NULL," +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
     private static String ReporVoleio =
-                    "CREATE TABLE IF NOT EXISTS ReporVoleio (" +
+            "  CREATE TABLE IF NOT EXISTS ReporVoleio (" +
             "  idJogadaOfensiva INTEGER PRIMARY KEY);" ;
     private static String DefBase =
-            "CREATE TABLE IF NOT EXISTS DefBase (" +
+            "  CREATE TABLE IF NOT EXISTS DefBase (" +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);";
     private static String DefPe =
-             "CREATE TABLE IF NOT EXISTS DefPe (" +
+            "  CREATE TABLE IF NOT EXISTS DefPe (" +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
     private static String DefPunho =
-                    "CREATE TABLE IF NOT EXISTS DefPunho (" +
+            "  CREATE TABLE IF NOT EXISTS DefPunho (" +
             "  tipoDefesaPunho TEXT NULL," +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
     private static String DefSobreCabeca =
-            "CREATE TABLE IF NOT EXISTS DefSobreCabeca (" +
+            "  CREATE TABLE IF NOT EXISTS DefSobreCabeca (" +
             "  tipoDefesa TEXT NULL," +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
-    private static String Cruzamento =
-            "CREATE TABLE IF NOT EXISTS Cruzamento (" +
-            "  idJogadaDefensiva INTEGER PRIMARY KEY," +
-            "  escanteio TINYINT(1) NULL," +
-            "  tipoCruzamento TEXT NULL," +
+    private static String DefSaida =
+            "  CREATE TABLE IF NOT EXISTS DefSaida (" +
             "  tipoSaida TEXT NULL," +
-            "  Cruzamentocol TEXT NULL," +
-            "  acertouBarreira TINYINT(1));" ;
-    private static String CaraCara =
-            "CREATE TABLE IF NOT EXISTS CaraCara (" +
-            "  idJogadaDefensiva INTEGER PRIMARY KEY," +
-            "  tipoCaraCara TEXT NOT NULL);";
-
+            "  motivoSaida TEXT NULL," +
+            "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
     private static String Historico =
-            "CREATE TABLE IF NOT EXISTS Historico (" +
-                    "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "  descricao TEXT NOT NULL, "+
-                    "  idPartida INTEGER);";
+            "  CREATE TABLE IF NOT EXISTS Historico (" +
+            "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "  descricao TEXT NOT NULL," +
+            "  idPartida INTEGER);";
 
     public DBHelper(Context context) {
         super(context, BD_NAME, null, VERSION);
@@ -106,8 +97,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(GOLEIRO);
         db.execSQL(Partida);
-        db.execSQL(CaraCara);
-        db.execSQL(Cruzamento);
         db.execSQL(DefBase);
         db.execSQL(DefCaida);
         db.execSQL(DefPe);
@@ -119,12 +108,11 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(JogadaOfensiva);
         db.execSQL(ReporVoleio);
         db.execSQL(TiroMeta);
+        db.execSQL(DefSaida);
         db.execSQL(Historico);
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 }

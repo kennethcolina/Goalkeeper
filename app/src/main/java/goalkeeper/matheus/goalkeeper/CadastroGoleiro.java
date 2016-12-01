@@ -2,8 +2,6 @@ package goalkeeper.matheus.goalkeeper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -15,7 +13,7 @@ import android.widget.EditText;
 
 import java.util.Calendar;
 
-import bd.DBManeger;
+import bd.DBManager;
 import model.Goleiro;
 
 public class CadastroGoleiro extends AppCompatActivity {
@@ -23,7 +21,7 @@ public class CadastroGoleiro extends AppCompatActivity {
     Button mSave;
     EditText mNome;
     EditText mData;
-    DBManeger mDb;
+    DBManager mDb;
     Goleiro mGoleiro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +36,7 @@ public class CadastroGoleiro extends AppCompatActivity {
          mData = (EditText) findViewById(R.id.edit_txt_nascimento_goleiro);
         mData.addTextChangedListener(tw);
 
-        mDb = new DBManeger(this);
+        mDb = new DBManager(this);
 
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override

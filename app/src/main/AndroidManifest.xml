@@ -84,8 +84,7 @@
             android:name=".jogadas.ReporVoleioTela"
             android:label="Reposição Voleio"
             android:screenOrientation="portrait" />
-        <activity android:name=".jogadas.CruzamentoTela" />
-        <activity android:name=".jogadas.CaraCaraTela" />
+        <activity android:name=".jogadas.DefSaidaTela" />
         <activity android:name=".jogadas.DefPeTela" />
         <activity android:name=".jogadas.DefCaidaTela" />
         <activity android:name=".jogadas.DefSobreCabecaTela" />

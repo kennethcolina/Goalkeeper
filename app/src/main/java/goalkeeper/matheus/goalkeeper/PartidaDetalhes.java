@@ -13,11 +13,11 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-import bd.DBManeger;
+import bd.DBManager;
 
 public class PartidaDetalhes extends Fragment {
     View mView;
-    DBManeger mDb;
+    DBManager mDb;
     Spinner mSpinnerGoleiros;
     ListView mListPartidas;
     ArrayList<String> goleiros;
@@ -28,7 +28,7 @@ public class PartidaDetalhes extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.activity_partida_detalhes, container, false);
 
-        mDb = new DBManeger(getActivity());
+        mDb = new DBManager(getActivity());
 
         mSpinnerGoleiros = (Spinner) mView.findViewById(R.id.spinner_goleirosDetalhesPartidas);
         mListPartidas = (ListView) mView.findViewById(R.id.list_partidas);
