@@ -24,4 +24,7 @@
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="title_activity_jogada_ofensiva">JogadaOfensiva</string>
+    <string name="nome">Nome:</string>
+    <string name="data_de_nascimento">Data de nascimento:</string>
+    <string name="imagem">imagem</string>
 </resources>

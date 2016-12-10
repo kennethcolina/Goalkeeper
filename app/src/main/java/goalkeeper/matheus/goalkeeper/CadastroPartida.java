@@ -60,9 +60,9 @@ public class CadastroPartida extends AppCompatActivity {
         mBtnProxPartida = (Button) findViewById(R.id.btn_proxPartida);
         mTxtInfosPartida = (TextView) findViewById(R.id.infos_partida);
         mBtnParciais = (Button) findViewById(R.id.btn_parciaisPartida);
-        mTxtdata= (TextView) findViewById(R.id.label_data);
-        mTxtdesc= (TextView) findViewById(R.id.label_desc);
-        mTxtgoleiro= (TextView) findViewById(R.id.label_goleiro);
+        mTxtdata = (TextView) findViewById(R.id.label_data);
+        mTxtdesc = (TextView) findViewById(R.id.label_desc);
+        mTxtgoleiro = (TextView) findViewById(R.id.label_goleiro);
 
         goleiros = new ArrayList<String>();
         goleiros.add("Selecione um goleiro");

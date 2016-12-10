@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class DBManager {
         ArrayList<Goleiro> goleiros = new ArrayList<Goleiro>();
 
         if (cursor != null && cursor.moveToFirst()) {
-            goleiros = new ArrayList<Goleiro>();
+            goleiros = new ArrayList<Goleiro>(); //é necessário?
             Goleiro goleiro = null;
             do {
                 goleiro = new Goleiro(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
@@ -46,6 +47,29 @@ public class DBManager {
             } while (cursor.moveToNext());
         }
         return goleiros; // na main, se o goleio for null escrever msg
+    }
+
+    public Goleiro getGoleiro(int idGoleiro) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String sql = "select * from goleiro where '" + idGoleiro + "' = Goleiro.id;";
+        Cursor cursor = db.rawQuery(sql, null);
+        Goleiro goleiro = null;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                goleiro = new Goleiro(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
+            } while (cursor.moveToNext());
+        }
+        return goleiro;
+    }
+
+    public void AlteraGoleiro(Goleiro goleiro) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("nome", goleiro.getNome());
+        values.put("dataNascimento", goleiro.getDataNascimento());
+        String where = "Goleiro.id  ='" + goleiro.getId()+"'";
+        db.update("goleiro", values, where, null);
     }
 
     public void deletarGoleiro(int id) {
@@ -62,6 +86,12 @@ public class DBManager {
         db.insert("Partida", null, valores);
     }
 
+    public void deletarPartida(int idPartida) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.delete("partida", "id='" + idPartida + "'", null);
+    }
+
+    /*
     public void deletarPartida() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String sql = "select MAX(id) from partida";
@@ -78,6 +108,7 @@ public class DBManager {
         //db.delete("JogadaOfensiva", "idPartida='"+id+"'", null);
         //db.delete("JogadaDefensiva", "idPartida='"+id+"'", null);
     }
+    */
 
     public void cadastrarJO(JogadaOfensiva jo) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -420,10 +451,7 @@ public class DBManager {
                 DefSobreCabecaErrados = cursor.getInt(0);
             } while (cursor.moveToNext());
         }
-
         lista.add("DEFESA SOBRE CABEÇA\nAcertou " + (qtdDefSobreCabeca - DefSobreCabecaErrados) + " de " + qtdDefSobreCabeca + "\nAvaliado em " + qtdPartidas + " partida(s)\n");
-
-
         return lista;
     }
 
@@ -494,11 +522,11 @@ public class DBManager {
         db.insert("DefBase", null, valores);
     }
 
-    public String getDetalhesPartida(String idPartida) {
+    public String getDetalhesPartida(int idPartida) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String sql = "select descricao from historico where idPartida='"+idPartida+"'";
         Cursor cursor = db.rawQuery(sql, null);
-        String detalhe = idPartida;
+        String detalhe = "";
 
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -519,6 +547,23 @@ public class DBManager {
             partidas = new ArrayList<String>();
             do {
                 partidas.add("("+cursor.getInt(0)+") "+ cursor.getString(1) + " " + cursor.getString(2)+"\n");
+            } while (cursor.moveToNext());
+        }
+        return partidas; // na main, se o goleio for null escrever msg
+    }
+
+    public ArrayList<Partida> getPartidasTela(int idGoleiro) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String sql = "select id, data, descricao from partida where idGoleiro='"+idGoleiro+"'";
+        Cursor cursor = db.rawQuery(sql, null);
+        ArrayList<Partida> partidas = new ArrayList<Partida>();
+        Partida partida;
+
+        if (cursor != null && cursor.moveToFirst()) {
+          //  partidas = new ArrayList<String>();
+            do {
+                partida = new Partida(cursor.getString(1), cursor.getString(2), cursor.getInt(0));
+                partidas.add(partida);
             } while (cursor.moveToNext());
         }
         return partidas; // na main, se o goleio for null escrever msg
@@ -563,4 +608,21 @@ public class DBManager {
         valores.put("motivoSaida", s1);
         db.insert("DefSaida", null, valores);
     }
+
+    /*
+    public void teste() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String sql = "select * from partida";
+        Cursor cursor = db.rawQuery(sql, null);
+        ArrayList<String> partidas = new ArrayList<String>();
+
+        if (cursor != null && cursor.moveToFirst()) {
+            partidas = new ArrayList<String>();
+            do {
+                partidas.add("("+cursor.getInt(0)+") "+ cursor.getString(1) + " " + cursor.getString(2)+"\n");
+                Log.i(cursor.getString(1), cursor.getString(2));
+            } while (cursor.moveToNext());
+        }
+    }
+    */
 }

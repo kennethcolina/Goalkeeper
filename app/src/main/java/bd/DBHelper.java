@@ -9,9 +9,19 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
+
     private static int VERSION = 1;
     private static String BD_NAME= "bd";
 
+    //habilita o funcionamento da foreign key
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if (!db.isReadOnly()) {
+            // Enable foreign key constraints
+            db.execSQL("PRAGMA foreign_keys=ON;");
+        }
+    }
 
     private static String GOLEIRO =
             "CREATE TABLE IF NOT EXISTS Goleiro (" +
@@ -23,7 +33,8 @@ public class DBHelper extends SQLiteOpenHelper {
             "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "  data TEXT," +
             "  descricao TEXT," +
-            "  idGoleiro INTEGER);" ;
+            "  idGoleiro INTEGER NOT NULL," +
+            "  FOREIGN KEY(idGoleiro) REFERENCES Goleiro(id) ON DELETE CASCADE);";
     private static String JogadaOfensiva =
             "  CREATE TABLE IF NOT EXISTS JogadaOfensiva (" +
             "  id INTEGER PRIMARY KEY AUTOINCREMENT," +

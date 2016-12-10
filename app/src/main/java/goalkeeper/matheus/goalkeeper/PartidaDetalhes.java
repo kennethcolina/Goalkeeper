@@ -68,7 +68,7 @@ public class PartidaDetalhes extends Fragment {
         mListPartidas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                detalhe = mDb.getDetalhesPartida(partidas.get(position).toString().substring(1,partidas.get(position).toString().indexOf(")")));
+               // detalhe = mDb.getDetalhesPartida(partidas.get(position).toString().substring(1,partidas.get(position).toString().indexOf(")")));
                         Intent detalhe = new Intent(getActivity(), Detalhe.class);
                 startActivity(detalhe);
             }
