@@ -35,6 +35,22 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name="goalkeeper.matheus.goalkeeper.AlteraGoleiro"
+            android:label="Editar Goleiro"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="goalkeeper.matheus.goalkeeper.Partidas"
+            android:label="Partidas"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="goalkeeper.matheus.goalkeeper.PerfilGoleiro"
+            android:label="Perfil do Goleiro"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".DialogTipoJogada"
             android:label="Tipo de Jogada"
             android:screenOrientation="portrait"

@@ -34,6 +34,12 @@ public class Partida {
         this.descricao = descricao;
     }
 
+    public Partida(String data, String descricao, int id) {
+        this.data = data;
+        this.descricao = descricao;
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

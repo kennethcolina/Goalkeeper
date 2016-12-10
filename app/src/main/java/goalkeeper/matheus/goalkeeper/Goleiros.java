@@ -1,12 +1,19 @@
 package goalkeeper.matheus.goalkeeper;
 
+import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,63 +48,53 @@ public class Goleiros extends Fragment {
 
         mtxt = (TextView) mView.findViewById(R.id.txt_goleiros);
 
-        RecyclerView rv = (RecyclerView)mView.findViewById(R.id.rv);
+        RecyclerView rv = (RecyclerView) mView.findViewById(R.id.rv);
         rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(llm);
 
-
-        if (mDb.getGoleiros().isEmpty()){
+        if (mDb.getGoleiros().isEmpty()) {
             mtxt.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             mtxt.setVisibility(View.GONE);
 
-            RVAdapter adapter = new RVAdapter(mDb.getGoleiros(),getActivity());
+            RVAdapter adapter = new RVAdapter(mDb.getGoleiros(), getActivity());
             rv.setAdapter(adapter);
-
         }
-
         return mView;
-
-
     }
 
-    public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
-
-
+    public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> {
 
         public class PersonViewHolder extends RecyclerView.ViewHolder {
             CardView cv;
             TextView personName;
             TextView personAge;
             ImageView personPhoto;
-            ImageButton personDelete;
-            ImageButton personEdit;
 
-            PersonViewHolder(View itemView) {
+
+            public PersonViewHolder(View itemView) {
                 super(itemView);
-                cv = (CardView)itemView.findViewById(R.id.cv);
-                personName = (TextView)itemView.findViewById(R.id.person_name);
-                personAge = (TextView)itemView.findViewById(R.id.person_age);
-                personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
-                personDelete = (ImageButton)itemView.findViewById(R.id.person_delete);
-                personEdit = (ImageButton)itemView.findViewById(R.id.person_edit);
+                cv = (CardView) itemView.findViewById(R.id.cv);
+                personName = (TextView) itemView.findViewById(R.id.person_name);
+                personAge = (TextView) itemView.findViewById(R.id.person_age);
+                personPhoto = (ImageView) itemView.findViewById(R.id.person_photo);
             }
         }
 
         List<Goleiro> goleiros;
         Context context;
 
-        RVAdapter(List<Goleiro> goleiros,Context context){
-            this.goleiros=goleiros;
-            this.context=context;
+        RVAdapter(List<Goleiro> goleiros, Context context) {
+            this.goleiros = goleiros;
+            this.context = context;
         }
-
 
         @Override
         public int getItemCount() {
             return goleiros.size();
         }
+
         @Override
         public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_goleiro, viewGroup, false);
@@ -105,21 +103,21 @@ public class Goleiros extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(PersonViewHolder personViewHolder, final int i) {
+        public void onBindViewHolder(final PersonViewHolder personViewHolder, final int i) {
             final int id = goleiros.get(i).getId();
+
             personViewHolder.personName.setText(goleiros.get(i).getNome());
             personViewHolder.personAge.setText(goleiros.get(i).getDataNascimento());
             personViewHolder.personPhoto.setImageResource(R.drawable.user);
-            personViewHolder.personDelete.setOnClickListener(new View.OnClickListener() {
+            personViewHolder.cv.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    System.out.println(id+" - delete");
-                }
-            });
-            personViewHolder.personEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.println(id+" - edit");
+                public void onClick(View view) {
+                    Intent perfil = new Intent(view.getContext(), PerfilGoleiro.class);
+                    perfil.putExtra("ID_GOLEIRO", id);
+                    Log.i("siiiii", " " + id);
+
+                    startActivity(perfil);//Start the same Activity
+                    //mDb.teste();
                 }
             });
         }
@@ -128,6 +126,32 @@ public class Goleiros extends Fragment {
         public void onAttachedToRecyclerView(RecyclerView recyclerView) {
             super.onAttachedToRecyclerView(recyclerView);
         }
+    }
 
+    public boolean confirmDialog() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Write your message here.");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+        return false;
     }
 }
+
