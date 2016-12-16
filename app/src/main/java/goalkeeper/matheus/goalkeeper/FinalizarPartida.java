@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class FinalizarPartida extends AppCompatActivity {
+public class  FinalizarPartida extends AppCompatActivity {
     Button mBtnContinuar;
     Button mBtnCancelar;
     @Override

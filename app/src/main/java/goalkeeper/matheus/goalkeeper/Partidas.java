@@ -1,19 +1,16 @@
 package goalkeeper.matheus.goalkeeper;
 
-import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import bd.DBManager;
+import model.Goleiro;
 import model.Partida;
 
 /**
@@ -37,6 +35,11 @@ public class Partidas extends AppCompatActivity {
         setContentView(R.layout.activity_partidas);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         mDb = new DBManager(this);
         idGoleiro = getIntent().getIntExtra("ID_GOLEIRO", 0);
@@ -98,27 +101,24 @@ public class Partidas extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final MatchViewHolder matchViewHolder, final int i) {
-            final int idPartida = partidas.get(i).getId();
+            final Partida partida = partidas.get(i);
 
-            matchViewHolder.matchDescription.setText(partidas.get(i).getDescricao());
-            matchViewHolder.matchDate.setText(partidas.get(i).getData());
+            matchViewHolder.matchDescription.setText(partida.getDescricao());
+            matchViewHolder.matchDate.setText(partida.getData());
             matchViewHolder.personPhoto.setImageResource(R.drawable.user);
             matchViewHolder.matchDelete.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View view) {
-                    mDb.deletarPartida(idPartida);
-                    Intent refresh = new Intent(view.getContext(), Partidas.class);
-                    refresh.putExtra("ID_GOLEIRO", idGoleiro);
-                    startActivity(refresh);
-                    finish();
+                confirmDialog(partida, idGoleiro);
                 }
             });
             matchViewHolder.matchInfo.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View view) {
-                    Intent detalhe = new Intent(view.getContext(), Detalhe.class);
-                    detalhe.putExtra("ID_PARTIDA", idPartida);
-                    startActivity(detalhe);
+                Intent detalhe = new Intent(view.getContext(), Detalhe.class);
+                detalhe.putExtra("ID_PARTIDA", partida.getId());
+                //detalhe.putExtra("ID_GOLEIRO", idGoleiro);
+                startActivity(detalhe);
                 }
             });
         }
@@ -132,5 +132,30 @@ public class Partidas extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    public void confirmDialog(final Partida partida, final int idGoleiro) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder
+        .setTitle("Excluir partida")
+        .setMessage("Você deseja excluir a partida \"" + partida.getDescricao() + "\"?")
+        .setPositiveButton("Sim",  new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                mDb.deletarPartida(partida.getId());
+                Intent refresh = new Intent(getApplicationContext(), Partidas.class);
+                refresh.putExtra("ID_GOLEIRO", idGoleiro);
+                startActivity(refresh);
+                finish();
+            }
+        })
+        .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog,int id) {
+                dialog.cancel();
+            }
+        })
+        .show();
     }
 }

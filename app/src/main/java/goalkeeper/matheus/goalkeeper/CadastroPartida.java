@@ -113,7 +113,7 @@ public class CadastroPartida extends AppCompatActivity {
                     String idGoleiro = mSpinnerGoleiros.getSelectedItem().toString().substring(0, mSpinnerGoleiros.getSelectedItem().toString().indexOf(":"));
 
                     mPartida = new Partida(Integer.parseInt(idGoleiro), data, desc);
-                    historico +="DADOS PARTIDA:\nPartida: "+mEditTextDescricao.getText().toString()+"\nGoleiro: "+mSpinnerGoleiros.getSelectedItem().toString()+"\nData: "+ mEditTextData.getText().toString()+"\n\n";
+                    //historico +="DADOS PARTIDA:\nPartida: "+mEditTextDescricao.getText().toString()+"\nGoleiro: "+mSpinnerGoleiros.getSelectedItem().toString()+"\nData: "+ mEditTextData.getText().toString()+"\n\n";
                     //Log.d("theus", ""+Integer.parseInt(idGoleiro));
                     mDb.cadastrarPartida(mPartida);
 
