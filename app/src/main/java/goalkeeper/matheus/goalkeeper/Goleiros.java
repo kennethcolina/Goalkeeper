@@ -114,8 +114,6 @@ public class Goleiros extends Fragment {
                 public void onClick(View view) {
                     Intent perfil = new Intent(view.getContext(), PerfilGoleiro.class);
                     perfil.putExtra("ID_GOLEIRO", id);
-                    Log.i("siiiii", " " + id);
-
                     startActivity(perfil);//Start the same Activity
                     //mDb.teste();
                 }
@@ -126,32 +124,6 @@ public class Goleiros extends Fragment {
         public void onAttachedToRecyclerView(RecyclerView recyclerView) {
             super.onAttachedToRecyclerView(recyclerView);
         }
-    }
-
-    public boolean confirmDialog() {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage("Write your message here.");
-        builder1.setCancelable(true);
-
-        builder1.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
-        return false;
     }
 }
 

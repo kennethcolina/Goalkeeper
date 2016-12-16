@@ -56,7 +56,8 @@ public class AlteraGoleiro extends AppCompatActivity {
                if (!TextUtils.isEmpty(mNome.getText().toString()) && !TextUtils.isEmpty(mData.getText().toString())) {
                    mGoleiro = new Goleiro(goleiro.getId(), mNome.getText().toString(), mData.getText().toString());
                    mDb.AlteraGoleiro(mGoleiro);
-                   Intent refresh = new Intent(getApplicationContext(), MainActivity.class);
+                   Intent refresh = new Intent(getApplicationContext(), PerfilGoleiro.class);
+                   refresh.putExtra("ID_GOLEIRO", idGoleiro);
                    startActivity(refresh);//Start the same Activity
                    finish();
                }

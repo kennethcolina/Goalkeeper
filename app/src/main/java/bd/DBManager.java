@@ -537,6 +537,20 @@ public class DBManager {
         return detalhe;
     }
 
+    public Partida getPartida(int idParida) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String sql = "select data, descricao, idGoleiro from partida where id ='" + idParida + "'";
+        Cursor cursor = db.rawQuery(sql, null);
+        Partida partida = null;
+
+        if(cursor != null && cursor.moveToFirst()) {
+            do {
+                partida = new Partida(cursor.getInt(2), cursor.getString(0), cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+        return partida;
+    }
+
     public ArrayList<String> getPartidas(int idGoleiro) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String sql = "select id, descricao, data from partida where idGoleiro='"+idGoleiro+"'";

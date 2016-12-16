@@ -42,11 +42,13 @@
         <activity
             android:name="goalkeeper.matheus.goalkeeper.Partidas"
             android:label="Partidas"
+            android:parentActivityName=".PerfilGoleiro"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="goalkeeper.matheus.goalkeeper.PerfilGoleiro"
             android:label="Perfil do Goleiro"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
