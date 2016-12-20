@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -35,11 +36,8 @@ public class Partidas extends AppCompatActivity {
         setContentView(R.layout.activity_partidas);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
-        actionBar.setDisplayShowHomeEnabled(true);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mDb = new DBManager(this);
         idGoleiro = getIntent().getIntExtra("ID_GOLEIRO", 0);
@@ -51,6 +49,19 @@ public class Partidas extends AppCompatActivity {
 
         RVAdapter adapter = new RVAdapter(mDb.getPartidasTela(idGoleiro), this);
         rv.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // API 5+ solution
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -105,7 +116,7 @@ public class Partidas extends AppCompatActivity {
 
             matchViewHolder.matchDescription.setText(partida.getDescricao());
             matchViewHolder.matchDate.setText(partida.getData());
-            matchViewHolder.personPhoto.setImageResource(R.drawable.user);
+           // matchViewHolder.personPhoto.setImageResource(R.drawable.user);
             matchViewHolder.matchDelete.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View view) {
@@ -127,11 +138,6 @@ public class Partidas extends AppCompatActivity {
         public void onAttachedToRecyclerView(RecyclerView recyclerView) {
             super.onAttachedToRecyclerView(recyclerView);
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 
     public void confirmDialog(final Partida partida, final int idGoleiro) {

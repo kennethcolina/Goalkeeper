@@ -28,15 +28,18 @@
             android:name=".CadastroGoleiro"
             android:label="@string/title_activity_cadastro_goleiro"
             android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CadastroPartida"
             android:label="@string/title_activity_cadastro_partida"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="goalkeeper.matheus.goalkeeper.AlteraGoleiro"
             android:label="Editar Goleiro"
+            android:parentActivityName=".PerfilGoleiro"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -110,6 +113,7 @@
         <activity android:name=".jogadas.DefPunhoTela" />
         <activity android:name=".PartidaDetalhes" />
         <activity android:name=".Detalhe"
+            android:parentActivityName=".resultados.ItemListActivity"
             android:label="Detalhe"></activity>
     </application>
 

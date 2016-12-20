@@ -23,24 +23,13 @@
 
     <include layout="@layout/content_cadastro_partida" />
 
-
-    <Button
-        android:id="@+id/btn_sairPartida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancelar"
-        android:textColor="@color/white"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="@dimen/fab_margin"
-        android:background="@color/colorAccent"
-        android:src="@android:drawable/ic_dialog_email"/>
     <Button
         android:id="@+id/btn_proxPartida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Continuar"
         android:textColor="@color/white"
-        android:layout_gravity="bottom|center"
+        android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:background="@color/colorPrimary"
         android:src="@android:drawable/ic_dialog_email"/>
@@ -54,6 +43,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:background="@color/colorPrimary"
         android:src="@android:drawable/ic_dialog_email"
-        android:visibility="invisible"/>
+        android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>

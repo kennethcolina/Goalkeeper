@@ -32,7 +32,6 @@ public class CadastroPartida extends AppCompatActivity {
     ArrayList<String> goleiros;
     Partida mPartida;
     Button mBtnSalvarPartida;
-    Button mBtnSairPartida;
     Button mBtnProxPartida;
     TextView mTxtInfosPartida;
     TextView mTxtdata;
@@ -49,6 +48,8 @@ public class CadastroPartida extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_partida);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mDb = new DBManager(this);
 
@@ -86,19 +87,6 @@ public class CadastroPartida extends AppCompatActivity {
             public void onClick(View v) {
                 mDb.cadastrarHistorico(historico, mDb.getMaxIdPartida());
                 historico = "";
-                Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(main);
-                finish();
-            }
-        });
-
-        mBtnSairPartida = (Button) findViewById(R.id.btn_sairPartida);
-
-        mBtnSairPartida.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(main);
                 finish();
             }
         });
@@ -121,7 +109,6 @@ public class CadastroPartida extends AppCompatActivity {
                     mEditTextData.setVisibility(View.GONE);
                     mSpinnerGoleiros.setVisibility(View.GONE);
                     mBtnProxPartida.setVisibility(View.GONE);
-                    mBtnSairPartida.setVisibility(View.GONE);
                     mTxtdata.setVisibility(View.GONE);
                     mTxtdesc.setVisibility(View.GONE);
                     mTxtgoleiro.setVisibility(View.GONE);
@@ -221,7 +208,5 @@ public class CadastroPartida extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {}
     };
-    @Override
-    public void onBackPressed()  {}
 
 }

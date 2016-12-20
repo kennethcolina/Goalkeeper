@@ -179,7 +179,7 @@ public class DefPeTela extends JogadaDefensivaTela {
     public void mensagem() {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Ops");
-        alertDialog.setMessage("Favor, preencher todos os campos antes de continuar tirometa"+testePreenchimento());
+        alertDialog.setMessage("Favor, preencher todos os campos antes de continuar.");
         alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
             }

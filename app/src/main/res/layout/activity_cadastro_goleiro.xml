@@ -23,6 +23,14 @@
 
     <include layout="@layout/content_cadastro_goleiro" />
 
-
+    <Button
+        android:id="@+id/btn_salvarGoleiro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"/>
 
 </android.support.design.widget.CoordinatorLayout>

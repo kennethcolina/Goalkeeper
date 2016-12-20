@@ -16,7 +16,6 @@ public class Detalhe extends AppCompatActivity {
     TextView descricaoPartida;
     TextView nomeGoleiro;
     TextView dataPartida;
-    Button btnVoltar;
     DBManager mDb;
     Partida partida;
     Goleiro goleiro;
@@ -26,6 +25,8 @@ public class Detalhe extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mDb = new DBManager(this);
         idPartida = getIntent().getIntExtra("ID_PARTIDA", 0);
@@ -43,13 +44,5 @@ public class Detalhe extends AppCompatActivity {
         descricaoPartida.setText("Partida: " + partida.getDescricao());
         nomeGoleiro.setText("Goleiro: " + goleiro.getNome());
         dataPartida.setText("Data: " + partida.getData() + "\n\n");
-
-        btnVoltar = (Button) findViewById(R.id.btn_voltarDetalhes);
-        btnVoltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 }

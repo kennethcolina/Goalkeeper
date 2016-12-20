@@ -1,29 +1,21 @@
 package goalkeeper.matheus.goalkeeper;
 
-import android.annotation.TargetApi;
-import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import bd.DBManager;
@@ -34,11 +26,10 @@ import model.Goleiro;
  */
 public class Goleiros extends Fragment {
     View mView;
-    ListView mListView;
     DBManager mDb;
-    Goleiro mGoleiro;
-    ArrayList<Goleiro> goleiros;
     TextView mtxt;
+    RVAdapter mAdapter;
+    RecyclerView mRv;
 
     @Nullable
     @Override
@@ -46,22 +37,46 @@ public class Goleiros extends Fragment {
         mView = inflater.inflate(R.layout.goleiros, container, false);
         mDb = new DBManager(getActivity());
 
+        FloatingActionButton myFab = (FloatingActionButton)  mView.findViewById(R.id.cadastrarGoleiroFab);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent cadastroGoleiro = new Intent(getActivity(), CadastroGoleiro.class);
+                startActivity(cadastroGoleiro);
+
+            }
+        });
+
+
         mtxt = (TextView) mView.findViewById(R.id.txt_goleiros);
 
-        RecyclerView rv = (RecyclerView) mView.findViewById(R.id.rv);
-        rv.setHasFixedSize(true);
+        mRv = (RecyclerView) mView.findViewById(R.id.rv);
+        mRv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(llm);
+        mRv.setLayoutManager(llm);
 
         if (mDb.getGoleiros().isEmpty()) {
             mtxt.setVisibility(View.VISIBLE);
         } else {
             mtxt.setVisibility(View.GONE);
 
-            RVAdapter adapter = new RVAdapter(mDb.getGoleiros(), getActivity());
-            rv.setAdapter(adapter);
+            mAdapter = new RVAdapter(mDb.getGoleiros(), getActivity());
+            mRv.setAdapter(mAdapter);
         }
         return mView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (mDb.getGoleiros().isEmpty()) {
+            mtxt.setVisibility(View.VISIBLE);
+        } else {
+            mtxt.setVisibility(View.GONE);
+
+            mAdapter = new RVAdapter(mDb.getGoleiros(), getActivity());
+            mRv.setAdapter(mAdapter);
+        }
     }
 
     public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> {
@@ -108,7 +123,7 @@ public class Goleiros extends Fragment {
 
             personViewHolder.personName.setText(goleiros.get(i).getNome());
             personViewHolder.personAge.setText(goleiros.get(i).getDataNascimento());
-            personViewHolder.personPhoto.setImageResource(R.drawable.user);
+           // personViewHolder.personPhoto.setImageResource(R.drawable.user);
             personViewHolder.cv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

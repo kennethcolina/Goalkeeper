@@ -6,11 +6,8 @@
             android:id="@+id/goleiro"
             android:title="Goleiros" />
         <item
-            android:id="@+id/resultados"
-            android:title="Resultados Gerais" />
-        <item
-            android:id="@+id/detalhes"
-            android:title="Detalhes de Partidas" />
+            android:id="@+id/iniciarAvaliacao"
+            android:title="Iniciar Avaliação" />
         <item
             android:id="@+id/informacoes"
             android:title="Informações" />

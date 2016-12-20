@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         fragmentManager.beginTransaction().replace(R.id.content_frame, new Goleiros()).commit();
+        navigationView.setCheckedItem(R.id.goleiro);
     }
 
     @Override
@@ -45,35 +46,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.cadastrarGoleiro) {
-            Intent cadastroGoleiro = new Intent(this, CadastroGoleiro.class);
-            startActivity(cadastroGoleiro);
-            finish(); //finish Activity.
-            return true;
-        }else if (id == R.id.cadastrarPartida) {
-            Intent cadastroPartida = new Intent(this, CadastroPartida.class);
-            startActivity(cadastroPartida);
-            finish(); //finish Activity.
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -82,12 +54,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.goleiro) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Goleiros()).commit();
-        } else if (id == R.id.resultados) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Resultados()).commit();
+        } else if (id == R.id.iniciarAvaliacao) {
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new IniciarAvaliacao()).commit();
         }else if (id == R.id.informacoes) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Info()).commit();
-        }else if (id == R.id.detalhes) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new PartidaDetalhes()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

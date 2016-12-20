@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="goalkeeper.matheus.goalkeeper.IniciarAvaliacao">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/elevation_goalkeeper"
+        android:background="@drawable/myrect"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/relative_inicar"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Instruções"
+                android:padding="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/activity_vertical_margin"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_vertical_margin"
+            android:layout_alignBottom="@+id/relative_inicar"
+            android:text="Para avaliar um goleiro em uma partida siga os seguintes passos:\n\n1. Clique em Iniciar\n2. Informe os dados da Partida\n3. Avalie as atitudes do goleiro no decorrer da partida"
+            android:textColor="@color/textColorPrimary"/>
+        <Button
+            android:layout_margin="16dp"
+            android:id="@+id/btn_iniciarAvaliacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Iniciar"
+            android:layout_alignBottom="@+id/txt"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+
+
+
+</FrameLayout>

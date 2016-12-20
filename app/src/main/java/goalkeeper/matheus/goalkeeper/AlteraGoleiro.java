@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +24,6 @@ import model.Goleiro;
  */
 public class AlteraGoleiro extends AppCompatActivity {
 
-    private Button mCancel;
     private Button mSave;
     private int idGoleiro;
     private EditText mNome;
@@ -38,7 +38,8 @@ public class AlteraGoleiro extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mCancel = (Button) findViewById(R.id.btn_sairGoleiro);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mSave = (Button) findViewById(R.id.btn_salvarGoleiro);
         mNome = (EditText) findViewById(R.id.edit_txt_nome_goleiro);
         mData = (EditText) findViewById(R.id.edit_txt_nascimento_goleiro);
@@ -56,23 +57,23 @@ public class AlteraGoleiro extends AppCompatActivity {
                if (!TextUtils.isEmpty(mNome.getText().toString()) && !TextUtils.isEmpty(mData.getText().toString())) {
                    mGoleiro = new Goleiro(goleiro.getId(), mNome.getText().toString(), mData.getText().toString());
                    mDb.AlteraGoleiro(mGoleiro);
-                   Intent refresh = new Intent(getApplicationContext(), PerfilGoleiro.class);
-                   refresh.putExtra("ID_GOLEIRO", idGoleiro);
-                   startActivity(refresh);//Start the same Activity
                    finish();
                }
             }
         });
-        mCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                Intent refresh = new Intent(getApplicationContext(), PerfilGoleiro.class);
-                refresh.putExtra("ID_GOLEIRO", idGoleiro);
-                startActivity(refresh);//Start the same Activity
-                finish();
-            }
-        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // API 5+ solution
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

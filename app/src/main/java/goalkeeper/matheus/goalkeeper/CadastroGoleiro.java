@@ -2,11 +2,13 @@ package goalkeeper.matheus.goalkeeper;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +19,6 @@ import bd.DBManager;
 import model.Goleiro;
 
 public class CadastroGoleiro extends AppCompatActivity {
-    Button mCancel;
     Button mSave;
     EditText mNome;
     EditText mData;
@@ -30,7 +31,8 @@ public class CadastroGoleiro extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-         mCancel = (Button) findViewById(R.id.btn_sairGoleiro);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
          mSave = (Button) findViewById(R.id.btn_salvarGoleiro);
          mNome = (EditText) findViewById(R.id.edit_txt_nome_goleiro);
          mData = (EditText) findViewById(R.id.edit_txt_nascimento_goleiro);
@@ -44,23 +46,13 @@ public class CadastroGoleiro extends AppCompatActivity {
                 if (!TextUtils.isEmpty(mNome.getText().toString()) && !TextUtils.isEmpty(mData.getText().toString())) {
                     mGoleiro = new Goleiro(mNome.getText().toString(), mData.getText().toString());
                     mDb.cadastrarGoleiro(mGoleiro);
-                    Intent refresh = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(refresh);//Start the same Activity
                     finish();
                 }
             }
         });
-        mCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                Intent refresh = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(refresh);//Start the same Activity
-                finish();
-            }
-        });
 
     }
+
     TextWatcher tw = new TextWatcher() {
         private String current = "";
         private String ddmmyyyy = "        ";
@@ -116,6 +108,4 @@ public class CadastroGoleiro extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {}
     };
-    @Override
-    public void onBackPressed()  {}
 }

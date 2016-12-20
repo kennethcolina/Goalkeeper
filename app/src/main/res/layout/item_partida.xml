@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:elevation="@dimen/elevation_goalkeeper"
+    android:background="@drawable/myrect"
+    android:layout_marginTop="@dimen/appbar_padding_top"
+    android:layout_marginRight="@dimen/appbar_padding_top"
+    android:layout_marginLeft="@dimen/appbar_padding_top"
     android:id="@+id/cv">
 
     <RelativeLayout

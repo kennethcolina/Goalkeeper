@@ -29,8 +29,8 @@ public class PerfilGoleiro extends AppCompatActivity {
     Button mBtnRelatorio;
     Button mBtnEditar;
     Button mBtnDeletar;
-    Button mBtnVoltar;
     DBManager mDb;
+    Goleiro goleiro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +38,8 @@ public class PerfilGoleiro extends AppCompatActivity {
         setContentView(R.layout.activity_perfil_goleiro);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
-        actionBar.setDisplayShowHomeEnabled(true);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ivFoto = (ImageView) findViewById(R.id.foto_perfil);
         txtNome = (TextView) findViewById(R.id.txt_nome_perfil);
@@ -51,13 +48,12 @@ public class PerfilGoleiro extends AppCompatActivity {
         mBtnRelatorio = (Button) findViewById(R.id.btn_relatorio);
         mBtnEditar = (Button) findViewById(R.id.btn_editar_goleiro);
         mBtnDeletar = (Button) findViewById(R.id.btn_deletar_goleiro);
-        mBtnVoltar = (Button) findViewById(R.id.btn_voltar_perfil);
 
         mDb = new DBManager(this);
         idGoleiro = this.getIntent().getIntExtra("ID_GOLEIRO", 0);
         Log.i("- - - - -", "" + idGoleiro);
 
-        final Goleiro goleiro = mDb.getGoleiro(idGoleiro);
+        goleiro = mDb.getGoleiro(idGoleiro);
 
         txtNome.setText(goleiro.getNome());
         txtDataNasc.setText(goleiro.getDataNascimento());
@@ -68,7 +64,6 @@ public class PerfilGoleiro extends AppCompatActivity {
                 Intent partidas = new Intent(getApplicationContext(), Partidas.class);
                 partidas.putExtra("ID_GOLEIRO", idGoleiro);
                 startActivity(partidas);
-                //  finish();
             }
         });
         mBtnEditar.setOnClickListener(new View.OnClickListener() {
@@ -77,19 +72,12 @@ public class PerfilGoleiro extends AppCompatActivity {
                 Intent alteraGoleiro = new Intent(getApplicationContext(), AlteraGoleiro.class);
                 alteraGoleiro.putExtra("ID_GOLEIRO", idGoleiro);
                 startActivity(alteraGoleiro);
-                finish();
             }
         });
         mBtnDeletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 confirmDialog(goleiro);
-            }
-        });
-        mBtnVoltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
             }
         });
     }
@@ -122,5 +110,10 @@ public class PerfilGoleiro extends AppCompatActivity {
     protected void onDestroy() {super.onDestroy();}
 
     @Override
-    public void onBackPressed() {}
+    public void onResume() {
+      super.onResume();
+        goleiro = mDb.getGoleiro(idGoleiro);
+        txtNome.setText(goleiro.getNome());
+        txtDataNasc.setText(goleiro.getDataNascimento());
+    }
 }
