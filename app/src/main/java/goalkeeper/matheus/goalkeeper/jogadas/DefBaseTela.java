@@ -52,57 +52,57 @@ public class DefBaseTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL (tentou defesa base):\n" +
-                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: "+ tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: falhou na jogada" + "\nObservação: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA BASE:\n" +
-                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: "+ tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: falhou na jogada" + "\nObservação: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
                             if(observacao.isEmpty()) {
                                 if (gol == 1) {
                                     CadastroPartida.historico += "SOFREU GOL (tentou defesa base):\n" +
-                                            tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: "+ tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: acertou a jogada\n\n";
                                 } else {
                                     CadastroPartida.historico += "DEFESA BASE:\n" +
-                                            tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: "+ tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: acertou a jogada\n\n";
                                 }
                             } else {
                                 if (gol == 1) {
                                     CadastroPartida.historico += "SOFREU GOL (tentou defesa base):\n" +
-                                            tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: "+ tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: acertou a jogada\n\n";
                                 } else {
                                     CadastroPartida.historico += "DEFESA BASE:\n" +
-                                            tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: "+ tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: acertou a jogada\n\n";
                                 }
                             }
                         }
                     }else{
                         if (errou == 1) {
                             if (gol == 1) {
-                                CadastroPartida.historico += "SOFREU GOL DE FALTA(tentou defesa base):\n" +
-                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                CadastroPartida.historico += "SOFREU GOL DE FALTA (tentou defesa base):\n" +
+                                        "Tempo: "+ tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: falhou na jogada" + "\nObservação: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA BASE EM FALTA:\n" +
-                                        tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: "+ tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: falhou na jogada" + "\nObservação: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
                             if(observacao.isEmpty()) {
                                 if (gol == 1) {
-                                    CadastroPartida.historico += "SOFREU GOL DE FALTA(tentou defesa base):\n" +
-                                            tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                    CadastroPartida.historico += "SOFREU GOL DE FALTA (tentou defesa base):\n" +
+                                            "Tempo: "+ tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: acertou a jogada\n\n";
                                 } else {
                                     CadastroPartida.historico += "DEFESA BASE EM FALTA:\n" +
                                             tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
                                 }
                             } else {
                                 if (gol == 1) {
-                                    CadastroPartida.historico += "SOFREU GOL DE FALTA(tentou defesa base):\n" +
-                                            tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                    CadastroPartida.historico += "SOFREU GOL DE FALTA (tentou defesa base):\n" +
+                                            "Tempo: "+ tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: acertou a jogada" + "\nObservação: " + observacao + "\n\n";
                                 } else {
                                     CadastroPartida.historico += "DEFESA BASE EM FALTA:\n" +
-                                            tempo + " minutos, bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: "+ tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: acertou a jogada" + "\nObservação: " + observacao + "\n\n";
                                 }
                             }
                         }
