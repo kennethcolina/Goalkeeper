@@ -13,12 +13,67 @@
     android:orientation="vertical"
     tools:showIn="@layout/activity_cadastro_partida">
 
-    <TextView
-        android:id="@+id/infos_partida"
+
+    <LinearLayout
+        android:id="@+id/dados_partida_cadastro"
+        android:visibility="gone"
         android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin"
+        android:layout_margin="@dimen/activity_vertical_margin"
         android:layout_height="wrap_content"
-        android:text=""
-        android:visibility="gone"/>
+        android:elevation="@dimen/elevation_goalkeeper"
+        android:background="@drawable/myrect"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/infos_partida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="descricao"/>
+
+        <Button
+            android:id="@+id/btn_cadastrarJogada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/appbar_padding_top"
+            android:paddingLeft="@dimen/appbar_padding_top"
+            android:text="Nova Jogada"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            />
+
+        <Button
+            android:layout_weight="1"
+            android:layout_marginTop="32dp"
+            android:id="@+id/btn_parciaisPartida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:background="@color/colorAccent"
+            android:textColor="@color/white"
+            android:text="Análise Parcial de Jogadas"
+            />
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btn_parciaisPartidaTatica"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:textColor="@color/white"
+            android:text="Análise Parcial de Tática"
+            />
+        </LinearLayout>
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,23 +120,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"></Spinner>
     </LinearLayout>
-
-        <Button
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:id="@+id/btn_cadastrarJogada"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nova Jogada Nessa Partida"
-            android:visibility="invisible"
-            />
-        <Button
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:id="@+id/btn_parciaisPartida"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:text="Ver Parciais"
-            />
 
 
 </LinearLayout>

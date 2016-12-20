@@ -76,8 +76,8 @@ public class Partidas extends AppCompatActivity {
             TextView matchDescription;
             TextView matchDate;
             ImageView personPhoto;
-            ImageButton matchDelete;
-            ImageButton matchInfo;
+            TextView matchDelete;
+            TextView matchInfo;
 
             public MatchViewHolder(View itemView) {
                 super(itemView);
@@ -85,8 +85,8 @@ public class Partidas extends AppCompatActivity {
                 matchDescription = (TextView) itemView.findViewById(R.id.txt_descricao);
                 matchDate = (TextView) itemView.findViewById(R.id.txt_data_partida);
                 personPhoto = (ImageView) itemView.findViewById(R.id.person_photo);
-                matchDelete = (ImageButton) itemView.findViewById(R.id.match_delete);
-                matchInfo = (ImageButton) itemView.findViewById(R.id.match_info);
+                matchDelete = (TextView) itemView.findViewById(R.id.match_delete);
+                matchInfo = (TextView) itemView.findViewById(R.id.match_info);
             }
         }
 

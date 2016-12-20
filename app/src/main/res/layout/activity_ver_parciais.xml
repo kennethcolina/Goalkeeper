@@ -21,13 +21,6 @@
         android:id="@+id/list_parciais_historico">
 
     </TextView>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Voltar"
-        android:background="@color/colorAccent"
-        android:textColor="@color/white"
-        android:id="@+id/btn_voltarParciais"/>
 
 </LinearLayout>
     </ScrollView>

@@ -92,6 +92,7 @@
         <activity
             android:name=".VerParciais"
             android:label="Parciais"
+            android:parentActivityName=".CadastroPartida"
             android:screenOrientation="portrait" />
         <activity
             android:name=".jogadas.DominioTela"

@@ -35,12 +35,15 @@
                 android:id="@+id/btn_cancelarJogada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:background="@color/colorAccent"
                 android:text="Cancelar"/>
 
             <Button
                 android:id="@+id/btn_ContinuarJogada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
                 android:text="Continuar"/>
         </LinearLayout>
         </LinearLayout>

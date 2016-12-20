@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -38,6 +39,8 @@ public class CadastroPartida extends AppCompatActivity {
     TextView mTxtdesc;
     TextView mTxtgoleiro;
     Button mBtnParciais;
+    Button mBtnParciaisTatica;
+    LinearLayout mLinerLayout;
     public static boolean mFinlizar = false;
     public static String historico = "";
     //boolean jaSdicionadaNessaPartida = false;
@@ -64,6 +67,8 @@ public class CadastroPartida extends AppCompatActivity {
         mTxtdata = (TextView) findViewById(R.id.label_data);
         mTxtdesc = (TextView) findViewById(R.id.label_desc);
         mTxtgoleiro = (TextView) findViewById(R.id.label_goleiro);
+        mLinerLayout = (LinearLayout) findViewById(R.id.dados_partida_cadastro);
+        mBtnParciaisTatica = (Button) findViewById(R.id.btn_parciaisPartidaTatica);
 
         goleiros = new ArrayList<String>();
         goleiros.add("Selecione um goleiro");
@@ -115,10 +120,13 @@ public class CadastroPartida extends AppCompatActivity {
 
                     mTxtInfosPartida.setText("Partida: "+mEditTextDescricao.getText().toString() +"\nData: " + mEditTextData.getText().toString() + "\nGoleiro: " +mSpinnerGoleiros.getSelectedItem().toString().substring(mSpinnerGoleiros.getSelectedItem().toString().indexOf(":"), mSpinnerGoleiros.getSelectedItem().toString().length()));
                     mTxtInfosPartida.setVisibility(View.VISIBLE);
+                    mLinerLayout.setVisibility(View.VISIBLE);
 
                     mBtnSalvarPartida.setVisibility(View.VISIBLE);
                     mBtnCadastrarJogada.setVisibility(View.VISIBLE);
                     mBtnParciais.setVisibility(View.VISIBLE);
+                    mBtnParciaisTatica.setVisibility(View.VISIBLE);
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 }else{
                     mensagem();
                 }
