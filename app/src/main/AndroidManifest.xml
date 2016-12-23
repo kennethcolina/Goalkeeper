@@ -5,7 +5,7 @@
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +20,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -44,13 +43,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="goalkeeper.matheus.goalkeeper.Partidas"
-            android:label="Partidas"
+            android:label="Lista de Partidas"
             android:parentActivityName=".PerfilGoleiro"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="goalkeeper.matheus.goalkeeper.PerfilGoleiro"
-            android:label="Perfil do Goleiro"
+            android:label="Perfil de Goleiro"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -60,25 +59,6 @@
             android:label="Tipo de Jogada"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Dialog" />
-        <activity
-            android:name=".FinalizarPartida"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
-        <activity
-            android:name=".resultados.ItemListActivity"
-            android:label="@string/title_item_list"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".resultados.ItemDetailActivity"
-            android:label="@string/title_item_detail"
-            android:parentActivityName=".resultados.ItemListActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="goalkeeper.matheus.goalkeeper.resultados.ItemListActivity" />
-        </activity>
         <activity
             android:name=".jogadas.JogadaOfensivaTela"
             android:screenOrientation="portrait" />
@@ -91,31 +71,55 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".VerParciais"
-            android:label="Parciais"
+            android:label="Relatório Parcial de Detalhes"
             android:parentActivityName=".CadastroPartida"
             android:screenOrientation="portrait" />
         <activity
             android:name=".jogadas.DominioTela"
-            android:label="Cadastrar Domínio"
+            android:label="Domínio de Bola"
             android:screenOrientation="portrait" />
         <activity
             android:name=".jogadas.ReporMaoTela"
-            android:label="Reposição com Mão"
+            android:label="Reposição com as Mãos"
             android:screenOrientation="portrait" />
         <activity
             android:name=".jogadas.ReporVoleioTela"
-            android:label="Reposição Voleio"
+            android:label="Reposição com Voleio"
             android:screenOrientation="portrait" />
-        <activity android:name=".jogadas.DefSaidaTela" />
-        <activity android:name=".jogadas.DefPeTela" />
-        <activity android:name=".jogadas.DefCaidaTela" />
-        <activity android:name=".jogadas.DefSobreCabecaTela" />
-        <activity android:name=".jogadas.DefBaseTela" />
-        <activity android:name=".jogadas.DefPunhoTela" />
-        <activity android:name=".PartidaDetalhes" />
+        <activity android:name=".jogadas.DefSaidaTela"
+            android:label="Defesa com Saída"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jogadas.DefPeTela"
+            android:label="Defesa com os Pés"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".jogadas.DefCaidaTela"
+            android:label="Defesa com Caída"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jogadas.DefSobreCabecaTela"
+            android:label="Defesa Sobre Cabeça"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jogadas.DefBaseTela"
+            android:label="Defesa Base"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".jogadas.DefPunhoTela"
+            android:label="Defesa com Punho"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Detalhe"
-            android:parentActivityName=".resultados.ItemListActivity"
-            android:label="Detalhe"></activity>
+            android:parentActivityName=".Partidas"
+            android:screenOrientation="portrait"
+            android:label="Relatório Detalhes de Jogadas"></activity>
+        <activity android:name=".graph.RelatorioTaticoActivity"
+            android:parentActivityName=".Partidas"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".graph.PieChartActivity"
+            android:parentActivityName=".Partidas"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".graph.RelatorioPorJogadaActivity"
+            android:parentActivityName=".PerfilGoleiro"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".graph.RelatorioGeralActivity"
+            android:parentActivityName=".PerfilGoleiro"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

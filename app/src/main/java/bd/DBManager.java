@@ -9,6 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import bd.DBHelper;
+import goalkeeper.matheus.goalkeeper.graph.FormatJogada;
 import model.Goleiro;
 import model.JogadaDefensiva;
 import model.JogadaOfensiva;
@@ -159,6 +160,37 @@ public class DBManager {
         }
 
         return id;
+    }
+
+    public int getQtdPartidasGoleiro(int idGoleiro) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String sql = "select count(*) from partida where idGoleiro='" + idGoleiro + "';";
+        Cursor cursor = db.rawQuery(sql, null);
+        int qtdPartidas = 0;
+
+        //tiro de meta
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdPartidas = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        return qtdPartidas;
+    }
+
+
+    public  int countSetor(int idGoleiro, int idPartida, String setor) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        int qtdSetoresAtivados = 0;
+
+
+        String sql = "select count(JogadaDefensiva.id) from JogadaDefensiva join partida on partida.id=idPartida where idGoleiro='" + idGoleiro + "' and idPartida='"+idPartida+"' and setorBolaVeio='"+setor+"';";
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdSetoresAtivados=cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        return qtdSetoresAtivados;
     }
 
     public ArrayList<String> getResultsGoleiro(int idGoleiro) {
@@ -622,6 +654,56 @@ public class DBManager {
         valores.put("motivoSaida", s1);
         db.insert("DefSaida", null, valores);
     }
+
+    public int countJogada(int idGoleiro, String jogada, boolean flagDefensiva) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String tipoJogada = "JogadaDefensiva";
+        if(flagDefensiva == false) tipoJogada = "JogadaOfensiva";
+
+        jogada = FormatJogada.format(jogada);
+
+        String sql = "select count(*) from " +
+                "(select id, "+tipoJogada+".idPartida from "+tipoJogada+", "+jogada+" where "+jogada+".id"+tipoJogada+"="+tipoJogada+".id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida;";
+
+        int qtd= 0;
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtd= cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        return qtd;
+    }
+
+    public int errosJogada(int idGoleiro, String jogada, boolean flagDefensiva) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String tipoJogada = "JogadaDefensiva";
+        if(flagDefensiva == false) tipoJogada = "JogadaOfensiva";
+
+        jogada = FormatJogada.format(jogada);
+
+        String sql = "select count(*) from " +
+                "(select id, "+tipoJogada+".idPartida, errou from "+tipoJogada+", "+jogada+" where "+jogada+".id"+tipoJogada+"="+tipoJogada+".id) " +
+                "join " +
+                "(select Partida.id as idPartidasGoleiro from partida where Partida.idGoleiro='" + idGoleiro + "') " +
+                "on idPartidasGoleiro=idPartida where errou=1;";
+
+        int qtd = 0;
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtd= cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        return qtd;
+    }
+
 
     /*
     public void teste() {

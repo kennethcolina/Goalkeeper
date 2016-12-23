@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,12 +14,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import bd.DBManager;
-import model.Goleiro;
+import goalkeeper.matheus.goalkeeper.graph.RelatorioTaticoActivity;
 import model.Partida;
 
 /**
@@ -78,6 +76,7 @@ public class Partidas extends AppCompatActivity {
             ImageView personPhoto;
             TextView matchDelete;
             TextView matchInfo;
+            TextView matchTatica;
 
             public MatchViewHolder(View itemView) {
                 super(itemView);
@@ -87,6 +86,7 @@ public class Partidas extends AppCompatActivity {
                 personPhoto = (ImageView) itemView.findViewById(R.id.person_photo);
                 matchDelete = (TextView) itemView.findViewById(R.id.match_delete);
                 matchInfo = (TextView) itemView.findViewById(R.id.match_info);
+                matchTatica = (TextView) itemView.findViewById(R.id.match_tatica);
             }
         }
 
@@ -126,10 +126,20 @@ public class Partidas extends AppCompatActivity {
             matchViewHolder.matchInfo.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View view) {
-                Intent detalhe = new Intent(view.getContext(), Detalhe.class);
+               Intent detalhe = new Intent(view.getContext(), Detalhe.class);
                 detalhe.putExtra("ID_PARTIDA", partida.getId());
                 //detalhe.putExtra("ID_GOLEIRO", idGoleiro);
                 startActivity(detalhe);
+                }
+            });
+            matchViewHolder.matchTatica.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent tatica = new Intent(view.getContext(), RelatorioTaticoActivity.class);
+                    tatica.putExtra("TITLE", "Relatório Tático");
+                    tatica.putExtra("ID_GOLEIRO", idGoleiro);
+                    tatica.putExtra("ID_PARTIDA", partida.getId());
+                    startActivity(tatica);
                 }
             });
         }

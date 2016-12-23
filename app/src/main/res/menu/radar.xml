@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/actionToggleValues"
+        android:title="Exibir/Esconder Valores">
+    </item>
+
+    <item
+        android:id="@+id/animateX"
+        android:title="Animação em X">
+    </item>
+    <item
+        android:id="@+id/animateY"
+        android:title="Animação em Y">
+    </item>
+    <item
+        android:id="@+id/animateXY"
+        android:title="Animação em XY">
+    </item>
+    <item
+        android:id="@+id/actionSave"
+        android:title="Salvar na Galeria">
+    </item>
+    <item
+        android:id="@+id/actionToggleRotate"
+        android:title="Ligar/Desativar Rotação">
+    </item>
+
+</menu>
