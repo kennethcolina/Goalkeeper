@@ -1,7 +1,5 @@
 package goalkeeper.matheus.goalkeeper.jogadas;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +12,7 @@ import java.util.ArrayList;
 
 import bd.DBManager;
 import goalkeeper.matheus.goalkeeper.CadastroPartida;
+import goalkeeper.matheus.goalkeeper.Mensagem;
 import goalkeeper.matheus.goalkeeper.R;
 
 public class DefCaidaTela extends JogadaDefensivaTela {
@@ -47,71 +46,138 @@ public class DefCaidaTela extends JogadaDefensivaTela {
             @Override
             public void onClick(View v) {
                 if(testePreenchimento() && mSpinTipoDefCaida.getSelectedItemPosition()>0){
+                    //verificar o setor do penalti
+                    if(mSpinTipoFinalizacao.getSelectedItem() == "pênalti") {
+                        if(mSpinSetorBolaVeio.getSelectedItem() != "ADC - Área Defensiva Centro") {
+                            Mensagem msg = new Mensagem();
+                            msg.alertaPenalti(v.getContext());
+                            return;
+                        }
+                    }
                     //cadastrar a jogada
                     int idJogadaDefensiva=saveJD();
                     mDb.cadastrarDefCaida(idJogadaDefensiva, mSpinTipoDefCaida.getSelectedItem().toString());
-                    if(tipoFinalizacao != "chute de falta") {
+                    if(tipoFinalizacao == "pênalti") {
                         if (errou == 1) {
                             if (gol == 1) {
-                                CadastroPartida.historico += "SOFREU GOL (tentou defesa caída):\n" +
-                                        tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                CadastroPartida.historico += "SOFREU GOL DE PÊNALTI (tentou defesa com caída):\n" +
+                                        "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
                             } else {
-                                CadastroPartida.historico += "DEFESA BASE:\n" +
-                                        tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
-                            }
-                        }
-                        if (errou == 0) {
-                            if(observacao.isEmpty()) {
-                                if (gol == 1) {
-                                    CadastroPartida.historico += "SOFREU GOL (tentou defesa caída):\n" +
-                                            tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
-                                } else {
-                                    CadastroPartida.historico += "DEFESA CAÍDA:\n" +
-                                            tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
-                                }
-                            } else {
-                                if (gol == 1) {
-                                    CadastroPartida.historico += "SOFREU GOL (tentou defesa caída):\n" +
-                                            tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
-                                } else {
-                                    CadastroPartida.historico += "DEFESA CAÍDA:\n" +
-                                            tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
-                                }
-                            }
-                        }
-                    }else{
-                        if (errou == 1) {
-                            if (gol == 1) {
-                                CadastroPartida.historico += "SOFREU GOL DE FALTA (tentou defesa caída):\n" +
-                                        tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
-                            } else {
-                                CadastroPartida.historico += "DEFESA BASE EM FALTA:\n" +
-                                        tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                CadastroPartida.historico += "DEFESA COM CAÍDA:\n" +
+                                        "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
                             if (observacao.isEmpty()) {
                                 if (gol == 1) {
-                                    CadastroPartida.historico += "SOFREU GOL DE FALTA(tentou defesa caída):\n" +
-                                            tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                    CadastroPartida.historico += "SOFREU GOL DE PÊNALTI (tentou defesa com caída):\n" +
+                                            "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
                                 } else {
-                                    CadastroPartida.historico += "DEFESA CAÍDA EM FALTA:\n" +
-                                            tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                    CadastroPartida.historico += "DEFESA COM CAÍDA:\n" +
+                                            "Tempo:" + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
                                 }
                             } else {
                                 if (gol == 1) {
-                                    CadastroPartida.historico += "SOFREU GOL DE FALTA(tentou defesa caída):\n" +
-                                            tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                    CadastroPartida.historico += "SOFREU GOL DE PÊNALTI (tentou defesa com caída):\n" +
+                                            "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
                                 } else {
-                                    CadastroPartida.historico += "DEFESA CAÍDA EM FALTA:\n" +
-                                            tempo + " minutos, caída com " + mSpinTipoDefCaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + "do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                    CadastroPartida.historico += "DEFESA COM CAÍDA:\n" +
+                                            "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
+                                }
+                            }
+                        }
+                    }else if (tipoFinalizacao == "cabeceio") {
+                        if (errou == 1) {
+                            if (gol == 1) {
+                                CadastroPartida.historico += "SOFREU GOL DE CABECEIO (tentou defesa com caída):\n" +
+                                        "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                            } else {
+                                CadastroPartida.historico += "DEFESA COM CAÍDA EM CABECEIO:\n" +
+                                        "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                            }
+                        }
+                        if (errou == 0) {
+                            if(observacao.isEmpty()) {
+                                if (gol == 1) {
+                                    CadastroPartida.historico += "SOFREU GOL DE CABECEIO (tentou defesa com caída):\n" +
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
+                                } else {
+                                    CadastroPartida.historico += "DEFESA COM CAÍDA EM CABECEIO:\n" +
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
+                                }
+                            } else {
+                                if (gol == 1) {
+                                    CadastroPartida.historico += "SOFREU GOL DE CABECEIO (tentou defesa com caída):\n" +
+                                            "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
+                                } else {
+                                    CadastroPartida.historico += "DEFESA COM SAÍDA EM CABECEIO:\n" +
+                                            "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
+                                }
+                            }
+                        }
+                    } else if (tipoFinalizacao == "chute de falta") {
+                        if (errou == 1) {
+                            if (gol == 1) {
+                                CadastroPartida.historico += "SOFREU GOL DE FALTA (tentou defesa com caída):\n" +
+                                        "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                            } else {
+                                CadastroPartida.historico += "DEFESA COM CAÍDA EM FALTA:\n" +
+                                        "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                            }
+                        }
+                        if (errou == 0) {
+                            if (observacao.isEmpty()) {
+                                if (gol == 1) {
+                                    CadastroPartida.historico += "SOFREU GOL DE FALTA (tentou defesa com caída):\n" +
+                                            "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
+                                } else {
+                                    CadastroPartida.historico += "DEFESA COM CAÍDA EM FALTA:\n" +
+                                            "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
+                                }
+                            } else {
+                                if (gol == 1) {
+                                    CadastroPartida.historico += "SOFREU GOL DE FALTA (tentou defesa com caída):\n" +
+                                            "Tempo: " + tempo + "\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
+                                } else {
+                                    CadastroPartida.historico += "DEFESA COM CAÍDA EM FALTA:\n" +
+                                            "Tempo: " + tempo + "\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
+                                }
+                            }
+                        }
+                    } else {
+                        if (errou == 1) {
+                            if (gol == 1) {
+                                CadastroPartida.historico += "SOFREU GOL (tentou defesa com caída):\n" +
+                                        "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                            } else {
+                                CadastroPartida.historico += "DEFESA COM CAÍDA:\n" +
+                                        "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                            }
+                        }
+                        if (errou == 0) {
+                            if (observacao.isEmpty()) {
+                                if (gol == 1) {
+                                    CadastroPartida.historico += "SOFREU GOL (tentou defesa com caída):\n" +
+                                            "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
+                                } else {
+                                    CadastroPartida.historico += "DEFESA COM CAÍDA:\n" +
+                                            "Tempo:" + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
+                                }
+                            } else {
+                                if (gol == 1) {
+                                    CadastroPartida.historico += "SOFREU GOL (tentou defesa com caída):\n" +
+                                            "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
+                                } else {
+                                    CadastroPartida.historico += "DEFESA COM CAÍDA:\n" +
+                                            "Tempo: " + tempo + "'\nTipo de caída: " + mSpinTipoDefCaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
                                 }
                             }
                         }
                     }
                     finish();
                 }else{
-                    mensagem();
+                    Mensagem msg = new Mensagem();
+                    msg.alerta(v.getContext());
                 }
             }
         });
@@ -176,8 +242,10 @@ public class DefCaidaTela extends JogadaDefensivaTela {
         arrayTipoFinalizacao.add("chute bola rolando");
         arrayTipoFinalizacao.add("chute de falta");
         arrayTipoFinalizacao.add("cabeceio");
+        arrayTipoFinalizacao.add("pênalti");
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoFinalizacao);
         mSpinTipoFinalizacao.setAdapter(adapter4);
+
 
         arrayTipoDefCaida = new ArrayList<String>();
         arrayTipoDefCaida.add("Selecione o tipo de caída");
@@ -186,16 +254,5 @@ public class DefCaidaTela extends JogadaDefensivaTela {
         arrayTipoDefCaida.add("duas mãos");
         ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoDefCaida);
         mSpinTipoDefCaida.setAdapter(adapter5);
-    }
-
-    public void mensagem() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Ops");
-        alertDialog.setMessage("Favor, preencher todos os campos antes de continuar.");
-        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        alertDialog.show();
     }
 }

@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView01"
+    android:layout_margin="@dimen/activity_horizontal_margin"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -11,30 +12,30 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:background="@drawable/myrect"
+        android:elevation="10dp"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="goalkeeper.matheus.goalkeeper.Detalhe">
-
-        <TextView
-            android:id="@+id/txt_dados_partida"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="DADOS DA PARTIDA:"/>
         <TextView
             android:id="@+id/txt_detalhes_descricao"
             android:layout_width="match_parent"
+            android:textAlignment="center"
             android:layout_height="match_parent" />
         <TextView
             android:id="@+id/txt_detalhes_goleiro"
             android:layout_width="match_parent"
+            android:textAlignment="center"
             android:layout_height="match_parent" />
         <TextView
             android:id="@+id/txt_detalhes_data"
             android:layout_width="match_parent"
+            android:textAlignment="center"
             android:layout_height="match_parent" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textSize="13sp"
             android:id="@+id/txt_detalhes">
 
         </TextView>

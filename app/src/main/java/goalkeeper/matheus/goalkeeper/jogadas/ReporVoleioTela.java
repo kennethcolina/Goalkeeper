@@ -1,7 +1,5 @@
 package goalkeeper.matheus.goalkeeper.jogadas;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +12,7 @@ import java.util.ArrayList;
 
 import bd.DBManager;
 import goalkeeper.matheus.goalkeeper.CadastroPartida;
+import goalkeeper.matheus.goalkeeper.Mensagem;
 import goalkeeper.matheus.goalkeeper.R;
 
 public class ReporVoleioTela extends JogadaOfensivaTela {
@@ -48,19 +47,19 @@ public class ReporVoleioTela extends JogadaOfensivaTela {
                     int idJogadaOfensiva=saveJO();
                     mDb.cadastrarReporVoleio(idJogadaOfensiva);
                     if(errou==1)CadastroPartida.historico += "REPOSIÇÃO VOLEIO:\n"+
-                            tempo+" minutos, bola foi no setor "+setorBolaFoi+ ", primeira bola ganha por "+primeiraBola+ ", segunda bola ganha por "+segundaBola+ "\nObservação: "+observacao+"\n\n";
+                            "Tempo: " + tempo + "'\nSetor destino da jogada: "+ setorBolaFoi + "\nPrimeira bola ganha por: " + primeiraBola + "\nSegunda bola ganha por: " + segundaBola + "\nObservação: " + observacao + "\n\n";
 
                     if(observacao.isEmpty()) {
                         if (errou == 0) CadastroPartida.historico += "REPOSIÇÃO VOLEIO:\n" +
-                                tempo + " minutos, bola foi no setor " + setorBolaFoi + ", primeira bola ganha por " + primeiraBola + ", segunda bola ganha por " + segundaBola + "\nAcertou a jogada\n\n";
+                                "Tempo: " + tempo + "'\nSetor destino da jogada: " + setorBolaFoi + "\nPrimeira bola ganha por: " + primeiraBola + "\nSegunda bola ganha por: " + segundaBola + "\nStatus: Acertou a jogada\n\n";
                     } else {
                         if (errou == 0) CadastroPartida.historico += "REPOSIÇÃO VOLEIO:\n" +
-                                tempo + " minutos, bola foi no setor " + setorBolaFoi + ", primeira bola ganha por " + primeiraBola + ", segunda bola ganha por " + segundaBola + "\nObservação: "+observacao+ "\nAcertou a jogada\n\n";
+                                "Tempo: " + tempo + "'\nSetor destino da jogada: " + setorBolaFoi + "\nPrimeira bola ganha por: " + primeiraBola + "\nSegunda bola ganha por: " + segundaBola + "\nObservação: "+ observacao + "\nStatus: Acertou a jogada\n\n";
                     }
-
                     finish();
                 }else{
-                    mensagem();
+                    Mensagem msg = new Mensagem();
+                    msg.alerta(v.getContext());
                 }
             }
         });
@@ -115,16 +114,5 @@ public class ReporVoleioTela extends JogadaOfensivaTela {
         arraySegBola.add("Adversario");
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySegBola);
         mSpinSegundaBola.setAdapter(adapter4);
-    }
-
-    public void mensagem() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Ops");
-        alertDialog.setMessage("Favor, preencher todos os campos antes de continuar.");
-        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        alertDialog.show();
     }
 }

@@ -2,6 +2,7 @@ package goalkeeper.matheus.goalkeeper;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,7 +13,6 @@ import model.Partida;
 
 public class Detalhe extends AppCompatActivity {
     public static TextView txtDetalhes;
-    TextView dadosPartida;
     TextView descricaoPartida;
     TextView nomeGoleiro;
     TextView dataPartida;
@@ -32,7 +32,6 @@ public class Detalhe extends AppCompatActivity {
         idPartida = getIntent().getIntExtra("ID_PARTIDA", 0);
 
         txtDetalhes = (TextView) findViewById(R.id.txt_detalhes);
-        dadosPartida = (TextView) findViewById(R.id.txt_dados_partida);
         descricaoPartida = (TextView) findViewById(R.id.txt_detalhes_descricao);
         nomeGoleiro = (TextView) findViewById(R.id.txt_detalhes_goleiro);
         dataPartida = (TextView) findViewById(R.id.txt_detalhes_data);
@@ -44,5 +43,18 @@ public class Detalhe extends AppCompatActivity {
         descricaoPartida.setText("Partida: " + partida.getDescricao());
         nomeGoleiro.setText("Goleiro: " + goleiro.getNome());
         dataPartida.setText("Data: " + partida.getData() + "\n\n");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // API 5+ solution
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

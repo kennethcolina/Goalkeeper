@@ -120,10 +120,14 @@ public class Goleiros extends Fragment {
         @Override
         public void onBindViewHolder(final PersonViewHolder personViewHolder, final int i) {
             final int id = goleiros.get(i).getId();
+            int qtdPartidas = mDb.getQtdPartidasGoleiro(id);
 
             personViewHolder.personName.setText(goleiros.get(i).getNome());
-            personViewHolder.personAge.setText(goleiros.get(i).getDataNascimento());
-           // personViewHolder.personPhoto.setImageResource(R.drawable.user);
+            if(qtdPartidas == 1)
+                personViewHolder.personAge.setText("Avaliado em: "+qtdPartidas+" partida\nData de nascimento: " +goleiros.get(i).getDataNascimento());
+            else
+                personViewHolder.personAge.setText("Avaliado em: "+qtdPartidas+" partidas\nData de nascimento: " +goleiros.get(i).getDataNascimento());
+            // personViewHolder.personPhoto.setImageResource(R.drawable.user);
             personViewHolder.cv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import bd.DBManager;
+import goalkeeper.matheus.goalkeeper.graph.RelatorioGeralActivity;
+import goalkeeper.matheus.goalkeeper.graph.RelatorioPorJogadaActivity;
 import model.Goleiro;
 
 /**
@@ -23,10 +24,11 @@ public class PerfilGoleiro extends AppCompatActivity {
 
     int idGoleiro;
     TextView txtNome;
-    TextView txtDataNasc;
+    TextView txtDataNascQtdPartidas;
     ImageView ivFoto;
     Button mBtnPartidas;
     Button mBtnRelatorio;
+    Button mBtnRelatorioPorJogada;
     Button mBtnEditar;
     Button mBtnDeletar;
     DBManager mDb;
@@ -43,11 +45,12 @@ public class PerfilGoleiro extends AppCompatActivity {
 
         ivFoto = (ImageView) findViewById(R.id.foto_perfil);
         txtNome = (TextView) findViewById(R.id.txt_nome_perfil);
-        txtDataNasc = (TextView) findViewById(R.id.txt_dataNasc_perfil);
+        txtDataNascQtdPartidas = (TextView) findViewById(R.id.txt_dataNasc_perfil);
         mBtnPartidas = (Button) findViewById(R.id.btn_partidas);
         mBtnRelatorio = (Button) findViewById(R.id.btn_relatorio);
         mBtnEditar = (Button) findViewById(R.id.btn_editar_goleiro);
         mBtnDeletar = (Button) findViewById(R.id.btn_deletar_goleiro);
+        mBtnRelatorioPorJogada = (Button) findViewById(R.id.btn_por_jogada);
 
         mDb = new DBManager(this);
         idGoleiro = this.getIntent().getIntExtra("ID_GOLEIRO", 0);
@@ -56,7 +59,10 @@ public class PerfilGoleiro extends AppCompatActivity {
         goleiro = mDb.getGoleiro(idGoleiro);
 
         txtNome.setText(goleiro.getNome());
-        txtDataNasc.setText(goleiro.getDataNascimento());
+        if(mDb.getQtdPartidasGoleiro(idGoleiro) == 1)
+            txtDataNascQtdPartidas.setText("Avaliado em: "+mDb.getQtdPartidasGoleiro(idGoleiro)+" partida\nData de nascimento: " +goleiro.getDataNascimento());
+        else
+            txtDataNascQtdPartidas.setText("Avaliado em: "+mDb.getQtdPartidasGoleiro(idGoleiro)+" partidas\nData de nascimento: " +goleiro.getDataNascimento());
 
         mBtnPartidas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +84,23 @@ public class PerfilGoleiro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 confirmDialog(goleiro);
+            }
+        });
+
+        mBtnRelatorioPorJogada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent relatorioJogada = new Intent(getApplicationContext(), RelatorioPorJogadaActivity.class);
+                relatorioJogada.putExtra("ID_GOLEIRO", idGoleiro);
+                startActivity(relatorioJogada);
+            }
+        });
+        mBtnRelatorio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent relatorio = new Intent(getApplicationContext(), RelatorioGeralActivity.class);
+                relatorio.putExtra("ID_GOLEIRO", idGoleiro);
+                startActivity(relatorio);
             }
         });
     }
@@ -114,6 +137,9 @@ public class PerfilGoleiro extends AppCompatActivity {
       super.onResume();
         goleiro = mDb.getGoleiro(idGoleiro);
         txtNome.setText(goleiro.getNome());
-        txtDataNasc.setText(goleiro.getDataNascimento());
+        if(mDb.getQtdPartidasGoleiro(idGoleiro) == 1)
+            txtDataNascQtdPartidas.setText("Avaliado em: "+mDb.getQtdPartidasGoleiro(idGoleiro)+" partida\nData de nascimento: " +goleiro.getDataNascimento());
+        else
+            txtDataNascQtdPartidas.setText("Avaliado em: "+mDb.getQtdPartidasGoleiro(idGoleiro)+" partidas\nData de nascimento: " +goleiro.getDataNascimento());
     }
 }

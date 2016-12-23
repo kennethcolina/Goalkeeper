@@ -9,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import bd.DBManager;
+import goalkeeper.matheus.goalkeeper.graph.RelatorioTaticoActivity;
 import model.Partida;
 
 public class CadastroPartida extends AppCompatActivity {
@@ -44,6 +44,7 @@ public class CadastroPartida extends AppCompatActivity {
     public static boolean mFinlizar = false;
     public static String historico = "";
     //boolean jaSdicionadaNessaPartida = false;
+    int idGoleiro=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +104,9 @@ public class CadastroPartida extends AppCompatActivity {
                         && !TextUtils.isEmpty(mEditTextData.getText().toString())) {
                     String desc = mEditTextDescricao.getText().toString();
                     String data = mEditTextData.getText().toString();
-                    String idGoleiro = mSpinnerGoleiros.getSelectedItem().toString().substring(0, mSpinnerGoleiros.getSelectedItem().toString().indexOf(":"));
+                    idGoleiro = Integer.parseInt(mSpinnerGoleiros.getSelectedItem().toString().substring(0, mSpinnerGoleiros.getSelectedItem().toString().indexOf(":")));
 
-                    mPartida = new Partida(Integer.parseInt(idGoleiro), data, desc);
+                    mPartida = new Partida(idGoleiro, data, desc);
                     //historico +="DADOS PARTIDA:\nPartida: "+mEditTextDescricao.getText().toString()+"\nGoleiro: "+mSpinnerGoleiros.getSelectedItem().toString()+"\nData: "+ mEditTextData.getText().toString()+"\n\n";
                     //Log.d("theus", ""+Integer.parseInt(idGoleiro));
                     mDb.cadastrarPartida(mPartida);
@@ -142,8 +143,19 @@ public class CadastroPartida extends AppCompatActivity {
             }
         });
 
-        mEditTextData.addTextChangedListener(tw);
+        mBtnParciaisTatica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent tatica = new Intent(getApplicationContext(), RelatorioTaticoActivity.class);
+                tatica.putExtra("TITLE", "Relatório Tático Parcial");
+                tatica.putExtra("ID_GOLEIRO", idGoleiro);
+                tatica.putExtra("ID_PARTIDA", mDb.getMaxIdPartida());
+                startActivity(tatica);
+            }
+        });
+
+        mEditTextData.addTextChangedListener(tw);
     }
 
     private void dialogTipoJogada() {

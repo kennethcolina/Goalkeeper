@@ -1,7 +1,5 @@
 package goalkeeper.matheus.goalkeeper.jogadas;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +12,7 @@ import java.util.ArrayList;
 
 import bd.DBManager;
 import goalkeeper.matheus.goalkeeper.CadastroPartida;
+import goalkeeper.matheus.goalkeeper.Mensagem;
 import goalkeeper.matheus.goalkeeper.R;
 
 public class DefSaidaTela extends JogadaDefensivaTela {
@@ -56,61 +55,61 @@ public class DefSaidaTela extends JogadaDefensivaTela {
                     //cadastrar a jogada
                     int idJogadaDefensiva=saveJD();
                     mDb.cadastrarDefSaida(idJogadaDefensiva, mSpinTipoSaida.getSelectedItem().toString(), mSpinMotivoSaida.getSelectedItem().toString());
-                    if(tipoFinalizacao == "chute") {
+                    if(tipoFinalizacao == "chute bola rolando") {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL DE CHUTE (tentou defesa com saída):\n" +
-                                        tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA SAÍDA EM CHUTE:\n" +
-                                        tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
                             if(observacao.isEmpty()) {
                                 if (gol == 1) {
                                     CadastroPartida.historico += "SOFREU GOL (tentou defesa com saída):\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
                                 } else {
                                     CadastroPartida.historico += "DEFESA SAÍDA EM CHUTE:\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
                                 }
                             } else {
                                 if (gol == 1) {
                                     CadastroPartida.historico += "SOFREU GOL (tentou defesa com saída):\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
                                 } else {
                                     CadastroPartida.historico += "DEFESA SAÍDA EM CHUTE:\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
                                 }
                             }
                         }
-                    }else if(tipoFinalizacao == "cabeceio") {
+                    } else if (tipoFinalizacao == "cabeceio") {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL DE CABECEIO (tentou defesa com saída):\n" +
-                                        tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA SAÍDA EM CABECEIO:\n" +
-                                        tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
                             if(observacao.isEmpty()) {
                                 if (gol == 1) {
                                     CadastroPartida.historico += "SOFREU GOL DE CABECEIO (tentou defesa com saída):\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
                                 } else {
                                     CadastroPartida.historico += "DEFESA SAÍDA EM CABECEIO:\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nStatus: Acertou a jogada\n\n";
                                 }
                             } else {
                                 if (gol == 1) {
                                     CadastroPartida.historico += "SOFREU GOL DE CABECEIO (tentou defesa com saída):\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
                                 } else {
                                     CadastroPartida.historico += "DEFESA SAÍDA EM CABECEIO:\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do gol e veio do setor " + setorBolaVeio + ", finalização do tipo " + tipoFinalizacao + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
                                 }
                             }
                         }
@@ -118,35 +117,36 @@ public class DefSaidaTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL (tentou defesa com saída):\n" +
-                                        tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nObservação: " + observacao + "\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA SAÍDA EM CRUZAMENTO/LANÇAMENTO:\n" +
-                                        tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nObservação: " + observacao + "\n\n";
                             }
                         }
                         if (errou == 0) {
                             if(observacao.isEmpty()) {
                                 if (gol == 1) {
                                     CadastroPartida.historico += "SOFREU GOL (tentou defesa com saída):\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() +  ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nStatus: Acertou a jogada\n\n";
                                 } else {
                                     CadastroPartida.historico += "DEFESA SAÍDA EM CRUZAMENTO/LANÇAMENTO:\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() +  ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nStatus: Acertou a jogada\n\n";
                                 }
                             } else {
                                 if (gol == 1) {
                                     CadastroPartida.historico += "SOFREU GOL (tentou defesa com saída):\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() +  ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
                                 } else {
                                     CadastroPartida.historico += "DEFESA SAÍDA EM CRUZAMENTO/LANÇAMENTO:\n" +
-                                            tempo + " minutos, tipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + ", motivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() +  ", bola foi no setor " + setorBolaFoi + " do campo e veio do setor " + setorBolaVeio + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                            "Tempo: " + tempo + "'\nTipo de saída: " + mSpinTipoSaida.getSelectedItem().toString() + "\nMotivo de saída: " + mSpinMotivoSaida.getSelectedItem().toString() + "\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da jogada: " + setorBolaVeio + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
                                 }
                             }
                         }
                     }
                     finish();
                 }else{
-                    mensagem();
+                    Mensagem msg = new Mensagem();
+                    msg.alerta(v.getContext());
                 }
             }
         });
@@ -237,20 +237,9 @@ public class DefSaidaTela extends JogadaDefensivaTela {
         arrayTipoFinalizacao = new ArrayList<String>();
         arrayTipoFinalizacao.add("Selecione o tipo de finalização");
         arrayTipoFinalizacao.add("não houve finalização");
-        arrayTipoFinalizacao.add("chute");
+        arrayTipoFinalizacao.add("chute bola rolando");
         arrayTipoFinalizacao.add("cabeceio");
         ArrayAdapter<String> adapter6 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoFinalizacao);
         mSpinTipoFinalizacao.setAdapter(adapter6);
-    }
-
-    public void mensagem() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Ops");
-        alertDialog.setMessage("Favor, preencher todos os campos antes de continuar.");
-        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        alertDialog.show();
     }
 }

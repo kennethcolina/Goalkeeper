@@ -31,16 +31,17 @@
                 android:layout_height="wrap_content"
                 android:text="Desenvolvedores"
                 android:padding="@dimen/activity_vertical_margin"
-                android:textSize="@dimen/activity_vertical_margin"
+                android:textSize="16sp"
                 android:textColor="@color/white"/>
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/activity_vertical_margin"
+            android:textSize="13sp"
+            android:textColor="@color/textColorSecondary"
             android:layout_alignBottom="@+id/relative_inicar"
-            android:text="Kenneth Colina\n\nMatheus Silva Ferreira"
-            android:textColor="@color/textColorPrimary"/>
+            android:text="Kenneth Colina\n\nMatheus Silva Ferreira" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:text="Instrutor de Goleiros"
                 android:padding="@dimen/activity_vertical_margin"
-                android:textSize="@dimen/activity_vertical_margin"
+                android:textSize="16sp"
                 android:textColor="@color/white"/>
         </LinearLayout>
         <TextView
@@ -74,7 +75,8 @@
             android:padding="@dimen/activity_vertical_margin"
             android:layout_alignBottom="@+id/relative_inicar"
             android:text="Vinicius Salgado"
-            android:textColor="@color/textColorPrimary"/>
+            android:textSize="13sp"
+            android:textColor="@color/textColorSecondary"/>
     </LinearLayout>
 
 
@@ -95,7 +97,8 @@
                 android:layout_height="wrap_content"
                 android:text="http://goalkeeper.esy.es"
                 android:padding="@dimen/activity_vertical_margin"
-                android:textSize="@dimen/activity_vertical_margin"
+                android:textSize="13sp"
+                android:textColor="@color/textColorSecondary"
                />
         </LinearLayout>
     </LinearLayout>
