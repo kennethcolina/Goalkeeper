@@ -143,7 +143,6 @@ public class CadastroPartida extends AppCompatActivity {
             }
         });
 
-
         mBtnParciaisTatica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,6 +158,15 @@ public class CadastroPartida extends AppCompatActivity {
 
         mEditTextData.addTextChangedListener(tw);
 
+                Intent tatica = new Intent(getApplicationContext(), RelatorioTaticoActivity.class);
+                tatica.putExtra("TITLE", "Relatório Tático Parcial");
+                tatica.putExtra("ID_GOLEIRO", idGoleiro);
+                tatica.putExtra("ID_PARTIDA", mDb.getMaxIdPartida());
+                startActivity(tatica);
+            }
+        });
+
+        mEditTextData.addTextChangedListener(tw);
     }
 
     private void dialogTipoJogada() {

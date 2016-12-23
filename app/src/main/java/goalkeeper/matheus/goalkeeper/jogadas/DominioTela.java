@@ -1,7 +1,5 @@
 package goalkeeper.matheus.goalkeeper.jogadas;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +12,7 @@ import java.util.ArrayList;
 
 import bd.DBManager;
 import goalkeeper.matheus.goalkeeper.CadastroPartida;
+import goalkeeper.matheus.goalkeeper.Mensagem;
 import goalkeeper.matheus.goalkeeper.R;
 
 public class DominioTela extends JogadaOfensivaTela {
@@ -53,19 +52,19 @@ public class DominioTela extends JogadaOfensivaTela {
                     int idJogadaOfensiva=saveJO();
                     mDb.cadastrarDominio(idJogadaOfensiva,mSpinTipoDominio.getSelectedItem().toString());
                     if(errou==1)CadastroPartida.historico += "DOMÍNIO:\n"+
-                            tempo+" minutos, domínio foi do tipo "+ mSpinTipoDominio.getSelectedItem().toString() + "\nObservação: "+observacao+ "\n\n";
+                            "Tempo: " + tempo + "'\nTipo de domínio: "+ mSpinTipoDominio.getSelectedItem().toString() + "\nObservação: "+observacao+ "\n\n";
 
                     if(observacao.isEmpty()) {
                         if (errou == 0) CadastroPartida.historico += "DOMÍNIO:\n" +
-                                tempo + " minutos, domínio foi do tipo " + mSpinTipoDominio.getSelectedItem().toString() + "\nAcertou a jogada\n\n";
+                                "Tempo: " + tempo + "'\nTipo de domínio: " + mSpinTipoDominio.getSelectedItem().toString() + "\nStatus: Acertou a jogada\n\n";
                     } else {
                         if (errou == 0) CadastroPartida.historico += "DOMÍNIO:\n" +
-                                tempo + " minutos, domínio foi do tipo " + mSpinTipoDominio.getSelectedItem().toString() + "\nObservação: " + observacao + "\nAcertou a jogada\n\n";
+                                "Tempo: " + tempo + "'\nTipo de domínio: " + mSpinTipoDominio.getSelectedItem().toString() + "\nObservação: " + observacao + "\nStatus: Acertou a jogada\n\n";
                     }
-
                     finish();
                 }else{
-                    mensagem();
+                    Mensagem msg = new Mensagem();
+                    msg.alerta(v.getContext());
                 }
             }
         });
@@ -133,17 +132,6 @@ public class DominioTela extends JogadaOfensivaTela {
         mSpinSegundaBola.setAdapter(adapter4);
         mSpinSegundaBola.setSelection(1);
         mSpinSegundaBola.setVisibility(View.GONE);
-    }
-
-    public void mensagem() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Ops");
-        alertDialog.setMessage("Favor, preencher todos os campos antes de continuar.");
-        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        alertDialog.show();
     }
 }
 

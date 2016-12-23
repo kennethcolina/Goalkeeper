@@ -1,8 +1,10 @@
 package goalkeeper.matheus.goalkeeper.jogadas;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,8 +19,11 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import bd.DBManager;
+import goalkeeper.matheus.goalkeeper.Mensagem;
 import goalkeeper.matheus.goalkeeper.R;
 import model.JogadaDefensiva;
+
+import static android.content.DialogInterface.*;
 
 public class JogadaDefensivaTela extends AppCompatActivity {
     public static int idPartida;
@@ -128,7 +133,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
             builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
             builder.getWindow().setBackgroundDrawable(
                     new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            builder.setOnDismissListener(new OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialogInterface) {
                     //nothing;
@@ -148,7 +153,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
             builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
             builder.getWindow().setBackgroundDrawable(
                     new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            builder.setOnDismissListener(new OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialogInterface) {
                     //nothing;
@@ -166,5 +171,4 @@ public class JogadaDefensivaTela extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }
