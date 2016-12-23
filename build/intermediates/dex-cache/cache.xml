@@ -5,8 +5,8 @@
         jar="/home/kenneth/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.0.1/369f9aa48a629b4e92557b37326f42dc3de796e4/MPAndroidChart-v3.0.1.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="369f9aa48a629b4e92557b37326f42dc3de796e4">
-        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/MPAndroidChart-v3.0.1_eba002d3da2a0c90fba2d35dee26b848692b76cd.jar" />
+        sha1="883ae4286f320511544c1a7046456c3df94f82bf">
+        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_acce4fc79624f54b1f8a439578e9e792e804d4d5.jar" />
     </item>
 
 </items>
