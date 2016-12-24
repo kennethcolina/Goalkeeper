@@ -166,6 +166,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
             builder.show();
+
             return true;
         }
 

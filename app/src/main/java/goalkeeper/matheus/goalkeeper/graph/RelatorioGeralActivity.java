@@ -7,15 +7,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.Legend.LegendPosition;
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -48,7 +45,7 @@ public class RelatorioGeralActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_radarchart_noseekbar);
+        setContentView(R.layout.activity_relatoriogeral);
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

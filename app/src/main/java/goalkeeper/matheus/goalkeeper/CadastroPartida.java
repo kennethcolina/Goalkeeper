@@ -119,7 +119,7 @@ public class CadastroPartida extends AppCompatActivity {
                     mTxtdesc.setVisibility(View.GONE);
                     mTxtgoleiro.setVisibility(View.GONE);
 
-                    mTxtInfosPartida.setText("Partida: "+mEditTextDescricao.getText().toString() +"\nData: " + mEditTextData.getText().toString() + "\nGoleiro: " +mSpinnerGoleiros.getSelectedItem().toString().substring(mSpinnerGoleiros.getSelectedItem().toString().indexOf(":"), mSpinnerGoleiros.getSelectedItem().toString().length()));
+                    mTxtInfosPartida.setText("Partida: "+mEditTextDescricao.getText().toString() +"\nData: " + mEditTextData.getText().toString() + "\nGoleiro: " +mSpinnerGoleiros.getSelectedItem().toString().substring(mSpinnerGoleiros.getSelectedItem().toString().indexOf(":")+2, mSpinnerGoleiros.getSelectedItem().toString().length()));
                     mTxtInfosPartida.setVisibility(View.VISIBLE);
                     mLinerLayout.setVisibility(View.VISIBLE);
 
@@ -146,17 +146,6 @@ public class CadastroPartida extends AppCompatActivity {
         mBtnParciaisTatica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent tatica = new Intent(getApplicationContext(), RelatorioTaticoActivity.class);
-                tatica.putExtra("TITLE", "Relatório Tático Parcial");
-                tatica.putExtra("ID_GOLEIRO", idGoleiro);
-                tatica.putExtra("ID_PARTIDA", mDb.getMaxIdPartida());
-                startActivity(tatica);
-            }
-        });
-
-
-        mEditTextData.addTextChangedListener(tw);
 
                 Intent tatica = new Intent(getApplicationContext(), RelatorioTaticoActivity.class);
                 tatica.putExtra("TITLE", "Relatório Tático Parcial");

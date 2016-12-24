@@ -111,9 +111,6 @@
         <activity android:name=".graph.RelatorioTaticoActivity"
             android:parentActivityName=".Partidas"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".graph.PieChartActivity"
-            android:parentActivityName=".Partidas"
-            android:screenOrientation="portrait"></activity>
         <activity android:name=".graph.RelatorioPorJogadaActivity"
             android:parentActivityName=".PerfilGoleiro"
             android:screenOrientation="portrait"></activity>
