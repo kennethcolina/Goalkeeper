@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="goalkeeper.matheus.goalkeeper.DialogTipoJogada">
+    tools:context=".view.DialogTipoJogada">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:textColor="@color/white"
                 android:background="@color/colorAccent"
                 android:text="Cancelar"/>
 
@@ -43,6 +44,7 @@
                 android:id="@+id/btn_ContinuarJogada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:background="@color/colorPrimary"
                 android:text="Continuar"/>
         </LinearLayout>

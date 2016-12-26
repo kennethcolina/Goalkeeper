@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import goalkeeper.matheus.goalkeeper.util.Constantes;
+
 /**
  * Created by Matheus on 03/07/2016.
  */
@@ -23,20 +25,20 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    private static String GOLEIRO =
-            "CREATE TABLE IF NOT EXISTS Goleiro (" +
+    private static String Goleiro =
+            "CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_GOLEIRO)+" (" +
             "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "  nome TEXT," +
             "  dataNascimento TEXT);";
     private static String Partida =
-            "  CREATE TABLE IF NOT EXISTS Partida (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_PARTIDA)+" (" +
             "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "  data TEXT," +
             "  descricao TEXT," +
             "  idGoleiro INTEGER NOT NULL," +
-            "  FOREIGN KEY(idGoleiro) REFERENCES Goleiro(id) ON DELETE CASCADE);";
+            "  FOREIGN KEY(idGoleiro) REFERENCES "+Constantes.getNameTable(Constantes.DESCRICAO_GOLEIRO)+"(id) ON DELETE CASCADE);";
     private static String JogadaOfensiva =
-            "  CREATE TABLE IF NOT EXISTS JogadaOfensiva (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_JOGADA_OFENSIVA)+" (" +
             "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "  tempo INTEGER," +
             "  setorBolaFoi TEXT NULL," +
@@ -46,19 +48,19 @@ public class DBHelper extends SQLiteOpenHelper {
             "  observacao TEXT," +
             "  idPartida INTEGER NOT NULL);" ;
     private static String TiroMeta =
-            "  CREATE TABLE IF NOT EXISTS TiroMeta (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_TIRO_META)+" (" +
             "  tipoTiroMeta TEXT NOT NULL," +
             "  idJogadaOfensiva INTEGER PRIMARY KEY);";
     private static String ReporMao =
-            "  CREATE TABLE IF NOT EXISTS ReporMao (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_REPOR_MAO)+" (" +
             "  tipoComMao TEXT NULL," +
             "  idJogadaOfensiva INTEGER PRIMARY KEY);" ;
     private static String Dominio =
-            "  CREATE TABLE IF NOT EXISTS Dominio (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_DOMINIO)+" (" +
             "  tipoDominio TEXT NULL," +
             "  idJogadaOfensiva INTEGER PRIMARY KEY);" ;
     private static String JogadaDefensiva =
-            "  CREATE TABLE IF NOT EXISTS JogadaDefensiva (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_JOGADA_DEFENSIVA)+" (" +
             "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "  tempo INTEGER NULL," +
             "  setorBolaFoi TEXT NULL," +
@@ -69,33 +71,33 @@ public class DBHelper extends SQLiteOpenHelper {
             "  tipoFinalizacao TEXT NULL," +
             "  gol INTEGER);" ;
     private static String DefCaida =
-            "  CREATE TABLE IF NOT EXISTS DefCaida (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_DEFESA_CAIDA)+" (" +
             "  tipoDefesaCaida TEXT NULL," +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
     private static String ReporVoleio =
-            "  CREATE TABLE IF NOT EXISTS ReporVoleio (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_REPOR_VOLEIO)+" (" +
             "  idJogadaOfensiva INTEGER PRIMARY KEY);" ;
     private static String DefBase =
-            "  CREATE TABLE IF NOT EXISTS DefBase (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_DEFESA_BASE)+" (" +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);";
     private static String DefPe =
-            "  CREATE TABLE IF NOT EXISTS DefPe (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_DEFESA_PE)+" (" +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
     private static String DefPunho =
-            "  CREATE TABLE IF NOT EXISTS DefPunho (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_DEFESA_PUNHO)+" (" +
             "  tipoDefesaPunho TEXT NULL," +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
     private static String DefSobreCabeca =
-            "  CREATE TABLE IF NOT EXISTS DefSobreCabeca (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_DEFESA_SOBRE_CABECA)+" (" +
             "  tipoDefesa TEXT NULL," +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
     private static String DefSaida =
-            "  CREATE TABLE IF NOT EXISTS DefSaida (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_DEFESA_SAIDA)+" (" +
             "  tipoSaida TEXT NULL," +
             "  motivoSaida TEXT NULL," +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
     private static String Historico =
-            "  CREATE TABLE IF NOT EXISTS Historico (" +
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_HISTORICO)+" (" +
             "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "  descricao TEXT NOT NULL," +
             "  idPartida INTEGER);";
@@ -106,7 +108,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(GOLEIRO);
+        db.execSQL(Goleiro);
         db.execSQL(Partida);
         db.execSQL(DefBase);
         db.execSQL(DefCaida);

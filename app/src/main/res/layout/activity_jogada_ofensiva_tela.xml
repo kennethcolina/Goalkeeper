@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="goalkeeper.matheus.goalkeeper.jogadas.JogadaOfensivaTela">
+    tools:context=".view.jogadas.JogadaOfensivaTela">
 
         <Spinner
             android:id="@+id/spinner_tempoJO"

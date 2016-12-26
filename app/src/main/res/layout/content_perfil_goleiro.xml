@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="goalkeeper.matheus.goalkeeper.PerfilGoleiro"
+    tools:context=".view.PerfilGoleiro"
     tools:showIn="@layout/activity_perfil_goleiro"
     android:orientation="vertical">
     <RelativeLayout
@@ -54,7 +54,7 @@
 
                 <TextView
                     android:id="@+id/txt_nome_perfil"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/font_primary"
                     android:text="nome"
                     android:textAlignment="center"
                     android:textColor="@color/textColorPrimary"
@@ -63,7 +63,7 @@
                     android:layout_toRightOf="@id/foto_perfil" />
                 <TextView
                     android:id="@+id/txt_dataNasc_perfil"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/font_secondary"
                     android:text="10/10/2016"
                     android:textAlignment="center"
                     android:textColor="@color/textColorSecondary"

@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="goalkeeper.matheus.goalkeeper.MainActivity">
+    tools:context=".view.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,14 +31,14 @@
                 android:layout_height="wrap_content"
                 android:text="Desenvolvedores"
                 android:padding="@dimen/activity_vertical_margin"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_primary"
                 android:textColor="@color/white"/>
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/activity_vertical_margin"
-            android:textSize="13sp"
+            android:textSize="@dimen/font_secondary"
             android:textColor="@color/textColorSecondary"
             android:layout_alignBottom="@+id/relative_inicar"
             android:text="Kenneth Colina\n\nMatheus Silva Ferreira" />
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:text="Instrutor de Goleiros"
                 android:padding="@dimen/activity_vertical_margin"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_primary"
                 android:textColor="@color/white"/>
         </LinearLayout>
         <TextView
@@ -75,7 +75,7 @@
             android:padding="@dimen/activity_vertical_margin"
             android:layout_alignBottom="@+id/relative_inicar"
             android:text="Vinicius Salgado"
-            android:textSize="13sp"
+            android:textSize="@dimen/font_secondary"
             android:textColor="@color/textColorSecondary"/>
     </LinearLayout>
 

@@ -10,14 +10,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="goalkeeper.matheus.goalkeeper.VerParciais">
+    tools:context=".view.VerParciais">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="13sp"
+        android:textSize="@dimen/font_secondary"
         android:padding="@dimen/activity_horizontal_margin"
-        android:elevation="10dp"
+        android:elevation="@dimen/elevation_goalkeeper"
         android:background="@drawable/myrect"
         android:id="@+id/list_parciais_historico">
 

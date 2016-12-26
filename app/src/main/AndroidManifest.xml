@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -24,98 +24,98 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CadastroGoleiro"
+            android:name=".view.CadastroGoleiro"
             android:label="@string/title_activity_cadastro_goleiro"
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".view.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CadastroPartida"
+            android:name=".view.CadastroPartida"
             android:label="@string/title_activity_cadastro_partida"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".view.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="goalkeeper.matheus.goalkeeper.AlteraGoleiro"
+            android:name=".view.AlteraGoleiro"
             android:label="Editar Goleiro"
-            android:parentActivityName=".PerfilGoleiro"
+            android:parentActivityName=".view.PerfilGoleiro"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="goalkeeper.matheus.goalkeeper.Partidas"
+            android:name=".view.Partidas"
             android:label="Lista de Partidas"
-            android:parentActivityName=".PerfilGoleiro"
+            android:parentActivityName=".view.PerfilGoleiro"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="goalkeeper.matheus.goalkeeper.PerfilGoleiro"
+            android:name=".view.PerfilGoleiro"
             android:label="Perfil de Goleiro"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".view.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".DialogTipoJogada"
+            android:name=".view.DialogTipoJogada"
             android:label="Tipo de Jogada"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
-            android:name=".jogadas.JogadaOfensivaTela"
+            android:name=".view.jogadas.JogadaOfensivaTela"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".jogadas.TiroMetaTela"
+            android:name=".view.jogadas.TiroMetaTela"
             android:label="Tiro de Meta"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".jogadas.JogadaDefensivaTela"
+            android:name=".view.jogadas.JogadaDefensivaTela"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".VerParciais"
+            android:name=".view.VerParciais"
             android:label="Relatório Parcial de Detalhes"
-            android:parentActivityName=".CadastroPartida"
+            android:parentActivityName=".view.CadastroPartida"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".jogadas.DominioTela"
+            android:name=".view.jogadas.DominioTela"
             android:label="Domínio de Bola"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".jogadas.ReporMaoTela"
+            android:name=".view.jogadas.ReporMaoTela"
             android:label="Reposição com as Mãos"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".jogadas.ReporVoleioTela"
+            android:name=".view.jogadas.ReporVoleioTela"
             android:label="Reposição com Voleio"
             android:screenOrientation="portrait" />
-        <activity android:name=".jogadas.DefSaidaTela"
+        <activity android:name=".view.jogadas.DefSaidaTela"
             android:label="Defesa com Saída"
             android:screenOrientation="portrait" />
-        <activity android:name=".jogadas.DefPeTela"
+        <activity android:name=".view.jogadas.DefPeTela"
             android:label="Defesa com os Pés"
             android:screenOrientation="portrait"/>
-        <activity android:name=".jogadas.DefCaidaTela"
+        <activity android:name=".view.jogadas.DefCaidaTela"
             android:label="Defesa com Caída"
             android:screenOrientation="portrait" />
-        <activity android:name=".jogadas.DefSobreCabecaTela"
+        <activity android:name=".view.jogadas.DefSobreCabecaTela"
             android:label="Defesa Sobre Cabeça"
             android:screenOrientation="portrait" />
-        <activity android:name=".jogadas.DefBaseTela"
+        <activity android:name=".view.jogadas.DefBaseTela"
             android:label="Defesa Base"
             android:screenOrientation="portrait"/>
-        <activity android:name=".jogadas.DefPunhoTela"
+        <activity android:name=".view.jogadas.DefPunhoTela"
             android:label="Defesa com Punho"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Detalhe"
-            android:parentActivityName=".Partidas"
+        <activity android:name=".view.Detalhe"
+            android:parentActivityName=".view.Partidas"
             android:screenOrientation="portrait"
             android:label="Relatório Detalhes de Jogadas"></activity>
-        <activity android:name=".graph.RelatorioTaticoActivity"
-            android:parentActivityName=".Partidas"
+        <activity android:name=".view.graph.RelatorioTaticoActivity"
+            android:parentActivityName=".view.Partidas"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".graph.RelatorioPorJogadaActivity"
-            android:parentActivityName=".PerfilGoleiro"
+        <activity android:name=".view.graph.RelatorioPorJogadaActivity"
+            android:parentActivityName=".view.PerfilGoleiro"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".graph.RelatorioGeralActivity"
-            android:parentActivityName=".PerfilGoleiro"
+        <activity android:name=".view.graph.RelatorioGeralActivity"
+            android:parentActivityName=".view.PerfilGoleiro"
             android:screenOrientation="portrait"></activity>
     </application>
 

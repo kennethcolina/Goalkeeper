@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/cardview_default_elevation"
     android:paddingTop="@dimen/cardview_default_elevation"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="goalkeeper.matheus.goalkeeper.MainActivity"
+    tools:context=".view.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
     <FrameLayout

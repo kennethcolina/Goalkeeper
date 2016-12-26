@@ -4,12 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 
-import bd.DBHelper;
-import goalkeeper.matheus.goalkeeper.graph.FormatJogada;
+import goalkeeper.matheus.goalkeeper.util.Constantes;
 import model.Goleiro;
 import model.JogadaDefensiva;
 import model.JogadaOfensiva;
@@ -661,7 +659,7 @@ public class DBManager {
         String tipoJogada = "JogadaDefensiva";
         if(flagDefensiva == false) tipoJogada = "JogadaOfensiva";
 
-        jogada = FormatJogada.format(jogada);
+        jogada = Constantes.getNameTable(jogada);
 
         String sql = "select count(*) from " +
                 "(select id, "+tipoJogada+".idPartida from "+tipoJogada+", "+jogada+" where "+jogada+".id"+tipoJogada+"="+tipoJogada+".id) " +
@@ -685,7 +683,7 @@ public class DBManager {
         String tipoJogada = "JogadaDefensiva";
         if(flagDefensiva == false) tipoJogada = "JogadaOfensiva";
 
-        jogada = FormatJogada.format(jogada);
+        jogada = Constantes.getNameTable(jogada);
 
         String sql = "select count(*) from " +
                 "(select id, "+tipoJogada+".idPartida, errou from "+tipoJogada+", "+jogada+" where "+jogada+".id"+tipoJogada+"="+tipoJogada+".id) " +

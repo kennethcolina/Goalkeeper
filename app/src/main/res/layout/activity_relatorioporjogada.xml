@@ -14,82 +14,82 @@
             android:id="@+id/chart1"
             android:padding="@dimen/appbar_padding_top"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:elevation="10dp"
+            android:elevation="@dimen/elevation_goalkeeper"
             android:layout_width="match_parent"
             android:background="@android:color/white"
-            android:layout_height="170dp"/>
+            android:layout_height="@dimen/height_rel_por_jogada"/>
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart2"
             android:padding="@dimen/appbar_padding_top"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:elevation="10dp"
+            android:elevation="@dimen/elevation_goalkeeper"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="@dimen/height_rel_por_jogada"
             android:background="@android:color/white" />
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart3"
             android:padding="@dimen/appbar_padding_top"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:elevation="10dp"
+            android:elevation="@dimen/elevation_goalkeeper"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="@dimen/height_rel_por_jogada"
             android:background="@android:color/white" />
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart4"
             android:padding="@dimen/appbar_padding_top"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:elevation="10dp"
+            android:elevation="@dimen/elevation_goalkeeper"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="@dimen/height_rel_por_jogada"
             android:background="@android:color/white" />
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart5"
             android:padding="@dimen/appbar_padding_top"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:elevation="10dp"
+            android:elevation="@dimen/elevation_goalkeeper"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="@dimen/height_rel_por_jogada"
             android:background="@android:color/white" />
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart6"
             android:padding="@dimen/appbar_padding_top"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:elevation="10dp"
+            android:elevation="@dimen/elevation_goalkeeper"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="@dimen/height_rel_por_jogada"
             android:background="@android:color/white" />
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart7"
             android:padding="@dimen/appbar_padding_top"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:elevation="10dp"
+            android:elevation="@dimen/elevation_goalkeeper"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="@dimen/height_rel_por_jogada"
             android:background="@android:color/white" />
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart8"
             android:padding="@dimen/appbar_padding_top"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:elevation="10dp"
+            android:elevation="@dimen/elevation_goalkeeper"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="@dimen/height_rel_por_jogada"
             android:background="@android:color/white" />
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart9"
             android:padding="@dimen/appbar_padding_top"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:elevation="10dp"
+            android:elevation="@dimen/elevation_goalkeeper"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="@dimen/height_rel_por_jogada"
             android:background="@android:color/white" />
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart10"
             android:padding="@dimen/appbar_padding_top"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:elevation="10dp"
+            android:elevation="@dimen/elevation_goalkeeper"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="@dimen/height_rel_por_jogada"
             android:background="@android:color/white" />
     </LinearLayout>
 </ScrollView>

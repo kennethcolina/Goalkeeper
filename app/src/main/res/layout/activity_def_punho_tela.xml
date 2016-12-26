@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="goalkeeper.matheus.goalkeeper.jogadas.DefPunhoTela">
+    tools:context=".view.jogadas.DefPunhoTela">
 
     <Spinner
         android:layout_width="match_parent"
