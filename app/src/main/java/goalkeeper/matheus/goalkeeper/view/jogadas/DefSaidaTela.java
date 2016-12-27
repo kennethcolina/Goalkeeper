@@ -44,7 +44,6 @@ public class DefSaidaTela extends JogadaDefensivaTela {
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
         mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJD = (Button) findViewById(R.id.btn_salvarJD);
-        btnCancelarJD = (Button) findViewById(R.id.btn_calcelJD);
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
 
         carregarValores();
@@ -152,12 +151,6 @@ public class DefSaidaTela extends JogadaDefensivaTela {
             }
         });
 
-        btnCancelarJD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     private void carregarValores() {

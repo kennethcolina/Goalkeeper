@@ -56,11 +56,12 @@
 
         <activity
             android:name=".view.DialogTipoJogada"
-            android:label="Tipo de Jogada"
+            android:label="Tipo de Ação"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".view.jogadas.JogadaOfensivaTela"
+            android:parentActivityName=".view.CadastroPartida"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.jogadas.TiroMetaTela"
@@ -68,6 +69,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.jogadas.JogadaDefensivaTela"
+            android:parentActivityName=".view.CadastroPartida"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.VerParciais"

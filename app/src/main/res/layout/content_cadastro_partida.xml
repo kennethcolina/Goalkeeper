@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/appbar_padding_top"
             android:paddingLeft="@dimen/appbar_padding_top"
-            android:text="Nova Jogada"
+            android:text="Nova Ação"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -58,7 +58,7 @@
             android:visibility="invisible"
             android:background="@color/colorAccent"
             android:textColor="@color/white"
-            android:text="Análise Parcial de Jogadas"
+            android:text="Análise Parcial de ações"
             />
 
         <Button

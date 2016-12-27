@@ -34,7 +34,7 @@
             android:padding="@dimen/activity_vertical_margin"
             android:textSize="@dimen/font_secondary"
             android:layout_alignBottom="@+id/relative_inicar"
-            android:text="Para avaliar um goleiro em uma partida siga os seguintes passos:\n\n1. Clique em Iniciar\n2. Informe os dados da Partida\n3. Avalie as atitudes do goleiro no decorrer da partida"
+            android:text="Para avaliar um goleiro em uma partida siga os seguintes passos:\n\n1. Clique em Iniciar\n2. Informe os dados da Partida\n3. Avalie as ações do goleiro no decorrer da partida"
             android:textColor="@color/textColorSecondary"/>
         <Button
             android:layout_margin="@dimen/activity_vertical_margin"

@@ -1,11 +1,18 @@
 package goalkeeper.matheus.goalkeeper.view.jogadas;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -38,10 +45,28 @@ public class DefCaidaTela extends JogadaDefensivaTela {
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
         mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJD = (Button) findViewById(R.id.btn_salvarJD);
-        btnCancelarJD = (Button) findViewById(R.id.btn_calcelJD);
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
+        mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
+        mBtnSetorGol = (Button) findViewById(R.id.btn_setor_gol);
 
         carregarValores();
+
+
+        mBtnSetorCampo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagemAjuda(R.drawable.campo_setores_mais);
+            }
+        });
+
+        mBtnSetorGol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagemAjuda(R.drawable.gol_setores_mais);
+            }
+        });
+
+
 
         btnSalvarJD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,12 +207,6 @@ public class DefCaidaTela extends JogadaDefensivaTela {
                 }
             }
         });
-        btnCancelarJD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
     }
 
@@ -219,4 +238,5 @@ public class DefCaidaTela extends JogadaDefensivaTela {
         ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoDefCaida);
         mSpinTipoDefCaida.setAdapter(adapter5);
     }
+
 }

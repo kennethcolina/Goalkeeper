@@ -5,61 +5,179 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".view.jogadas.JogadaDefensivaTela">
-            <Spinner
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/elevation_goalkeeper"
+        android:background="@drawable/myrect"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tempo de jogo"
+                android:padding="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/font_primary"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <Spinner
             android:id="@+id/spinner_tempoJD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true" />
+    </LinearLayout>
 
-    <Spinner
-        android:id="@+id/spinner_setorBolaVeio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
-    <Spinner
-        android:id="@+id/spinner_tipoFinalizacao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
-    <Spinner
-        android:id="@+id/spinner_setorBolaFoi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
-    <CheckBox
-        android:text="Foi gol?"
-        android:id="@+id/check_gol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <CheckBox
-        android:text="Houve Erro do Goleiro?"
-        android:id="@+id/check_erro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Observação:"/>
-    <EditText
-        android:id="@+id/edit_txt_observacao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_vertical_margin"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
+        android:elevation="@dimen/elevation_goalkeeper"
+        android:background="@drawable/myrect"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancelar"
-            android:id="@+id/btn_calcelJD"
-            android:background="@color/colorAccent"
-            android:textColor="@android:color/white"/>
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tipo de finalização"
+                android:padding="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/font_primary"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_tipoFinalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/elevation_goalkeeper"
+        android:background="@drawable/myrect"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Setor origem da bola"
+                android:padding="@dimen/activity_vertical_margin"
+                android:layout_weight="2"
+                android:textSize="@dimen/font_primary"
+                android:layout_gravity="left"
+                android:textColor="@color/white"/>
+            <Button
+                android:id="@+id/btn_setor_campo"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/ic_menu_gallery"
+                android:layout_gravity="right|center_vertical"/>
+        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_setorBolaVeio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/elevation_goalkeeper"
+        android:background="@drawable/myrect"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Setor destino da bola"
+                android:layout_weight="2"
+                android:padding="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/font_primary"
+                android:textColor="@color/white"/>
+            <Button
+                android:id="@+id/btn_setor_gol"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/ic_menu_gallery"
+                android:layout_gravity="right|center_vertical"/>
+        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_setorBolaFoi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/elevation_goalkeeper"
+        android:background="@drawable/myrect"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Desfecho"
+                android:padding="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/font_primary"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <CheckBox
+            android:layout_marginTop="5dp"
+            android:text="Foi gol?"
+            android:id="@+id/check_gol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:text="Houve Erro do Goleiro?"
+            android:id="@+id/check_erro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <EditText
+                android:id="@+id/edit_txt_observacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Observação" />
+
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="salvar"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_gravity="bottom|end|right"
+            android:layout_margin="@dimen/activity_horizontal_margin"
             android:id="@+id/btn_salvarJD"
             android:background="@color/colorPrimary"
             android:textColor="@android:color/white"/>
-    </LinearLayout>
 </LinearLayout>

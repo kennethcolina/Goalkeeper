@@ -62,7 +62,7 @@ public class RelatorioPorJogadaActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_relatorioporjogada);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Análise por Jogada");
+        setTitle("Análise Individual de Ações");
         idGoleiro = getIntent().getIntExtra("ID_GOLEIRO", 0);
         mDb = new DBManager(this);
         tf = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-Regular.ttf");

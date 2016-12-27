@@ -102,7 +102,7 @@
                 android:background="@color/colorAccent"
                 android:textColor="@color/white"
                 android:id="@+id/btn_por_jogada"
-                android:text="Análise por jogada" />
+                android:text="Análise individual de ações" />
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

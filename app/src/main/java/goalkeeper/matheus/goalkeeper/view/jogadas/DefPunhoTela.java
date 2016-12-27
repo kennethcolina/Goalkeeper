@@ -39,7 +39,6 @@ public class DefPunhoTela extends JogadaDefensivaTela {
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
         mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJD = (Button) findViewById(R.id.btn_salvarJD);
-        btnCancelarJD = (Button) findViewById(R.id.btn_calcelJD);
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
 
         carregarValores();
@@ -181,12 +180,6 @@ public class DefPunhoTela extends JogadaDefensivaTela {
                     Mensagem msg = new Mensagem();
                     msg.alerta(v.getContext());
                 }
-            }
-        });
-        btnCancelarJD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
     }

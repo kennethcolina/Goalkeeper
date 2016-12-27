@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
@@ -42,7 +43,8 @@ public class JogadaDefensivaTela extends AppCompatActivity {
     public CheckBox mCheckErrou;
     public EditText mTextObservacao;
     public Button btnSalvarJD;
-    public Button btnCancelarJD;
+    public Button mBtnSetorCampo;
+    public Button mBtnSetorGol;
 
     public boolean mPreenchido = false;
     public DBManager mDb;
@@ -53,6 +55,8 @@ public class JogadaDefensivaTela extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jogada_defensiva_tela);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoi);
         mSpinSetorBolaVeio = (Spinner) findViewById(R.id.spinner_setorBolaVeio);
@@ -60,8 +64,9 @@ public class JogadaDefensivaTela extends AppCompatActivity {
         mCheckErrou = (CheckBox) findViewById(R.id.check_erro);
         mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJD = (Button) findViewById(R.id.btn_salvarJD);
-        btnCancelarJD = (Button) findViewById(R.id.btn_calcelJD);
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
+        mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
+        mBtnSetorGol = (Button) findViewById(R.id.btn_setor_gol);
 
         mDb = new DBManager(this);
     }
@@ -122,51 +127,34 @@ public class JogadaDefensivaTela extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.ajuda1) {
-            Dialog builder = new Dialog(this);
-            builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            builder.getWindow().setBackgroundDrawable(
-                    new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            builder.setOnDismissListener(new OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    //nothing;
-                }
-            });
+            switch (item.getItemId()) {
+                case android.R.id.home:
+                    // API 5+ solution
+                    onBackPressed();
+                    return true;
 
-            ImageView imageView = new ImageView(this);
-            imageView.setImageResource(R.drawable.campo_setores_mais);
-            builder.addContentView(imageView, new RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
-            builder.show();
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+    }
+    public void imagemAjuda(int setor){
+        Dialog builder = new Dialog(this);
+        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        builder.getWindow().setBackgroundDrawable(
+                new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                //nothing;
+            }
+        });
 
-            return true;
-        } else if (id == R.id.ajuda2) {
-            Dialog builder = new Dialog(this);
-            builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            builder.getWindow().setBackgroundDrawable(
-                    new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            builder.setOnDismissListener(new OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    //nothing;
-                }
-            });
-
-            ImageView imageView = new ImageView(this);
-            imageView.setImageResource(R.drawable.gol_setores_mais);
-            builder.addContentView(imageView, new RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
-            builder.show();
-
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        ImageView imageView = new ImageView(this);
+        imageView.setImageResource(setor);
+        builder.addContentView(imageView, new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        builder.show();
     }
 }
