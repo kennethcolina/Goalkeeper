@@ -37,7 +37,7 @@ public class DefCaidaTela extends JogadaDefensivaTela {
         setContentView(R.layout.activity_def_caida_tela);
         mDb = new DBManager(this);
 
-        mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
+        //mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoi);
         mSpinSetorBolaVeio = (Spinner) findViewById(R.id.spinner_setorBolaVeio);
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
@@ -65,8 +65,6 @@ public class DefCaidaTela extends JogadaDefensivaTela {
                 imagemAjuda(R.drawable.gol_setores_mais);
             }
         });
-
-
 
         btnSalvarJD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,11 +209,13 @@ public class DefCaidaTela extends JogadaDefensivaTela {
     }
 
     private void carregarValores() {
+        /*
         tempos = new ArrayList<String>();
         tempos.add("Selecione o tempo de jogo");
         for(int i=0;i<91;i++) tempos.add(i+"'");
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tempos);
         mSpinTempo.setAdapter(adapter1);
+        */
 
         arraySetorBolaFoi = Constantes.getListSetoresGol();
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySetorBolaFoi);
@@ -228,7 +228,6 @@ public class DefCaidaTela extends JogadaDefensivaTela {
         arrayTipoFinalizacao = Constantes.getListTiposFinalizacao();
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayTipoFinalizacao);
         mSpinTipoFinalizacao.setAdapter(adapter4);
-
 
         arrayTipoDefCaida = new ArrayList<String>();
         arrayTipoDefCaida.add("Selecione o tipo de caída");

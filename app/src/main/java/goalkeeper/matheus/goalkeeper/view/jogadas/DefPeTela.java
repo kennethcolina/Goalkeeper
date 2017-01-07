@@ -6,7 +6,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,11 @@ public class DefPeTela extends JogadaDefensivaTela {
     ArrayList<String> arraySetorBolaFoi;
     ArrayList<String> arraySetorBolaVeio;
     ArrayList<String> arrayTipoFinalizacao;
+    public SeekBar sb;
+    public TextView minProgress;
+    public TextView maxProgress;
+    public TextView et;
+
     DBManager mDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +35,7 @@ public class DefPeTela extends JogadaDefensivaTela {
         setContentView(R.layout.activity_def_pe_tela);
         mDb = new DBManager(this);
 
-        mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
+        //mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoi);
         mSpinSetorBolaVeio = (Spinner) findViewById(R.id.spinner_setorBolaVeio);
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
@@ -36,8 +43,45 @@ public class DefPeTela extends JogadaDefensivaTela {
         mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJD = (Button) findViewById(R.id.btn_salvarJD);
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
+        mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
+        mBtnSetorGol = (Button) findViewById(R.id.btn_setor_gol);
+        sb = (SeekBar) findViewById(R.id.time_bar);
+        et = (TextView) findViewById(R.id.value_progress);
+        minProgress = (TextView) findViewById(R.id.min_progress);
+        maxProgress = (TextView) findViewById(R.id.max_progress);
+
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar sb, int progress, boolean fromUser) {
+                et.setText(progress + "'");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar sb) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar sb) {
+
+            }
+        });
 
         carregarValores();
+
+        mBtnSetorCampo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagemAjuda(R.drawable.campo_setores_mais);
+            }
+        });
+
+        mBtnSetorGol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagemAjuda(R.drawable.gol_setores_mais);
+            }
+        });
 
         btnSalvarJD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,11 +225,13 @@ public class DefPeTela extends JogadaDefensivaTela {
     }
 
     private void carregarValores() {
+       /*
         tempos = new ArrayList<String>();
         tempos.add("Selecione o tempo de jogo");
         for(int i=0;i<91;i++) tempos.add(i+"'");
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tempos);
         mSpinTempo.setAdapter(adapter1);
+        */
 
         arraySetorBolaFoi = Constantes.getListSetoresGol();
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySetorBolaFoi);

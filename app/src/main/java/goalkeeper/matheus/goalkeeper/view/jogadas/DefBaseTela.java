@@ -28,8 +28,7 @@ public class DefBaseTela extends JogadaDefensivaTela {
         setContentView(R.layout.activity_def_base_tela);
         mDb = new DBManager(this);
 
-
-        mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
+        //mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoi);
         mSpinSetorBolaVeio = (Spinner) findViewById(R.id.spinner_setorBolaVeio);
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
@@ -201,11 +200,13 @@ public class DefBaseTela extends JogadaDefensivaTela {
     }
 
     private void carregarValores() {
+        /*
         tempos = new ArrayList<String>();
         tempos.add("Selecione o tempo de jogo");
         for(int i=0;i<91;i++) tempos.add(i+"'");
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tempos);
         mSpinTempo.setAdapter(adapter1);
+        */
 
         arraySetorBolaFoi = Constantes.getListSetoresGol();
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySetorBolaFoi);

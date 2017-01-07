@@ -15,7 +15,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import bd.DBManager;
 import goalkeeper.matheus.goalkeeper.R;
@@ -32,6 +34,11 @@ public class JogadaDefensivaTela extends AppCompatActivity {
     public static String observacao;
     public static String tipoFinalizacao;
     public static int gol;
+    public int teste = 10;
+    public SeekBar sb;
+    public TextView minProgress;
+    public TextView maxProgress;
+    public TextView tv;
 
     public int idJogadaDefensiva;
 
@@ -57,7 +64,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
+        //mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoi);
         mSpinSetorBolaVeio = (Spinner) findViewById(R.id.spinner_setorBolaVeio);
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
@@ -67,12 +74,36 @@ public class JogadaDefensivaTela extends AppCompatActivity {
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
         mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
         mBtnSetorGol = (Button) findViewById(R.id.btn_setor_gol);
+        sb = (SeekBar) findViewById(R.id.time_bar);
+        tv = (TextView) findViewById(R.id.value_progress);
+        minProgress = (TextView) findViewById(R.id.min_progress);
+        maxProgress = (TextView) findViewById(R.id.max_progress);
+
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar sb, int progress, boolean fromUser) {
+                tv.setText(progress + "'");
+                teste = progress;
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar sb) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar sb) {
+
+            }
+        });
+
 
         mDb = new DBManager(this);
     }
 
     public boolean testePreenchimento() {
-        if (mSpinTempo.getSelectedItemId() > 0 && mSpinSetorBolaFoi.getSelectedItemId() > 0 && mSpinSetorBolaVeio.getSelectedItemId() > 0 && mSpinTipoFinalizacao.getSelectedItemId() > 0) {
+        if (/*mSpinTempo.getSelectedItemId() > 0 &&*/ mSpinSetorBolaFoi.getSelectedItemId() > 0 && mSpinSetorBolaVeio.getSelectedItemId() > 0 && mSpinTipoFinalizacao.getSelectedItemId() > 0) {
             if (mCheckErrou.isChecked() == true) {
                 if (!mTextObservacao.getText().toString().isEmpty()) {
                     mPreenchido = true;
@@ -89,7 +120,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
     }
 
     public void getDados() {
-        tempo = Integer.parseInt(mSpinTempo.getSelectedItem().toString().substring(0, mSpinTempo.getSelectedItem().toString().indexOf("'")));
+        tempo = teste;
         setorBolaFoi = mSpinSetorBolaFoi.getSelectedItem().toString();
         setorBolaVeio = mSpinSetorBolaVeio.getSelectedItem().toString();
         tipoFinalizacao = mSpinTipoFinalizacao.getSelectedItem().toString();

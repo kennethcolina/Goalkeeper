@@ -157,7 +157,7 @@ public class Constantes {
 
     private static ArrayList<String> listJogdas;
 
-    public static ArrayList<String> getListJogdas(){
+    public static ArrayList<String> getListJogadas(){
         listJogdas = new ArrayList<>();
         listJogdas.add(Constantes.DESCRICAO_DEFESA_BASE);
         listJogdas.add(Constantes.DESCRICAO_DEFESA_CAIDA);
