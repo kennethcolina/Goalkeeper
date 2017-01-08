@@ -31,7 +31,7 @@ public class DefSobreCabecaTela extends JogadaDefensivaTela {
         mDb = new DBManager(this);
 
 
-        mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
+        //mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoi);
         mSpinSetorBolaVeio = (Spinner) findViewById(R.id.spinner_setorBolaVeio);
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
@@ -40,8 +40,25 @@ public class DefSobreCabecaTela extends JogadaDefensivaTela {
         mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJD = (Button) findViewById(R.id.btn_salvarJD);
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
+        mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
+        mBtnSetorGol = (Button) findViewById(R.id.btn_setor_gol);
 
         carregarValores();
+
+
+        mBtnSetorCampo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagemAjuda(R.drawable.campo_setores_mais);
+            }
+        });
+
+        mBtnSetorGol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagemAjuda(R.drawable.gol_setores_mais);
+            }
+        });
 
         btnSalvarJD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,11 +202,13 @@ public class DefSobreCabecaTela extends JogadaDefensivaTela {
     }
 
     private void carregarValores() {
+       /*
         tempos = new ArrayList<String>();
         tempos.add("Selecione o tempo de jogo");
         for(int i=0;i<91;i++) tempos.add(i+"'");
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tempos);
         mSpinTempo.setAdapter(adapter1);
+        */
 
         arraySetorBolaFoi = Constantes.getListSetoresGol();
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySetorBolaFoi);

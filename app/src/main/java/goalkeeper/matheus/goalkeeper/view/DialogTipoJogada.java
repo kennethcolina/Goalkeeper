@@ -37,7 +37,7 @@ public class DialogTipoJogada extends AppCompatActivity {
         mBtnCancelar = (Button) findViewById(R.id.btn_cancelarJogada);
         mBtnContinuar = (Button) findViewById(R.id.btn_ContinuarJogada);
 
-        listTiposJogdas = Constantes.getListJogdas();
+        listTiposJogdas = Constantes.getListJogadas();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listTiposJogdas);
         mSpinnerTipoJogadas.setAdapter(adapter);
