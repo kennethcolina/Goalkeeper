@@ -1,7 +1,6 @@
 package goalkeeper.matheus.goalkeeper.view;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +17,7 @@ import goalkeeper.matheus.goalkeeper.view.jogadas.DefBaseTela;
 import goalkeeper.matheus.goalkeeper.view.jogadas.DefCaidaTela;
 import goalkeeper.matheus.goalkeeper.view.jogadas.DefPeTela;
 import goalkeeper.matheus.goalkeeper.view.jogadas.DefPunhoTela;
+import goalkeeper.matheus.goalkeeper.view.jogadas.NaoAgiuTela;
 import goalkeeper.matheus.goalkeeper.view.jogadas.DefSobreCabecaTela;
 import goalkeeper.matheus.goalkeeper.view.jogadas.DominioTela;
 import goalkeeper.matheus.goalkeeper.view.jogadas.ReporMaoTela;
@@ -83,6 +83,11 @@ public class DialogTipoJogada extends AppCompatActivity {
                     case Constantes.DESCRICAO_DEFESA_PUNHO:
                         Intent defPunho = new Intent(getApplicationContext(), DefPunhoTela.class);
                         startActivity(defPunho);
+                        finish(); //finish Activity.
+                        break;
+                    case Constantes.DESCRICAO_NAO_AGIU:
+                        Intent defSemReacao = new Intent(getApplicationContext(), NaoAgiuTela.class);
+                        startActivity(defSemReacao);
                         finish(); //finish Activity.
                         break;
                     case Constantes.DESCRICAO_DOMINIO:

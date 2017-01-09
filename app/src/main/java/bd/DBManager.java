@@ -545,13 +545,6 @@ public class DBManager {
         return id;
     }
 
-    public void cadastrarDefBase(int idJogadaDefensiva) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues valores = new ContentValues();
-        valores.put("idJogadaDefensiva", idJogadaDefensiva);
-        db.insert("DefBase", null, valores);
-    }
-
     public String getDetalhesPartida(int idPartida) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String sql = "select descricao from historico where idPartida='"+idPartida+"'";
@@ -613,6 +606,13 @@ public class DBManager {
         return partidas; // na main, se o goleio for null escrever msg
     }
 
+    public void cadastrarDefBase(int idJogadaDefensiva) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("idJogadaDefensiva", idJogadaDefensiva);
+        db.insert("DefBase", null, valores);
+    }
+
     public void cadastrarDefCaida(int idJogadaDefensiva,String s){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues valores = new ContentValues();
@@ -634,6 +634,13 @@ public class DBManager {
         valores.put("idJogadaDefensiva", idJogadaDefensiva);
         valores.put("tipoDefesaPunho", s);
         db.insert("DefPunho", null, valores);
+    }
+
+    public void cadastrarNaoAgiu(int idJogadaDefensiva) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("idJogadaDefensiva", idJogadaDefensiva);
+        db.insert("NaoAgiu", null, valores);
     }
 
     public void cadastrarDefSobreCabeca(int idJogadaDefensiva, String s) {
@@ -701,7 +708,6 @@ public class DBManager {
         }
         return qtd;
     }
-
 
     /*
     public void teste() {
