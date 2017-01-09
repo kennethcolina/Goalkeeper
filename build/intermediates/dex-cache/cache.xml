@@ -2,102 +2,88 @@
 <items version="2" >
 
     <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_bfa59c325d37abb8a2d2dbe555846743ba2d19b3.jar" />
-    </item>
-    <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_573d2ab3024552b5c44b2268fc88f55cc4417040.jar" />
-    </item>
-    <item
-        jar="C:\Users\Matheus\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v3.0.1\369f9aa48a629b4e92557b37326f42dc3de796e4\MPAndroidChart-v3.0.1.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="369f9aa48a629b4e92557b37326f42dc3de796e4">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\MPAndroidChart-v3.0.1_0dd9f2fb17aec8378ada7b794b6ac74798980ea7.jar" />
-    </item>
-    <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_464b6df7a27d3880b37d36e32c93cafaf12855c3.jar" />
-    </item>
-    <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-8.1.0_219ed61d193e256ce41a984d461fe217f819566a.jar" />
-    </item>
-    <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.4.0_cd6da754fd17d39306a581c12843fe346fc35bee.jar" />
-    </item>
-    <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_756fe1d3546e964897b9c39c1af173bca734a65f.jar" />
-    </item>
-    <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="0ef396d7871d425aad517adce8dd6851a4f58791">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_acce4fc79624f54b1f8a439578e9e792e804d4d5.jar" />
-    </item>
-    <item
-        jar="C:\Users\Matheus\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_46f3dc3f09eca58a1aaf625e2e2c9bbd0e477386.jar" />
-    </item>
-    <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="d9ecde39b460470e655de6e47c05573d2d5a8bfb">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-23.4.0_4d2061170fd08ce638b6ddd3749e86b4877522c9.jar" />
-    </item>
-    <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appindexing-8.1.0_becfd595a35b7ba85d294bae062bcece8ba85460.jar" />
-    </item>
-    <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="d85e67dd597cb3a717f5aa625017044ff0efb81c">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\instant-run_3ba6cc54cbb542b4b99ca419e10f06ff4aa98d14.jar" />
-    </item>
-    <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.4.0_ef96ad9f8ba08ee8347b0d9a5e9a3e332823ec5b.jar" />
-    </item>
-    <item
-        jar="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
+        jar="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
         revision="23.0.3"
         sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="D:\Google Drive\Academico\UFLA\ScoultGoleiro\desenvolvimento\Goalkeeper\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_3ee3951fd1878a4073bb37c29698e45d0d0b330d.jar" />
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.4.0_0bdd5a8ad65d29bdf56304eb55216fbe21ae2d41.jar" />
+    </item>
+    <item
+        jar="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/internal_impl-23.4.0_d7a7ec96b51df0b8a116f5d9033c3d2948e31037.jar" />
+    </item>
+    <item
+        jar="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d9ecde39b460470e655de6e47c05573d2d5a8bfb">
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-23.4.0_f5038ffb4f6eb288f35da1c8a1f1b1b400edb1ab.jar" />
+    </item>
+    <item
+        jar="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.4.0_f8b74a214b40341f880944dc72aea32433d58beb.jar" />
+    </item>
+    <item
+        jar="/home/kenneth/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.0.1/369f9aa48a629b4e92557b37326f42dc3de796e4/MPAndroidChart-v3.0.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="369f9aa48a629b4e92557b37326f42dc3de796e4">
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/MPAndroidChart-v3.0.1_eba002d3da2a0c90fba2d35dee26b848692b76cd.jar" />
+    </item>
+    <item
+        jar="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.4.0_0412c7c6d42de414f8e8634724d0b59291855922.jar" />
+    </item>
+    <item
+        jar="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-8.1.0_c1e359c43ef3857fe20e7ae918852d70397c5a07.jar" />
+    </item>
+    <item
+        jar="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.4.0_1a4239079b0157d0f432afbcef63fb468d14fb81.jar" />
+    </item>
+    <item
+        jar="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.4.0_c2bcccf71dfcbdbff754f392b97da2864522837d.jar" />
+    </item>
+    <item
+        jar="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-appindexing-8.1.0_83c58d89a477eb7d606236265bbfdcf8472e56e4.jar" />
+    </item>
+    <item
+        jar="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.4.0_527fd58ba4c271ee272326f75cbbb467624efc9e.jar" />
+    </item>
+    <item
+        jar="/home/kenneth/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/home/kenneth/Documents/Goalkeeper/app/build/intermediates/pre-dexed/debug/support-annotations-23.4.0_2063459863106dc9d0d5f039e9b724d343e77997.jar" />
     </item>
 
 </items>
