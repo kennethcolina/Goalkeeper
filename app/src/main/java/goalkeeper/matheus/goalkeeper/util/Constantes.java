@@ -12,7 +12,6 @@ public class Constantes {
     public static final String labelorigem= "origem";
     public static final String labelDestino = "destino";
 
-
     /*-------------------------TABELAS-BD---------------------------*/
 
     private static final String NAME_TABLE_GOLEIRO = "Goleiro";
@@ -29,6 +28,7 @@ public class Constantes {
     private static String NAME_TABLE_DEFESA_BASE = "DefBase";
     private static String NAME_TABLE_DEFESA_PE = "DefPe";
     private static String NAME_TABLE_DEFESA_PUNHO = "DefPunho";
+    private static String NAME_TABLE_NAO_AGIU = "NaoAgiu";
     private static String NAME_TABLE_DEFESA_SOBRE_CABECA = "DefSobreCabeca";
     private static String NAME_TABLE_DEFESA_SAIDA = "DefSaida";
 
@@ -39,6 +39,7 @@ public class Constantes {
     public static final String DESCRICAO_DEFESA_PE = "Defesa com os Pés";
     public static final String DESCRICAO_DEFESA_PUNHO = "Defesa com Punho";
     public static final String DESCRICAO_DEFESA_SAIDA = "Defesa com Saída";
+    public static final String DESCRICAO_NAO_AGIU = "Não Agiu";
     public static final String DESCRICAO_DEFESA_SOBRE_CABECA = "Defesa Sobre Cabeça";
     public static final String DESCRICAO_DOMINIO = "Domínio de bola";
     public static final String DESCRICAO_REPOR_MAO = "Reposição com as mãos";
@@ -117,6 +118,9 @@ public class Constantes {
             case DESCRICAO_DEFESA_SAIDA: {
                 return NAME_TABLE_DEFESA_SAIDA;
             }
+            case DESCRICAO_NAO_AGIU: {
+                return NAME_TABLE_NAO_AGIU;
+            }
             case DESCRICAO_DEFESA_SOBRE_CABECA: {
                 return NAME_TABLE_DEFESA_SOBRE_CABECA;
             }
@@ -132,7 +136,6 @@ public class Constantes {
             case DESCRICAO_TIRO_META: {
                 return NAME_TABLE_TIRO_META;
             }
-
 
             case DESCRICAO_JOGADA_DEFENSIVA: {
                 return NAME_TABLE_JOGADA_DEFENSIVA;
@@ -154,7 +157,6 @@ public class Constantes {
         }
     }
 
-
     private static ArrayList<String> listJogdas;
 
     public static ArrayList<String> getListJogadas(){
@@ -165,6 +167,7 @@ public class Constantes {
         listJogdas.add(Constantes.DESCRICAO_DEFESA_PUNHO);
         listJogdas.add(Constantes.DESCRICAO_DEFESA_SAIDA);
         listJogdas.add(Constantes.DESCRICAO_DEFESA_SOBRE_CABECA);
+        listJogdas.add(Constantes.DESCRICAO_NAO_AGIU);
         listJogdas.add(Constantes.DESCRICAO_DOMINIO);
         listJogdas.add(Constantes.DESCRICAO_REPOR_MAO);
         listJogdas.add(Constantes.DESCRICAO_REPOR_VOLEIO);

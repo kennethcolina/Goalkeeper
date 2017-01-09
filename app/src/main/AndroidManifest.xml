@@ -106,6 +106,9 @@
         <activity android:name=".view.jogadas.DefPunhoTela"
             android:label="Defesa com Punho"
             android:screenOrientation="portrait"/>
+        <activity android:name=".view.jogadas.NaoAgiuTela"
+            android:label="Defesa sem Reação"
+            android:screenOrientation="portrait"/>
         <activity android:name=".view.Detalhe"
             android:parentActivityName=".view.Partidas"
             android:screenOrientation="portrait"

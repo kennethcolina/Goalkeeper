@@ -87,6 +87,9 @@ public class DBHelper extends SQLiteOpenHelper {
             "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_DEFESA_PUNHO)+" (" +
             "  tipoDefesaPunho TEXT NULL," +
             "  idJogadaDefensiva INTEGER PRIMARY KEY);" ;
+    private static String NaoAgiu =
+            "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_NAO_AGIU)+" (" +
+                    "  idJogadaDefensiva INTEGER PRIMARY KEY);";
     private static String DefSobreCabeca =
             "  CREATE TABLE IF NOT EXISTS "+Constantes.getNameTable(Constantes.DESCRICAO_DEFESA_SOBRE_CABECA)+" (" +
             "  tipoDefesa TEXT NULL," +
@@ -114,6 +117,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(DefCaida);
         db.execSQL(DefPe);
         db.execSQL(DefPunho);
+        db.execSQL(NaoAgiu);
         db.execSQL(DefSobreCabeca);
         db.execSQL(Dominio);
         db.execSQL(JogadaDefensiva);
