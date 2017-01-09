@@ -102,7 +102,7 @@ public class CadastroPartida extends AppCompatActivity {
         mBtnProxPartida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mSpinnerGoleiros.getSelectedItemId() > 0 && !TextUtils.isEmpty(mEditTextDescricao.getText().toString())
+                if(mSpinnerGoleiros.getSelectedItemId() > 0 && !TextUtils.isEmpty(mEditTextDescricao.getText().toString()) && !mEditTextData.getText().toString().endsWith(" ")
                         && !TextUtils.isEmpty(mEditTextData.getText().toString())) {
                     String desc = mEditTextDescricao.getText().toString();
                     String data = mEditTextData.getText().toString();
@@ -131,7 +131,7 @@ public class CadastroPartida extends AppCompatActivity {
                     mBtnParciaisTatica.setVisibility(View.VISIBLE);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 }else{
-                    Mensagem.alerta(getApplicationContext());
+                    Mensagem.alerta(v.getContext());
                 }
             }
         });

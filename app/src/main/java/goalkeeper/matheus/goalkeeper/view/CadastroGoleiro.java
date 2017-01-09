@@ -17,6 +17,7 @@ import java.util.Calendar;
 
 import bd.DBManager;
 import goalkeeper.matheus.goalkeeper.R;
+import goalkeeper.matheus.goalkeeper.util.Mensagem;
 import model.Goleiro;
 
 public class CadastroGoleiro extends AppCompatActivity {
@@ -44,10 +45,12 @@ public class CadastroGoleiro extends AppCompatActivity {
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!TextUtils.isEmpty(mNome.getText().toString()) && !TextUtils.isEmpty(mData.getText().toString())) {
+                if (!TextUtils.isEmpty(mNome.getText().toString()) && !TextUtils.isEmpty(mData.getText().toString()) && !mData.getText().toString().endsWith(" ")) {
                     mGoleiro = new Goleiro(mNome.getText().toString(), mData.getText().toString());
                     mDb.cadastrarGoleiro(mGoleiro);
                     finish();
+                }else{
+                    Mensagem.alerta(v.getContext());
                 }
             }
         });

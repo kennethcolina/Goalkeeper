@@ -43,7 +43,6 @@ public class Goleiros extends Fragment {
             public void onClick(View v) {
                 Intent cadastroGoleiro = new Intent(getActivity(), CadastroGoleiro.class);
                 startActivity(cadastroGoleiro);
-
             }
         });
 
@@ -72,8 +71,10 @@ public class Goleiros extends Fragment {
 
         if (mDb.getGoleiros().isEmpty()) {
             mtxt.setVisibility(View.VISIBLE);
+            mRv.setVisibility(View.GONE);
         } else {
             mtxt.setVisibility(View.GONE);
+            mRv.setVisibility(View.VISIBLE);
 
             mAdapter = new RVAdapter(mDb.getGoleiros(), getActivity());
             mRv.setAdapter(mAdapter);
@@ -135,6 +136,7 @@ public class Goleiros extends Fragment {
                     Intent perfil = new Intent(view.getContext(), PerfilGoleiro.class);
                     perfil.putExtra("ID_GOLEIRO", id);
                     startActivity(perfil);//Start the same Activity
+
                 }
             });
         }

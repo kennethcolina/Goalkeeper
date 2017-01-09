@@ -64,4 +64,14 @@ public class Mensagem {
         });
         alertDialog.show();
     }
+
+    public void alertaGol(Context context) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setMessage("O setor destino da bola não condiz com gol!\n");
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        alertDialog.show();
+    }
 }

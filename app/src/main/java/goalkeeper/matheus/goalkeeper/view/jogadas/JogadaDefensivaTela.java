@@ -171,6 +171,12 @@ public class JogadaDefensivaTela extends AppCompatActivity {
             return false;
         }
 
+        if ((mCheckGol.isChecked()) && (mSpinSetorBolaFoi.getSelectedItem() == Constantes.SETOR_FCID || mSpinSetorBolaFoi.getSelectedItem() == Constantes.SETOR_FCIE || mSpinSetorBolaFoi.getSelectedItem() == Constantes.SETOR_FCSD || mSpinSetorBolaFoi.getSelectedItem() == Constantes.SETOR_FCSE || mSpinSetorBolaFoi.getSelectedItem() == Constantes.SETOR_FMS || mSpinSetorBolaFoi.getSelectedItem() == Constantes.SETOR_T)) {
+            Mensagem msg = new Mensagem();
+            msg.alertaGol(v.getContext());
+            return false;
+        }
+
         return true;
     }
 }

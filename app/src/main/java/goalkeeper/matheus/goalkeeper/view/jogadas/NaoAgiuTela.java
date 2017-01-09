@@ -63,14 +63,9 @@ public class NaoAgiuTela extends JogadaDefensivaTela {
             @Override
             public void onClick(View v) {
                 if(testePreenchimento()) {
-                    //verificar o setor do penalti
-                    if(mSpinTipoFinalizacao.getSelectedItem() == Constantes.FINALIZACAO_PENALTI) {
-                        if(mSpinSetorBolaVeio.getSelectedItem() != Constantes.SETOR_ADC) {
-                            Mensagem msg = new Mensagem();
-                            msg.alertaPenalti(v.getContext());
-                            return;
-                        }
-                    }
+                    //verificar inconsistencias
+                    if(verificarInconsistencia(v) == false) return;
+
                     //cadastrar a jogada
                     int idJogadaDefensiva = saveJD();
                     mDb.cadastrarNaoAgiu(idJogadaDefensiva);
@@ -79,10 +74,10 @@ public class NaoAgiuTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL DE PÊNALTI (Não Agiu):\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             } else {
                                 CadastroPartida.historico += "NÃO AGIU:\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -108,10 +103,10 @@ public class NaoAgiuTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL DE CABECEIO (Não Agiu):\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             } else {
                                 CadastroPartida.historico += "NÃO AGIU EM CABECEIO:\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -137,10 +132,10 @@ public class NaoAgiuTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL DE FALTA (Não Agiu):\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             } else {
                                 CadastroPartida.historico += "NÃO AGIU EM FALTA:\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -166,10 +161,10 @@ public class NaoAgiuTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL (Não Agiu):\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             } else {
                                 CadastroPartida.historico += "NÃO AGIU:\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             }
                         }
                         if (errou == 0) {

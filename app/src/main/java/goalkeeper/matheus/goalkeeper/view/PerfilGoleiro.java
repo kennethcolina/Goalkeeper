@@ -116,8 +116,6 @@ public class PerfilGoleiro extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 mDb.deletarGoleiro(idGoleiro);
-                        Intent refresh = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(refresh);
                         finish();
             }
         })
