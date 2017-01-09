@@ -709,6 +709,61 @@ public class DBManager {
         return qtd;
     }
 
+    public int getQtdPenaltiFoiGol (int idGoleiro) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String sql = "select count(*) from JogadaDefensiva where tipoFinalizacao = '" + Constantes.FINALIZACAO_PENALTI  + "' and gol = '" + 1 + "';";
+
+        Cursor cursor = db.rawQuery(sql, null);
+        int qtdGol = 0;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdGol = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        return qtdGol;
+    }
+
+    public int getQtdPenaltiFoiNoGol(int idGoleiro) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String sql = "select count(*) from JogadaDefensiva where tipoFinalizacao = '" + Constantes.FINALIZACAO_PENALTI +
+                "' and (setorBolaFoi = '" + Constantes.SETOR_CID  + "' or setorBolaFoi = '" + Constantes.SETOR_CSE +
+                "' or setorBolaFoi = '" + Constantes.SETOR_MI + "' or setorBolaFoi = '" + Constantes.SETOR_MS+
+                "' or setorBolaFoi = '" + Constantes.SETOR_CSD + "' or setorBolaFoi = '" + Constantes.SETOR_CSE + "');";
+
+
+        Cursor cursor = db.rawQuery(sql, null);
+        int qtdFoiNoGol = 0;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdFoiNoGol = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        return qtdFoiNoGol;
+    }
+
+    public int getQtdPenaltiNaoFoiNoGol(int idGoleiro) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String sql = "select count(*) from JogadaDefensiva where tipoFinalizacao = '" + Constantes.FINALIZACAO_PENALTI +
+                "' and (setorBolaFoi = '" + Constantes.SETOR_T  + "' or setorBolaFoi = '" + Constantes.SETOR_FMS +
+                "' or setorBolaFoi = '" + Constantes.SETOR_FCID + "' or setorBolaFoi = '" + Constantes.SETOR_FCIE+
+                "' or setorBolaFoi = '" + Constantes.SETOR_FCSD + "' or setorBolaFoi = '" + Constantes.SETOR_FCSE + "');";
+
+        Cursor cursor = db.rawQuery(sql, null);
+        int qtdNaoFoiNoGol = 0;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                qtdNaoFoiNoGol = cursor.getInt(0);
+            } while (cursor.moveToNext());
+        }
+        return qtdNaoFoiNoGol;
+    }
+
     /*
     public void teste() {
         SQLiteDatabase db = dbHelper.getWritableDatabase();

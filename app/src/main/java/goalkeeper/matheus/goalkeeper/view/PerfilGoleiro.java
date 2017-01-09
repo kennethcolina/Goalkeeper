@@ -104,6 +104,11 @@ public class PerfilGoleiro extends AppCompatActivity {
                 startActivity(relatorio);
             }
         });
+
+        Log.i("- - - - - - -", mDb.getQtdPenaltiFoiGol(idGoleiro) + "");
+        Log.i("- - - - - - -", mDb.getQtdPenaltiFoiNoGol(idGoleiro) + "");
+        Log.i("- - - - - - -", mDb.getQtdPenaltiNaoFoiNoGol(idGoleiro) + "");
+        Log.i("- - - - - - -", mDb.getQtdPenaltiFoiNoGol(idGoleiro) + mDb.getQtdPenaltiNaoFoiNoGol(idGoleiro) + "");
     }
 
     public void confirmDialog(Goleiro goleiro) {
