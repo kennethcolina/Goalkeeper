@@ -27,6 +27,7 @@ import model.Partida;
  */
 public class Partidas extends AppCompatActivity {
     private int idGoleiro;
+    private TextView mtxt;
     private DBManager mDb;
 
     @Override
@@ -40,14 +41,21 @@ public class Partidas extends AppCompatActivity {
 
         mDb = new DBManager(this);
         idGoleiro = getIntent().getIntExtra("ID_GOLEIRO", 0);
+        mtxt = (TextView) findViewById(R.id.txt_partidas);
 
         RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
         rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
 
-        RVAdapter adapter = new RVAdapter(mDb.getPartidasTela(idGoleiro), this);
-        rv.setAdapter(adapter);
+        if (mDb.getPartidasTela(idGoleiro).isEmpty()) {
+            mtxt.setVisibility(View.VISIBLE);
+        } else {
+            mtxt.setVisibility(View.GONE);
+
+            RVAdapter adapter = new RVAdapter(mDb.getPartidasTela(idGoleiro), this);
+            rv.setAdapter(adapter);
+        }
     }
 
     @Override
