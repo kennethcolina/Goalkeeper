@@ -33,7 +33,6 @@ public class ReporMaoTela extends JogadaOfensivaTela {
         mDb = new DBManager(this);
 
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
-        btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
         mSpinTipoReporMao = (Spinner) findViewById(R.id.spinner_tipoReporMao);
         mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJO);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoiJO);
@@ -43,9 +42,16 @@ public class ReporMaoTela extends JogadaOfensivaTela {
        // mSpinErro = (Spinner) findViewById(R.id.spinner_erroJO);
         mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
-        btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
+        mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
 
         carregarValores();
+
+        mBtnSetorCampo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagemAjuda(R.drawable.campo_setores_mais);
+            }
+        });
 
         btnSalvarJO.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +61,7 @@ public class ReporMaoTela extends JogadaOfensivaTela {
                     int idJogadaOfensiva=saveJO();
                     mDb.cadastrarReporMao(idJogadaOfensiva, mSpinTipoReporMao.getSelectedItem().toString());
                     if(errou==1)CadastroPartida.historico += "REPOSIÇÃO COM MÃO:\n"+
-                            "Tempo: " + tempo + "'\nTipo de reposição: " + mSpinTipoReporMao.getSelectedItem().toString() + "\nSetor destino da jogada: " + setorBolaFoi + "\nPrimeira bola ganha por: " + primeiraBola+ "\nSegunda bola ganha por: " + segundaBola + "\nObservação: " + observacao + "\n\n";
+                            "Tempo: " + tempo + "'\nTipo de reposição: " + mSpinTipoReporMao.getSelectedItem().toString() + "\nSetor destino da jogada: " + setorBolaFoi + "\nPrimeira bola ganha por: " + primeiraBola+ "\nSegunda bola ganha por: " + segundaBola + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
 
                     if(observacao.isEmpty()) {
                         if (errou == 0) CadastroPartida.historico += "REPOSIÇÃO COM MÃO:\n" +
@@ -69,12 +75,6 @@ public class ReporMaoTela extends JogadaOfensivaTela {
                     Mensagem msg = new Mensagem();
                     msg.alerta(v.getContext());
                 }
-            }
-        });
-        btnCancelarJO.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
     }

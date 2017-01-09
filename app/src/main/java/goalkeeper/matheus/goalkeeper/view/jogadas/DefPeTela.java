@@ -23,19 +23,16 @@ public class DefPeTela extends JogadaDefensivaTela {
     ArrayList<String> arraySetorBolaFoi;
     ArrayList<String> arraySetorBolaVeio;
     ArrayList<String> arrayTipoFinalizacao;
-    public SeekBar sb;
-    public TextView minProgress;
-    public TextView maxProgress;
-    public TextView et;
 
     DBManager mDb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_def_pe_tela);
         mDb = new DBManager(this);
 
-        //mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
+        mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoi);
         mSpinSetorBolaVeio = (Spinner) findViewById(R.id.spinner_setorBolaVeio);
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
@@ -45,27 +42,6 @@ public class DefPeTela extends JogadaDefensivaTela {
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
         mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
         mBtnSetorGol = (Button) findViewById(R.id.btn_setor_gol);
-        sb = (SeekBar) findViewById(R.id.time_bar);
-        et = (TextView) findViewById(R.id.value_progress);
-        minProgress = (TextView) findViewById(R.id.min_progress);
-        maxProgress = (TextView) findViewById(R.id.max_progress);
-
-        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar sb, int progress, boolean fromUser) {
-                et.setText(progress + "'");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar sb) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar sb) {
-
-            }
-        });
 
         carregarValores();
 
@@ -87,14 +63,9 @@ public class DefPeTela extends JogadaDefensivaTela {
             @Override
             public void onClick(View v) {
                 if(testePreenchimento()){
-                    //verificar o setor do penalti
-                    if(mSpinTipoFinalizacao.getSelectedItem() == Constantes.FINALIZACAO_PENALTI) {
-                        if(mSpinSetorBolaVeio.getSelectedItem() != Constantes.SETOR_ADC) {
-                            Mensagem msg = new Mensagem();
-                            msg.alertaPenalti(v.getContext());
-                            return;
-                        }
-                    }
+                    //verificar inconsistencias
+                    if(verificarInconsistencia(v) == false) return;
+
                     //cadastrar a jogada
                     int idJogadaDefensiva=saveJD();
                     mDb.cadastrarDefPe(idJogadaDefensiva);
@@ -102,10 +73,10 @@ public class DefPeTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL DE PÊNALTI (tentou defesa com pé):\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA COM PÉ:\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -131,10 +102,10 @@ public class DefPeTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL DE CABECEIO (tentou defesa com pé):\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA COM PÉ EM CABECEIO:\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -160,10 +131,10 @@ public class DefPeTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL DE FALTA (tentou defesa com pé):\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA COM PÉ EM FALTA:\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -189,10 +160,10 @@ public class DefPeTela extends JogadaDefensivaTela {
                         if (errou == 1) {
                             if (gol == 1) {
                                 CadastroPartida.historico += "SOFREU GOL (tentou defesa com pé):\n" +
-                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                        "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             } else {
                                 CadastroPartida.historico += "DEFESA COM PÉ:\n" +
-                                            "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n\n";
+                                            "Tempo: " + tempo + "'\nSetor do gol atingido: " + setorBolaFoi + "\nOrigem da bola: " + setorBolaVeio + "\nTipo finalização: " + tipoFinalizacao + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
                             }
                         }
                         if (errou == 0) {
@@ -225,13 +196,12 @@ public class DefPeTela extends JogadaDefensivaTela {
     }
 
     private void carregarValores() {
-       /*
+
         tempos = new ArrayList<String>();
         tempos.add("Selecione o tempo de jogo");
         for(int i=0;i<91;i++) tempos.add(i+"'");
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tempos);
         mSpinTempo.setAdapter(adapter1);
-        */
 
         arraySetorBolaFoi = Constantes.getListSetoresGol();
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySetorBolaFoi);

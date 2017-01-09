@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import bd.DBManager;
 import goalkeeper.matheus.goalkeeper.R;
+import goalkeeper.matheus.goalkeeper.util.Constantes;
+import goalkeeper.matheus.goalkeeper.util.Mensagem;
 import model.JogadaDefensiva;
 
 import static android.content.DialogInterface.*;
@@ -34,11 +36,6 @@ public class JogadaDefensivaTela extends AppCompatActivity {
     public static String observacao;
     public static String tipoFinalizacao;
     public static int gol;
-    public int teste = 10;
-    public SeekBar sb;
-    public TextView minProgress;
-    public TextView maxProgress;
-    public TextView tv;
 
     public int idJogadaDefensiva;
 
@@ -64,7 +61,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
+        mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJD);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoi);
         mSpinSetorBolaVeio = (Spinner) findViewById(R.id.spinner_setorBolaVeio);
         mSpinTipoFinalizacao = (Spinner) findViewById(R.id.spinner_tipoFinalizacao);
@@ -74,36 +71,12 @@ public class JogadaDefensivaTela extends AppCompatActivity {
         mCheckGol = (CheckBox) findViewById(R.id.check_gol);
         mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
         mBtnSetorGol = (Button) findViewById(R.id.btn_setor_gol);
-        sb = (SeekBar) findViewById(R.id.time_bar);
-        tv = (TextView) findViewById(R.id.value_progress);
-        minProgress = (TextView) findViewById(R.id.min_progress);
-        maxProgress = (TextView) findViewById(R.id.max_progress);
-
-        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar sb, int progress, boolean fromUser) {
-                tv.setText(progress + "'");
-                teste = progress;
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar sb) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar sb) {
-
-            }
-        });
-
 
         mDb = new DBManager(this);
     }
 
     public boolean testePreenchimento() {
-        if (/*mSpinTempo.getSelectedItemId() > 0 &&*/ mSpinSetorBolaFoi.getSelectedItemId() > 0 && mSpinSetorBolaVeio.getSelectedItemId() > 0 && mSpinTipoFinalizacao.getSelectedItemId() > 0) {
+        if (mSpinTempo.getSelectedItemId() > 0 && mSpinSetorBolaFoi.getSelectedItemId() > 0 && mSpinSetorBolaVeio.getSelectedItemId() > 0 && mSpinTipoFinalizacao.getSelectedItemId() > 0) {
             if (mCheckErrou.isChecked() == true) {
                 if (!mTextObservacao.getText().toString().isEmpty()) {
                     mPreenchido = true;
@@ -120,7 +93,7 @@ public class JogadaDefensivaTela extends AppCompatActivity {
     }
 
     public void getDados() {
-        tempo = teste;
+        tempo = Integer.parseInt(mSpinTempo.getSelectedItem().toString().substring(0,mSpinTempo.getSelectedItem().toString().indexOf("'")));
         setorBolaFoi = mSpinSetorBolaFoi.getSelectedItem().toString();
         setorBolaVeio = mSpinSetorBolaVeio.getSelectedItem().toString();
         tipoFinalizacao = mSpinTipoFinalizacao.getSelectedItem().toString();
@@ -144,13 +117,6 @@ public class JogadaDefensivaTela extends AppCompatActivity {
         } else {
             return 0;
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.jogada, menu);
-        return true;
     }
 
     @Override
@@ -187,5 +153,24 @@ public class JogadaDefensivaTela extends AppCompatActivity {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
         builder.show();
+    }
+
+    public boolean verificarInconsistencia(View v){
+
+        if(mSpinTipoFinalizacao.getSelectedItem() == Constantes.FINALIZACAO_PENALTI) {
+            if (mSpinSetorBolaVeio.getSelectedItem() != Constantes.SETOR_ADC) {
+                Mensagem msg = new Mensagem();
+                msg.alertaPenalti(v.getContext());
+                return false;
+            }
+        }
+
+        if ((mSpinTipoFinalizacao.getSelectedItem().equals(Constantes.FINALIZACAO_FALTA)) && (mSpinSetorBolaVeio.getSelectedItem() == Constantes.SETOR_ADC || mSpinSetorBolaVeio.getSelectedItem() == Constantes.SETOR_ADD || mSpinSetorBolaVeio.getSelectedItem() == Constantes.SETOR_ADE || mSpinSetorBolaVeio.getSelectedItem() == Constantes.SETOR_PAD)) {
+            Mensagem msg = new Mensagem();
+            msg.alertaFalta(v.getContext());
+            return false;
+        }
+
+        return true;
     }
 }

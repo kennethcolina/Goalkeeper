@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -32,7 +33,6 @@ public class DominioTela extends JogadaOfensivaTela {
         mDb = new DBManager(this);
 
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
-        btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
         mSpinTipoDominio = (Spinner) findViewById(R.id.spinner_tipoDominio);
         mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJO);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoiJO);
@@ -41,9 +41,19 @@ public class DominioTela extends JogadaOfensivaTela {
         mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO);
         mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
-        btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
+        mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
+
+        mLinearPrimBola = (LinearLayout) findViewById(R.id.linear_primBola);
+        mLinearSegBola = (LinearLayout) findViewById(R.id.linear_segBola);
 
         carregarValores();
+
+        mBtnSetorCampo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagemAjuda(R.drawable.campo_setores_mais);
+            }
+        });
 
         btnSalvarJO.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +63,7 @@ public class DominioTela extends JogadaOfensivaTela {
                     int idJogadaOfensiva=saveJO();
                     mDb.cadastrarDominio(idJogadaOfensiva,mSpinTipoDominio.getSelectedItem().toString());
                     if(errou==1)CadastroPartida.historico += "DOMÍNIO:\n"+
-                            "Tempo: " + tempo + "'\nTipo de domínio: "+ mSpinTipoDominio.getSelectedItem().toString() + "\nObservação: "+observacao+ "\n\n";
+                            "Tempo: " + tempo + "'\nTipo de domínio: "+ mSpinTipoDominio.getSelectedItem().toString() + "\nObservação: "+observacao+ "\n" + "Status: Errou na jogada\n\n";
 
                     if(observacao.isEmpty()) {
                         if (errou == 0) CadastroPartida.historico += "DOMÍNIO:\n" +
@@ -67,12 +77,6 @@ public class DominioTela extends JogadaOfensivaTela {
                     Mensagem msg = new Mensagem();
                     msg.alerta(v.getContext());
                 }
-            }
-        });
-        btnCancelarJO.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
     }
@@ -103,7 +107,7 @@ public class DominioTela extends JogadaOfensivaTela {
         ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayPrimBola);
         mSpinPrimeiraBola.setAdapter(adapter3);
         mSpinPrimeiraBola.setSelection(1);
-        mSpinPrimeiraBola.setVisibility(View.GONE);
+        mLinearPrimBola.setVisibility(View.GONE);
 
         arraySegBola = new ArrayList<String>();
         arraySegBola.add("Selecione quem ganhou a segunda bola");
@@ -112,7 +116,11 @@ public class DominioTela extends JogadaOfensivaTela {
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySegBola);
         mSpinSegundaBola.setAdapter(adapter4);
         mSpinSegundaBola.setSelection(1);
-        mSpinSegundaBola.setVisibility(View.GONE);
+        mLinearSegBola.setVisibility(View.GONE);
+
+        mTextObservacao.setFocusable(false);
+        mTextObservacao.setFocusable(true);
+        mTextObservacao.setFocusableInTouchMode(true);
     }
 }
 

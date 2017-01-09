@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
@@ -38,16 +39,20 @@ public class JogadaOfensivaTela extends AppCompatActivity {
     public Spinner mSpinTempo;
     public Spinner mSpinSetorBolaFoi;
     public Spinner mSpinPrimeiraBola;
+    public LinearLayout mLinearSegBola;
+    public LinearLayout mLinearPrimBola;
     public Spinner mSpinSegundaBola;
     public CheckBox mCheckErrou;
     public EditText mTextObservacao;
     public Button btnSalvarJO;
-    public Button btnCancelarJO;
+    public Button mBtnSetorCampo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jogada_ofensiva_tela);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJO);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoiJO);
@@ -56,7 +61,10 @@ public class JogadaOfensivaTela extends AppCompatActivity {
         mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO);
         mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
-        btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
+        mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
+
+        mLinearPrimBola = (LinearLayout) findViewById(R.id.linear_primBola);
+        mLinearSegBola = (LinearLayout) findViewById(R.id.linear_segBola);
 
         mDb = new DBManager(this);
     }
@@ -102,11 +110,24 @@ public class JogadaOfensivaTela extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.jogada, menu);
-        return true;
+    public void imagemAjuda(int setor){
+        Dialog builder = new Dialog(this);
+        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        builder.getWindow().setBackgroundDrawable(
+                new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                //nothing;
+            }
+        });
+
+        ImageView imageView = new ImageView(this);
+        imageView.setImageResource(setor);
+        builder.addContentView(imageView, new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        builder.show();
     }
 
     @Override
@@ -114,52 +135,15 @@ public class JogadaOfensivaTela extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.ajuda1) {
-                Dialog builder = new Dialog(this);
-                builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                builder.getWindow().setBackgroundDrawable(
-                        new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
-                        //nothing;
-                    }
-                });
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // API 5+ solution
+                onBackPressed();
+                return true;
 
-                ImageView imageView = new ImageView(this);
-            imageView.setImageResource(R.drawable.campo_setores_mais);
-                builder.addContentView(imageView, new RelativeLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT));
-                builder.show();
-
-            return true;
-        }else if (id == R.id.ajuda2) {
-            Dialog builder = new Dialog(this);
-            builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            builder.getWindow().setBackgroundDrawable(
-                    new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    //nothing;
-                }
-            });
-
-            ImageView imageView = new ImageView(this);
-            imageView.setImageResource(R.drawable.gol_setores_mais);
-            builder.addContentView(imageView, new RelativeLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
-            builder.show();
-            return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
-
-
 }

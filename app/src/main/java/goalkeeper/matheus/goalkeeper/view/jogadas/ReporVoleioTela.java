@@ -30,15 +30,22 @@ public class ReporVoleioTela extends JogadaOfensivaTela {
         mDb = new DBManager(this);
 
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
-        btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
         mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJO);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoiJO);
         mSpinPrimeiraBola = (Spinner) findViewById(R.id.spinner_primBola);
         mSpinSegundaBola = (Spinner) findViewById(R.id.spinner_segBola);
         mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO);
         mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
+        mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
 
         carregarValores();
+
+        mBtnSetorCampo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagemAjuda(R.drawable.campo_setores_mais);
+            }
+        });
 
         btnSalvarJO.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +55,7 @@ public class ReporVoleioTela extends JogadaOfensivaTela {
                     int idJogadaOfensiva=saveJO();
                     mDb.cadastrarReporVoleio(idJogadaOfensiva);
                     if(errou==1)CadastroPartida.historico += "REPOSIÇÃO VOLEIO:\n"+
-                            "Tempo: " + tempo + "'\nSetor destino da jogada: "+ setorBolaFoi + "\nPrimeira bola ganha por: " + primeiraBola + "\nSegunda bola ganha por: " + segundaBola + "\nObservação: " + observacao + "\n\n";
+                            "Tempo: " + tempo + "'\nSetor destino da jogada: "+ setorBolaFoi + "\nPrimeira bola ganha por: " + primeiraBola + "\nSegunda bola ganha por: " + segundaBola + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
 
                     if(observacao.isEmpty()) {
                         if (errou == 0) CadastroPartida.historico += "REPOSIÇÃO VOLEIO:\n" +
@@ -62,12 +69,6 @@ public class ReporVoleioTela extends JogadaOfensivaTela {
                     Mensagem msg = new Mensagem();
                     msg.alerta(v.getContext());
                 }
-            }
-        });
-        btnCancelarJO.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
     }

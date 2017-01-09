@@ -32,7 +32,6 @@ public class TiroMetaTela extends JogadaOfensivaTela {
         mDb = new DBManager(this);
 
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
-        btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
         mSpinTipoTiroMeta = (Spinner) findViewById(R.id.spinner_tipoTiroMeta);
         mSpinTempo = (Spinner) findViewById(R.id.spinner_tempoJO);
         mSpinSetorBolaFoi = (Spinner) findViewById(R.id.spinner_setorBolaFoiJO);
@@ -41,11 +40,17 @@ public class TiroMetaTela extends JogadaOfensivaTela {
         mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO);
         mTextObservacao = (EditText) findViewById(R.id.edit_txt_observacao);
         btnSalvarJO = (Button) findViewById(R.id.btn_salvarJO);
-        btnCancelarJO = (Button) findViewById(R.id.btn_calcelJO);
-
-        mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO); //pode tirar?
+        mBtnSetorCampo = (Button) findViewById(R.id.btn_setor_campo);
+        mCheckErrou = (CheckBox) findViewById(R.id.check_erroJO);
 
         carregarValores();
+
+        mBtnSetorCampo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagemAjuda(R.drawable.campo_setores_mais);
+            }
+        });
 
         btnSalvarJO.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +60,7 @@ public class TiroMetaTela extends JogadaOfensivaTela {
                     int idJogadaOfensiva=saveJO();
                     mDb.cadastrarTiroMeta(idJogadaOfensiva,mSpinTipoTiroMeta.getSelectedItem().toString());
                     if(errou==1)CadastroPartida.historico += "TIRO DE META:\n"+
-                            "Tempo: " + tempo + "'\nTipo tiro de meta: " + mSpinTipoTiroMeta.getSelectedItem().toString()+ "\nSetor destino da jogada: " + setorBolaFoi + "\nPrimeira bola ganha por: " + primeiraBola + "\nSegunda bola ganha por: " + segundaBola + "\nObservação: " + observacao + "\n\n";
+                            "Tempo: " + tempo + "'\nTipo tiro de meta: " + mSpinTipoTiroMeta.getSelectedItem().toString()+ "\nSetor destino da jogada: " + setorBolaFoi + "\nPrimeira bola ganha por: " + primeiraBola + "\nSegunda bola ganha por: " + segundaBola + "\nObservação: " + observacao + "\n" + "Status: Errou na jogada\n\n";
 
                     if(observacao.isEmpty()) {
                         if (errou == 0) CadastroPartida.historico += "TIRO DE META:\n" +
@@ -69,12 +74,6 @@ public class TiroMetaTela extends JogadaOfensivaTela {
                     Mensagem msg = new Mensagem();
                     msg.alerta(v.getContext());
                 }
-            }
-        });
-        btnCancelarJO.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
     }
